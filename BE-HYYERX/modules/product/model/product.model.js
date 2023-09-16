@@ -16,8 +16,13 @@ const productSchema = mongoose.Schema({
             nameColor: String,
             quantity: Number
         }
-    ]
+    ],
+    categoryId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Category'
+    }
 },
+
     {timestamps: true}
 )
 
