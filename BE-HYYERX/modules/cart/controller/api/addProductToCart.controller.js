@@ -31,18 +31,18 @@ const addProductToCart = catchAsync(async(req,res)=>{
             item.quantityOrder.nameColer == bodyData.quantityOrder.nameColer &&
             item.quantityOrder.nameSize == bodyData.quantityOrder.nameSize
         )
-        const findObjectWithQuantity = productLocalDB.listQuantityRemain.find(
-            (item) => item.nameColer === bodyData.quantityOrder.nameColer && item.nameSize == bodyData.quantityOrder.nameSize
-        )
+        // const findObjectWithQuantity = productLocalDB.listQuantityRemain.find(
+        //     (item) => item.nameColer === bodyData.quantityOrder.nameColer && item.nameSize == bodyData.quantityOrder.nameSize
+        // )
         if(findProduct){
-            if(findObjectWithQuantity){
-                if(findObjectWithQuantity.quantity < bodyData.quantityOrder.quantity ||
-                    findProduct.quantityOrder.quantity + bodyData.quantityOrder.quantity > findObjectWithQuantity.quantity){
+            // if(findObjectWithQuantity){
+                if(findObjectQuantity.quantity < bodyData.quantityOrder.quantity ||
+                    findProduct.quantityOrder.quantity + bodyData.quantityOrder.quantity > findObjectQuantity.quantity){
                 
                     return res.status(status.BAD_REQUEST).json('Bạn đã mua vượt quá số lượng')
                     
                 }
-            }
+            // }
         }
         
     }
