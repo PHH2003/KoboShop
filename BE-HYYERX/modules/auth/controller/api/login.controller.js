@@ -10,11 +10,11 @@ const login = catchAsync(async(req, res) => {
     }
     const checkEmail = await authModel.findOne({email:email})
     if(!checkEmail) {
-        return res.status(status.BAD_REQUEST).json('email không tồn tại')
+        return res.status(status.BAD_REQUEST).json('Email không tồn tại')
     }
     const {user, validPassword, accessToken} = await logins(req.body)
     if(!validPassword){
-        return res.status(status.BAD_REQUEST).json('mật khẩu không tồn tại')
+        return res.status(status.BAD_REQUEST).json('Mật khẩu không chính xác')
 
     }
     return res.status(status.OK).json({

@@ -10,7 +10,7 @@ const register = catchAsync(async(req, res) => {
     }
     const checkEmail = await authModel.findOne({email: email})
     if(checkEmail) {
-        return res.status(status.BAD_REQUEST).json('email đã tồn tại')
+        return res.status(status.BAD_REQUEST).json('Email đã tồn tại')
     }
     const users = await registers(req.body)
     return res.status(status.OK).json(users)
