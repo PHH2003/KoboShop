@@ -16,23 +16,55 @@ export const addCart = async(dataBody) => {
             String(item.product) === dataBody.productId && 
             item.quantityOrder.nameColor === dataBody.quantityOrder.nameColor &&
             item.quantityOrder.nameSize ===dataBody.quantityOrder.nameSize
-        ) // Tìm thông tin máu và size giống với thông tin khách hàng mua hàng
+        )
         if(findProduct){
             findProduct.quantityOrder.quantity = findProduct.quantityOrder.quantity + dataBody.quantityOrder.quantity
         }
         else{
-            // Nếu không tìm thấy findProduct có nghĩa là sản phẩm đó không có trong giỏ hàng => tạo 1 object sản phẩm mới vào trong giỏ hàng
             cartUser.carts.push(productOrder)
         }
-        await cartUser.save() // Lưu lại
+        await cartUser.save()
     }
     else{
         const newDataCart = new cartModel({
             user: dataBody.userId
         })
-        // Nếu chưa có tài khoản thì lúc dki tài khoản mới sẽ tạo ra 1 giỏ hàng mới tương ứng với tài khoản mới đó
-        newDataCart.carts.push(productOrder) // Giỏ hàng mới chưa có sản phẩm => lúc mua hàng sẽ thêm object mới luôn        
+        newDataCart.carts.push(productOrder)        
         
-        await newDataCart.save() // Lưu lại
+        await newDataCart.save()
     }
+}
+
+export const getAllCart = async(req)=>{
+    const carts = await cartModel.findOne({
+        user: req.user.id
+    }).populate({
+        path: 'carts',
+        populate: {
+            path: 'product'
+        }
+    })
+    return carts
+}
+
+export const deleteProductCarts = async(dataBody)=> {
+    const cart = await cartModel.findOne({
+        user: dataBody.userId
+    })
+    const newCart = cart.carts.findIndex((itemIndex) => itemIndex._id == dataBody.productId)
+    if(newCart > -1){
+        cart.carts.splice(newCart, 1)
+    }
+    await cart.save()
+}
+
+export const updateProductCarts = async(dataBody) => {
+    const userCart = await cartModel.findOne({
+        user:dataBody.userId
+    })
+    if(userCart){
+        const findProductEdit = userCart.carts.find((itemProduct) => itemProduct.product == dataBody.productId)
+        findProductEdit.quantityOrder = dataBody.quantityOrder    
+    }
+    await userCart.save()
 }

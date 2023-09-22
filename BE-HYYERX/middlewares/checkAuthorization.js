@@ -12,7 +12,6 @@ const veryFileToken = async (req,res,next) => {
         if(!verifyToken) {
             return res.status(status.BAD_REQUEST).json('Lỗi token không hợp lệ')
         }
-        console.log(verifyToken);
         const user = await authModel.findOne({ _id: verifyToken._id})
         req.user = user // gán tào khoản đăng nhập được vào req.user
                         // lưu thông tin đăng nhập vào req.user 
