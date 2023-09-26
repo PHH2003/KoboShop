@@ -9,14 +9,11 @@ const productSchema = mongoose.Schema({
         default: [],
     },
     description: String,
-    brand: String,
-    listQuantityRemain: [
-        {
-            nameSize: String,
-            nameColor: String,
-            quantity: Number
-        }
-    ],
+    author: String,
+    quantity: Number,
+    company: String,
+    datePublish: String,
+    size: String,
     categoryId: {
         type: mongoose.Types.ObjectId,
         ref: 'Category'

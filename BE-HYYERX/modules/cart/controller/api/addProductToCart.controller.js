@@ -7,7 +7,7 @@ const addProductToCart = catchAsync(async(req,res)=>{
     const bodyData = {
         userId: req.user._id,
         productId: req.body.productId,
-        quantityOrder: req.body.quantityOrder
+        quantity: req.body.quantity
     }
 
     const productLocalDB = await productModel.findOne({
@@ -17,38 +17,23 @@ const addProductToCart = catchAsync(async(req,res)=>{
         user: bodyData.userId
     })
 
-    const findObjectQuantity = productLocalDB?.listQuantityRemain?.find(
-        (item)=>
-        item.nameColer == bodyData.quantityOrder.nameColer && item.nameSize == bodyData.quantityOrder.nameSize
-    )
-    if(bodyData.quantityOrder.quantity > findObjectQuantity.quantity){
+    if(bodyData.quantity > productLocalDB.quantity){
         return res.status(status.BAD_REQUEST).json('Bạn đã mua vượt quá số lượng')
     }
     if(cartUser){
         const findProduct = cartUser.carts.find(
             (item) =>
-            String(item.product) == bodyData.productId && 
-            item.quantityOrder.nameColer == bodyData.quantityOrder.nameColer &&
-            item.quantityOrder.nameSize == bodyData.quantityOrder.nameSize
+            String(item.product) == bodyData.productId
         )
-        // const findObjectWithQuantity = productLocalDB.listQuantityRemain.find(
-        //     (item) => item.nameColer === bodyData.quantityOrder.nameColer && item.nameSize == bodyData.quantityOrder.nameSize
-        // )
         if(findProduct){
-            // if(findObjectWithQuantity){
-                if(findObjectQuantity.quantity < bodyData.quantityOrder.quantity ||
-                    findProduct.quantityOrder.quantity + bodyData.quantityOrder.quantity > findObjectQuantity.quantity){
-                
-                    return res.status(status.BAD_REQUEST).json('Bạn đã mua vượt quá số lượng')
-                    
+                if(productLocalDB.quantity < bodyData.quantity ||
+                    findProduct.quantity + bodyData.quantity > productLocalDB.quantity){               
+                    return res.status(status.BAD_REQUEST).json('Bạn đã mua vượt quá số lượng')                   
                 }
-            // }
-        }
-        
+        }        
     }
     await addCart(bodyData)
-    return res.status(status.OK).json('Đã thêm sản phẩm vào giỏ hàng thành công')
- 
+    return res.status(status.OK).json('Đã thêm sản phẩm vào giỏ hàng thành công') 
 })
 
 export default addProductToCart

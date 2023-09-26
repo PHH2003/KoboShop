@@ -12,11 +12,7 @@ const cartSchema = mongoose.Schema(
           type: mongoose.Types.ObjectId,
           refs: "Product",
         },
-        quantityOrder: {
-          nameColor: String,
-          nameSize: String,
-          quantity: Number,
-        },
+        quantity: Number,    
       },
     ],
   },

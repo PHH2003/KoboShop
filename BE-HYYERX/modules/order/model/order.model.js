@@ -9,8 +9,8 @@ const orderSchema = mongoose.Schema({
     detailAddress: String,
     orderStatus: {
         type: String,
-        default: 'WAIT_FOR_CONFIRMATION',
-        enum: ['WAIT_FOR_CONFIRMATION', 'PROCESSING', 'TRANSPORTED', 'DELIVERED', 'CANCELED'],
+        default: 'Đang chờ duyệt',
+        enum: ['Đang chờ duyệt', 'Đã nhận đơn', 'Đang giao hàng', 'Đã hoàn thành'],
     },
     user: {
         type: mongoose.Types.ObjectId,
@@ -22,9 +22,7 @@ const orderSchema = mongoose.Schema({
                 type: mongoose.Types.ObjectId,
                 refs:"Product"
             },
-            quantityOrder: {
-                type:Object
-            }
+            quantity: Number
         }
     ]
 },

@@ -3,7 +3,7 @@ import cartModel from "../model/cart.model.js"
 export const addCart = async(dataBody) => {
     const productOrder = {
         product: dataBody.productId,
-        quantityOrder: dataBody.quantityOrder
+        quantity: dataBody.quantity
     }
 
     const cartUser = await cartModel.findOne({
@@ -12,13 +12,10 @@ export const addCart = async(dataBody) => {
 
     if(cartUser){
         const findProduct = cartUser.carts.find(
-            (item)=> 
-            String(item.product) === dataBody.productId && 
-            item.quantityOrder.nameColor === dataBody.quantityOrder.nameColor &&
-            item.quantityOrder.nameSize ===dataBody.quantityOrder.nameSize
+            (item)=> String(item.product) === dataBody.productId
         )
         if(findProduct){
-            findProduct.quantityOrder.quantity = findProduct.quantityOrder.quantity + dataBody.quantityOrder.quantity
+            findProduct.quantity = findProduct.quantity + dataBody.quantity
         }
         else{
             cartUser.carts.push(productOrder)
@@ -64,7 +61,7 @@ export const updateProductCarts = async(dataBody) => {
     })
     if(userCart){
         const findProductEdit = userCart.carts.find((itemProduct) => itemProduct.product == dataBody.productId)
-        findProductEdit.quantityOrder = dataBody.quantityOrder    
+        findProductEdit.quantity = dataBody.quantity   
     }
     await userCart.save()
 }

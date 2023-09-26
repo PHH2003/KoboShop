@@ -4,6 +4,7 @@ import orderModel from "../model/order.model.js"
 
 export const addOrders = async(req) => {
     const listProductOrder = req.body.productOrder
+    const userId = req.body.id
     const cartUser = await cartModel.findOne({
         user: req.user._id
     })
@@ -11,23 +12,18 @@ export const addOrders = async(req) => {
     if(cartUser) {
         const filterData = cartUser.carts.filter(
             (itemCart) => listProductOrder.filter(
-                (itemListProduct) => itemListProduct.product === String(itemCart.product)&&
-                itemListProduct.quantityOrder.nameSize == itemCart.quantityOrder.nameSize &&
-                itemListProduct.quantityOrder.nameColor == itemCart.quantityOrder.nameColor
+                (itemListProduct) => itemListProduct.product === String(itemCart.product)
             ).length === 0
         )
 
         for(let index = 0; index < listProductOrder.length; index++) {
             const element = listProductOrder[index];
-            const productOrder = element.quantityOrder
+            const productOrder = element.quantity
+            console.log(productOrder);
             const productDetail = await productModel.findOne({
                 _id: element.product
             })
-            const findProduct = productDetail.listQuantityRemain.find(
-                (item) => item.nameColor == productOrder.nameColor &&
-                            item.nameSize == productOrder.nameSize
-            )
-            findProduct.quantity = findProduct.quantity - productOrder.quantity
+            productDetail.quantity = productDetail.quantity - productOrder
             await productDetail.save()
         }
 
@@ -35,6 +31,7 @@ export const addOrders = async(req) => {
         await cartUser.save()
     }
     const newOrder = await orderModel.create({
+        user: userId,
         ...req.body
     })
     return newOrder
@@ -49,4 +46,14 @@ export const updateOrders = async(req) => {
 
     order.orderStatus = orderStatus
     await order.save()
+}
+
+export const getAllOrders = async(req) => {
+    
+        const order = await orderModel.find({
+            user: req.user.id
+        }).populate({
+            path: 'productOrder'
+        })
+        return order    
 }
