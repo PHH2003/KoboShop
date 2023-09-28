@@ -3,8 +3,8 @@ import { css } from "@emotion/react"
 const Footer = () => {
     return (
         <div css={cssFooter}>
-            <div className=" w-[1140px] m-auto">
-                <div className="flex justify-between">
+            <div className=" w-[1140px] m-auto font-semibold">
+                <div className="flex justify-between ">
                     <div>
                         <h2>All about Rakuten Kobo</h2>
                         <p>About Rakuten Kobo</p>
