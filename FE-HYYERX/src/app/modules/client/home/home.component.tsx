@@ -1,8 +1,11 @@
-import React from 'react'
+
+import Itemproduct from '~/app/components/parts/item-product/item-product.component'
 
 const Home = () => {
   return (
-    <div className='text-red-700'>Home</div>
+    <div className="">
+      <Itemproduct/>
+    </div>
   )
 }
 
