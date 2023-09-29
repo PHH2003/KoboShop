@@ -127,7 +127,7 @@ const Footer = () => {
                         <p>Now Shopping: Worldwide Kobo store Worldwide (USD) Change country</p>
                     </div>
                     <div>
-                        <p>© 2023 Rakuten Kobo Inc. Terms of Use Privacy Policy</p>
+                        <p>© 2023 Phan Huy Hiep. Terms of Use Privacy Policy</p>
                     </div>
                 </div>
             </div>

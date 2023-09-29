@@ -8,15 +8,15 @@ const Header = () => {
       <div className='bg-[#f5f5f5]'>
           <div className='flex justify-between w-[1140px] m-auto pb-2 pt-2 text-xs'>
             <div className=''>
-            <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Earn Rewards</h2></a>
+              <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Earn Rewards</h2></a>
             </div>
-            <div className='flex'>
+            <div className='menu flex'>
               <div className='px-3 text-[#595959] font-semibold'>English</div>
               <a href="#" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
               <a href="#" className='px-3 text-[#595959] font-semibold'>Blog</a>
               <a href="#" className='px-3 text-[#595959] font-semibold  '>Help</a>
-              </div>
             </div>
+          </div>
       </div>
       <div className='flex justify-between m-auto w-[1140px] mt-2'>
         <div className='flex items-center'>
@@ -32,21 +32,23 @@ const Header = () => {
             </button>
           </div>
         </div>
-        <div className='flex items-center'>
-    
-            <button className='px-3 text-[#595959] font-semibold'>
-              <BsHeart size={28} className='m-auto mt-3 ' />
-              <a href="" className='text-xs'>Wishlist</a>  
-            </button>
+        <div className=' flex items-center'>
 
+          <div className='icon-header'>
             <button className='px-3 text-[#595959] font-semibold'>
-              <GiShoppingCart size={38}/>
-              <a href="" className='text-xs'>Cart</a>
-            </button>           
-        
+                <BsHeart size={28} className='m-auto mt-3 ' />
+                <a href="" className='text-xs'>Wishlist</a>  
+              </button>
+
+              <button className='px-3 text-[#595959] font-semibold'>
+                <GiShoppingCart size={38}/>
+                <a href="" className='text-xs'>Cart</a>
+              </button>  
+          </div>
+         
           <div className='px-3 pt-3'>
-            <button className='bg-[#BF0000] py-3 px-5 text-sm font-semibold text-white'>Create account</button>
-            <p className='text-xs mt-2 text-[#595959] font-semibold'>Have an account? <button className='text-[#BF0000] '>Sign in</button></p>
+            <button className='button-register bg-[#BF0000] py-3 px-5 text-sm font-semibold text-white'>Create account</button>
+            <p className='button-signin text-xs mt-2 text-[#595959] font-semibold'>Have an account? <button className='text-[#BF0000]'>Sign in</button></p>
           </div>
 
         </div>
@@ -68,5 +70,26 @@ const cssHeader = css `
 li a{
   font-weight: 600;
   font-size: 1.2rem;
+}
+li a:hover{
+  color: red;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+}
+.icon-header button:hover {
+  color: #BF0000;
+}
+.icon-header button:hover .text-xs {
+  color: #BF0000; 
+}
+.button-register:hover {
+  background-color: #595959;
+}
+.button-signin button:hover {
+  color: #FF0000;
+}
+.menu a:hover,
+.menu div:hover {
+  color: #BF0000;
 }
 `
