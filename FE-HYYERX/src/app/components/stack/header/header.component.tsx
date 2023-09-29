@@ -13,8 +13,8 @@ const Header = () => {
             <div className='menu flex'>
               <div className='px-3 text-[#595959] font-semibold'>English</div>
               <a href="#" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
-              <a href="#" className='px-3 text-[#595959] font-semibold'>Blog</a>
-              <a href="#" className='px-3 text-[#595959] font-semibold  '>Help</a>
+              <a href="/blog" className='px-3 text-[#595959] font-semibold'>Blog</a>
+              <a href="/help" className='px-3 text-[#595959] font-semibold  '>Help</a>
             </div>
           </div>
       </div>

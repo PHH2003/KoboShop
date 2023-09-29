@@ -1,4 +1,5 @@
 import Blog from "./blog/blog.component";
+import Help from "./help/help.component";
 import Home from "./home/home.component";
 import { RouteObject } from 'react-router-dom'
 
@@ -10,6 +11,10 @@ export const clientRouter: RouteObject[]= [
  {
     path: '/blog',
     element: <Blog/>
- }
+ },
+ {
+   path: '/help',
+   element: <Help/>
+}
 ]
 
