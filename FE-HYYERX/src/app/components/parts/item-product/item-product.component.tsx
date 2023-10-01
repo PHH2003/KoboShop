@@ -11,7 +11,7 @@ const Itemproduct: FunctionComponent<IItemProduct>= ({itemproduct}) => {
   return (
     <div css={cssItemProduct} className='w-[1140px] m-auto flex justify-between pt-8'>
         <div>
-            <img src={itemproduct} className="w-[140px] h-[200px]" alt="" />
+            <a href="/detail/123"><img src={itemproduct} className="w-[140px] h-[200px]" alt="" /></a>
             <h2>Her Hidden Shadow</h2>
             <p className='text-gray-600 text-[0.8rem] font-semibold'>Carla Kovach</p>
             <p className='flex'>
@@ -22,7 +22,7 @@ const Itemproduct: FunctionComponent<IItemProduct>= ({itemproduct}) => {
             </p>
             <span>$3.39</span>
             <div className='mt-4'>
-                <ButtonComponent/>
+                <ButtonComponent title={"Add to cart"} className="w-[140px]" />
             </div>
         </div>
 

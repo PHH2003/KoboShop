@@ -4,7 +4,7 @@ import {BsSearch, BsHeart} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
 const Header = () => {
   return (
-    <div css={cssHeader} className=''>
+    <div css={cssHeader} className='shadow-md'>
       <div className='bg-[#f5f5f5]'>
           <div className='flex justify-between w-[1140px] m-auto pb-2 pt-2 text-xs'>
             <div className=''>
@@ -54,10 +54,10 @@ const Header = () => {
         </div>
       </div>
       <div className='m-auto w-[1140px] mt-2'>
-        <ul className=' w-[300px] flex justify-between italic'>
-          <li><a href="#">Home</a></li>
+        <ul className=' w-[300px] flex justify-between italic pb-7'>
+          <li><a href="/">Home</a></li>
           <li><a href="#">Product</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/help">Contact</a></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,6 @@
 const BannerComponent = () => {
     return (
-        <div className="flex justify-between mt-10">
+        <div className="flex justify-between">
             <div className="w-[760px] h-[300px]">
                 <img src="https://www.quipper.com/id/blog/wp-content/uploads/2022/12/crop-hands-holding-opened-book.webp" alt="" />
             </div>
