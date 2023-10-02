@@ -43,10 +43,10 @@ const Header = () => {
         <div className=' flex items-center'>
 
           <div className='icon-header'>
-            <Link to={"/"}>
+            <Link to={"/wishlish"}>
               <button className='px-3 text-[#595959] font-semibold'>
                 <BsHeart size={28} className='m-auto mt-3 ' />
-                <a href="" className='text-xs'>Wishlist</a>  
+                <a href="/" className='text-xs'>Wishlist</a>  
               </button>
             </Link>
             
