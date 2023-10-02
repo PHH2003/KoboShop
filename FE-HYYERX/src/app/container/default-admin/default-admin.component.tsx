@@ -23,8 +23,8 @@ const DefaultAdmin: React.FC = () => {
   return (
     <Layout style={{height:'100vh'}}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className='p-5'>
-            <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1695868388/Screenshot_2023-09-28_093249_lfrm2d.png" alt="" />
+        <div className='mr-5'>
+            <img src="https://res.cloudinary.com/dpfndtcya/image/upload/t_logo-kobo-web-admin/v1696241284/rakuten-kobo1-removebg-preview_efmks8.png" alt="" />
         </div>
         <Menu
           theme="dark"

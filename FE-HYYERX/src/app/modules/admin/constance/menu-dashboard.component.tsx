@@ -4,11 +4,17 @@ import {
     HomeOutlined,
     ShoppingCartOutlined,
     OrderedListOutlined,
+    LogoutOutlined 
   
   } from '@ant-design/icons';
 
 export const MenuDashboard = [
-    {
+      {
+        key: '/admin',
+        icon: <HomeOutlined />,
+        label: 'Home',
+      },
+      {
         key: '/admin/product',
         icon: <OrderedListOutlined />,
         label: 'Product',
@@ -29,8 +35,8 @@ export const MenuDashboard = [
         label: 'user',
       },
       {
-        key: '/admin',
-        icon: <HomeOutlined />,
-        label: 'Home',
-    }
+        key: '/',
+        icon: <LogoutOutlined />,
+        label: 'Out',
+      }
 ]
