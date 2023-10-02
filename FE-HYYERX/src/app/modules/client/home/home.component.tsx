@@ -11,14 +11,14 @@ const Home = () => {
       <BannerComponent/>
       </div>
 
-      <div>
+      <div className=''>
         <Trending/>
       </div>
-
+      <hr className='my-6' />
       <div>
         <NewReleases/>
       </div>
-
+      <hr className='my-6' />
       <div>
         <Fantastic/>
       </div>

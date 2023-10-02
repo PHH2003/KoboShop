@@ -3,7 +3,7 @@ import { SwiperSlide } from 'swiper/react'
 import Itemproduct from '~/app/components/parts/item-product/item-product.component'
 import SwiperList from '~/app/components/stack/swiper-list/swiper-list.component'
 
-const NewReleases = () => {
+const IdentityCompnonent = () => {
 
     const arrayImg = [
        "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
@@ -22,7 +22,7 @@ const NewReleases = () => {
   return (
     
     <div className=''>       
-    <SwiperList title={"New releases you don't want to miss"}>
+    <SwiperList title={"Books related to Her Hidden Shadow"}>
         {arrayImg?.map((item:any, index: any)=>(
             <SwiperSlide key={index +1}>
                 <Itemproduct itemproduct={item}/>
@@ -34,4 +34,4 @@ const NewReleases = () => {
   )
 }
 
-export default NewReleases
+export default IdentityCompnonent

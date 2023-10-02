@@ -8,7 +8,7 @@ const LinkDetail = () => {
                 <a href="/" className='underline mr-1'>Home </a>/
                 <a href="#" className='underline ml-1 mr-1'>eBooks </a>/
                 <a href="#" className='underline ml-1 mr-1'> Fiction & Literature </a>/
-                <p className='text-[#595974] ml-1'> 12 Months to Live </p></span>
+                <p className='text-[#595974] ml-1'> Her Hidden Shadow </p></span>
         </div>
     </div>
   )

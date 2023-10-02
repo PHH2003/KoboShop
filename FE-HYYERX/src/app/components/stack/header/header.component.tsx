@@ -2,6 +2,8 @@ import React from 'react'
 import { css } from '@emotion/react'
 import {BsSearch, BsHeart} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
+import { Link } from 'react-router-dom'
+
 const Header = () => {
   return (
     <div css={cssHeader} className='shadow-md'>
@@ -11,7 +13,11 @@ const Header = () => {
               <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Earn Rewards</h2></a>
             </div>
             <div className='menu flex'>
-              <div className='px-3 text-[#595959] font-semibold'>English</div>
+              {/* <div className='px-3 text-[#595959] font-semibold'>English</div> */}
+              <select  name="" id="" className='px-3 text-[#595959] font-semibold w-[82px] bg-[#F5F5F5]'>
+                <option value="0">English</option>
+                <option value="1">Vietnamese</option>
+              </select>
               <a href="#" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
               <a href="/blog" className='px-3 text-[#595959] font-semibold'>Blog</a>
               <a href="/help" className='px-3 text-[#595959] font-semibold  '>Help</a>
@@ -20,7 +26,9 @@ const Header = () => {
       </div>
       <div className='flex justify-between m-auto w-[1140px] mt-2'>
         <div className='flex items-center'>
-          <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1695868388/Screenshot_2023-09-28_093249_lfrm2d.png" alt="" />
+          <Link to={"/"}>
+            <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1695868388/Screenshot_2023-09-28_093249_lfrm2d.png" alt="" />
+          </Link>
           <div className='flex mx-10'>
             <input
                 type='text'
@@ -89,6 +97,7 @@ li a:hover{
   color: #FF0000;
 }
 .menu a:hover,
+select:hover,
 .menu div:hover {
   color: #BF0000;
 }

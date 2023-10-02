@@ -27,6 +27,7 @@ const InfoDetail = () => {
                 <h2>Her Hidden Shadow</h2>
                 <span className="title">A completely nail-biting and gripping crime thriller</span>
                 <p className="mt-4">by <a href="#">Carla Kovach</a></p>
+
                 <div className="flex mt-6">
                     <div className="title-price border border-[#bbb]">
                         <span>Audiobook</span>
@@ -41,7 +42,7 @@ const InfoDetail = () => {
 
                 </div>
                 <p className="my-4">Free with Trial</p>
-                <hr />
+                <hr className="my-4"/>
 
                 <h2 className="title-name">Synopsis</h2>
                 <span>
