@@ -13,7 +13,7 @@ const WishlistComponent = () => {
         <div className='w-[80%] p-6 flex'>
           <img className='w-[180px] h-[276px]' src="https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1" alt="" />
           <div className='px-7'>
-            <h2 className=''>The Running Grave</h2>
+            <h2 className='hover:text-[#BF0000]'>The Running Grave</h2>
             <span>by <a className='underline hover:text-[#BF0000]' href="#">Carla Kovach</a></span>
             <div className='flex py-4'>
             <StarComponent/>
@@ -27,7 +27,7 @@ const WishlistComponent = () => {
             <p>
               Lauren returns home from celebrating her engagement with friends and stumbles as she gets out of the taxi. So what if her best friend Sienna didn’t show up? Lauren had a good night anyway. As she walks towards the small house she shares with her fiancé, Robbie, she’s surprised to see every window in total darkness. And when she calls his name, the house remains silent. Where is Robbie?...
             </p>
-            <p className='text-right'>... <a className='underline hover:text-[#BF0000]' href="#">Read more</a></p>
+            <p className='text-right'>... <a className='underline hover:text-[#BF0000]' href="/detail/123">Read more</a></p>
             </div>
 
           </div>
@@ -37,7 +37,7 @@ const WishlistComponent = () => {
         <div className='w-[20%] p-4 '>
           <div className='price-wishlist text-center'>$26.29 USD</div>
           <div className="py-6">
-            <ButtonComponent  title={"Add to cart"} className="w-[200px]" />
+            <ButtonComponent  title={"Add to cart"} className="w-[200px] hover:bg-[#BF0000]" />
           </div>
           <div className='text-center'>
             <button className='text-remove underline font-medium hover:text-[#BF0000] '>Remove from Wishlist</button>
@@ -50,7 +50,7 @@ const WishlistComponent = () => {
         <div className='w-[80%] p-6 flex'>
           <img className='w-[180px] h-[276px]' src="https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1" alt="" />
           <div className='px-7'>
-            <h2 className=''>The Running Grave</h2>
+            <h2 className='hover:text-[#BF0000]'>The Running Grave</h2>
             <span>by <a className='underline hover:text-[#BF0000]' href="#">Carla Kovach</a></span>
             <div className='flex py-4'>
             <StarComponent/>
@@ -64,7 +64,7 @@ const WishlistComponent = () => {
             <p>
               Lauren returns home from celebrating her engagement with friends and stumbles as she gets out of the taxi. So what if her best friend Sienna didn’t show up? Lauren had a good night anyway. As she walks towards the small house she shares with her fiancé, Robbie, she’s surprised to see every window in total darkness. And when she calls his name, the house remains silent. Where is Robbie?...
             </p>
-            <p className='text-right'>... <a className='underline hover:text-[#BF0000]' href="#">Read more</a></p>
+            <p className='text-right'>... <a className='underline hover:text-[#BF0000]' href="/detail/123">Read more</a></p>
             </div>
 
           </div>
@@ -74,7 +74,7 @@ const WishlistComponent = () => {
         <div className='w-[20%] p-4 '>
           <div className='price-wishlist text-center'>$26.29 USD</div>
           <div className="py-6">
-            <ButtonComponent  title={"Add to cart"} className="w-[200px]" />
+            <ButtonComponent  title={"Add to cart"} className="w-[200px] hover:bg-[#BF0000]" />
           </div>
           <div className='text-center'>
             <button className='text-remove underline font-medium hover:text-[#BF0000] '>Remove from Wishlist</button>
