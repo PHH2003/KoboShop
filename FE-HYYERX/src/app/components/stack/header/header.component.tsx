@@ -43,15 +43,19 @@ const Header = () => {
         <div className=' flex items-center'>
 
           <div className='icon-header'>
-            <button className='px-3 text-[#595959] font-semibold'>
+            <Link to={"/"}>
+              <button className='px-3 text-[#595959] font-semibold'>
                 <BsHeart size={28} className='m-auto mt-3 ' />
                 <a href="" className='text-xs'>Wishlist</a>  
               </button>
-
+            </Link>
+            
+            <Link to={"/cart"}>
               <button className='px-3 text-[#595959] font-semibold'>
-                <GiShoppingCart size={38}/>
+                <GiShoppingCart  size={38}/>
                 <a href="" className='text-xs'>Cart</a>
               </button>  
+            </Link>
           </div>
          
           <div className='px-3 pt-3'>
