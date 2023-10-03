@@ -48,7 +48,7 @@ const InfoCart = () => {
       
       <hr className='my-6' />
       <Link to={"/"}>
-      <button className='bg-[#595959] hover:bg-[#BF0000] text-white  py-2 px-4 rounded'>Tiếp tục mua hàng</button>
+      <button className='bg-[#595959] hover:bg-[#BF0000] text-white  py-2 px-4 rounded'>Continue shopping</button>
       </Link>
     </div>
   )

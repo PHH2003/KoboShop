@@ -1,27 +1,30 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, Modal } from 'antd';
 
-const TemplateModal: React.FC = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+interface ITemplateModel {
+    isModelOpen: boolean,
+    handleOk(): void
+    handleCancel(): void
+}
 
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
+const TemplateModal: FC<ITemplateModel> = ({isModelOpen,handleOk,handleCancel}) => {
+    
 
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
+    // const showModal = () => {
+    //     setIsModalOpen(true);
+    // };
 
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
+    // const handleOk = () => {
+    //     setIsModalOpen(false);
+    // };
+
+    // const handleCancel = () => {
+    //     setIsModalOpen(false);
+    // };
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
-                Open Modal
-            </Button>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="Basic Modal" open={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
                 <p>Some contents...</p>
                 <p>Some contents...</p>
                 <p>Some contents...</p>

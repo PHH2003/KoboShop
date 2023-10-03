@@ -25,3 +25,8 @@ export const logins = async(dataBody) => {
         accessToken
     }
 }
+
+export const getAllUsers = async() => {
+    const user = await authModel.find()
+    return user
+}

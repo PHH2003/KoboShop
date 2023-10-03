@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Button, Popconfirm, Space, Table, Tag, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import TemplateModal from '../template-modal/teamplate-modal.component';
 
 interface DataType {
     key: string;
@@ -10,64 +11,44 @@ interface DataType {
     tags: string[];
 }
 
+interface ITemplateTableProp {
+    dataTable: any[],
+    createfunc?: any
+}
 
 
-const TemplateTable: React.FC = () => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
+    const [isModelOpen, setIsModelOpen] = useState(false)
+    const [type, setType] = useState('CREATE')
+    const [columTable, setColumTable] = useState<any[]>([])
     const confirm = (e: any) => {
-        console.log(e);
         message.success('Click on Yes');
     };
-
     const cancel = (e: any) => {
-        console.log(e);
         message.error('Click on No');
     };
+    const handleOk = () => {
+        setIsModelOpen(false)
+    }
+    const handleCancel = () => {
+        setIsModelOpen(false)
+    }
+    const showModel = (typeAction: any) => {
+        setIsModelOpen(true)
+        setType(typeAction)
+    }
     const columns: ColumnsType<DataType> = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: (text) => <a>{text}</a>,
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-        {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (_, { tags }) => (
-                <>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
-        },
+
         {
             title: 'Action',
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button type="primary" >
+                    <Button type="primary" onClick={()=>showModel('CREATE')} >
                         edit
                     </Button>
                     <Popconfirm
+                        className='m-auto'
                         title="Delete the task"
                         description="Are you sure to delete this task?"
                         onConfirm={confirm}
@@ -81,41 +62,35 @@ const TemplateTable: React.FC = () => {
             ),
         },
     ];
-
-    const data: DataType[] = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
+    useEffect(() => {
+        const columTemp: any[] = []
+        if(dataTable.length > 0){
+            Object?.keys(dataTable[0]).map((itemKey) => 
+                columTemp.push({
+                    title: itemKey,
+                    dataIndex: itemKey,
+                    key: itemKey
+                })
+            )
+        }
+        const merArray = [...columTemp, ...columns]
+        setColumTable(merArray)
+    }, [dataTable])
 
     return (
-        <>
+        <div className=''>
             <div className='pb-4'>
-                <Button type="primary" >
+                <Button type="primary" onClick={showModel}>
                     Create user
                 </Button>
             </div>
-
-            <Table columns={columns} dataSource={data} />
-        </>
+            <div className='overflow-auto'>
+                <Table columns={columTable} dataSource={dataTable} />
+            </div>
+            <div>
+                <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} />
+            </div>
+        </div>
 
     )
 
