@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllProduct } from './service/product.service'
+import TemplateTable from '../common/template-table/template-table.component'
 
 const ProductAdminComponent = () => {
+  const [dataProduct, setDataProduct] = useState([])
+  useEffect(() => {
+    getAllProduct().then((res) =>{
+      setDataProduct(res.data)
+    })
+  }, [])
   return (
-    <div>ProductAdminComponent</div>
+    <div>
+      <TemplateTable dataTable={dataProduct} />
+    </div>
   )
 }
 

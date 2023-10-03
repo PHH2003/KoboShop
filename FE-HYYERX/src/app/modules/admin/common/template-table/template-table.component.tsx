@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, Popconfirm, Space, Table, Tag, message } from 'antd';
+import { Button, Input, Popconfirm, Space, Table, Tag, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import TemplateModal from '../template-modal/teamplate-modal.component';
+import LayoutLoading from '~/app/components/stack/layout-loading/layout-loading.component';
+import { SearchOutlined } from '@ant-design/icons';
 
 interface DataType {
     key: string;
@@ -13,15 +15,31 @@ interface DataType {
 
 interface ITemplateTableProp {
     dataTable: any[],
-    createfunc?: any
+    createFunc?: any,
+    deleteFunc?: any
+    changeFunc?: any
+    searchFunc?: any
 }
 
 
-const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc}) => {
     const [isModelOpen, setIsModelOpen] = useState(false)
+    const [triggerLoadding, setTriggerLoadding] =useState(false)
     const [type, setType] = useState('CREATE')
     const [columTable, setColumTable] = useState<any[]>([])
-    const confirm = (e: any) => {
+    const confirmDelete = (e: any) => {
+        setTriggerLoadding(true)
+        deleteFunc(type).then((res: any)=>{
+            if(res){
+                setTimeout(()=> {
+                    setTriggerLoadding(false)
+                }, 1000)
+            } 
+        },(err: any) =>{
+            setTimeout(()=> {
+                setTriggerLoadding(false)
+            }, 1000)      
+        })
         message.success('Click on Yes');
     };
     const cancel = (e: any) => {
@@ -29,7 +47,50 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
     };
     const handleOk = () => {
         setIsModelOpen(false)
+        setTriggerLoadding(true)
+        if(type=='CREATE'){
+            createFunc(type).then((res:any)=>{
+                if(res){
+                    setTimeout(()=> {
+                        setTriggerLoadding(false)
+                    }, 1000)
+                }
+            },(err:any)=>{
+                setTimeout(()=> {
+                    setTriggerLoadding(false)
+                }, 1000)
+            })
+        }
+        if(type=='CHANGE'){
+            changeFunc(type, type).then((res:any)=>{
+                if(res){
+                    setTimeout(()=> {
+                        setTriggerLoadding(false)
+                    }, 1000)
+                }
+            },(err:any)=>{
+                setTimeout(()=> {
+                    setTriggerLoadding(false)
+                }, 1000)
+            })
+        }
     }
+
+    const handleSearchItem = () => {
+        setTriggerLoadding(true)
+        searchFunc(type).then((res:any)=>{
+            if(res){
+                setTimeout(()=>{
+                    setTriggerLoadding(false)
+                },1000)
+            }
+        }, (errr:any)=>{
+            setTimeout(() => {
+                setTriggerLoadding(false)
+            }, 1000)
+        })
+    }
+
     const handleCancel = () => {
         setIsModelOpen(false)
     }
@@ -44,14 +105,14 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button type="primary" onClick={()=>showModel('CREATE')} >
+                    <Button type="primary" onClick={()=>showModel('CHANGE')} >
                         edit
                     </Button>
                     <Popconfirm
                         className='m-auto'
                         title="Delete the task"
                         description="Are you sure to delete this task?"
-                        onConfirm={confirm}
+                        onConfirm={confirmDelete}
                         onCancel={cancel}
                         okText="Yes"
                         cancelText="No"
@@ -78,11 +139,16 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
     }, [dataTable])
 
     return (
-        <div className=''>
-            <div className='pb-4'>
-                <Button type="primary" onClick={showModel}>
+       <LayoutLoading condition={triggerLoadding}>
+         <div className=''>
+            <div className='flex pb-4 justify-between'>
+                <Button type="primary" onClick={()=>showModel('CREATE')}>
                     Create user
                 </Button>
+                <div>
+                    <Input placeholder='search item here' className='w-[350px]' prefix={<SearchOutlined />}/>
+                    <Button type='primary' className='ml-3'  onClick={handleSearchItem}>Search</Button>
+                </div>
             </div>
             <div className='overflow-auto'>
                 <Table columns={columTable} dataSource={dataTable} />
@@ -92,6 +158,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createfunc}) => {
             </div>
         </div>
 
+       </LayoutLoading>
     )
 
 }
