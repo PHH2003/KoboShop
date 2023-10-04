@@ -10,8 +10,8 @@ const CartComponent = () => {
             <LinkCart/>
         </div>
         
-        <div className='text-center text-3xl font-sans text-[#595959] py-7'>
-            <h1>CART</h1>
+        <div className='text-center text-3xl font-semibold text-[#595959] py-7'>
+            <h1>SHOPPING CART</h1>
         </div>
         
         <div className='flex justify-between'>

@@ -24,7 +24,7 @@ const InfoCart = () => {
 
         <tbody>
           <tr className='trbody'>
-            <td className='flex items-center space-x-3'>
+            <td className='flex items-center space-x-3 mt-7'>
               <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' />
               <img src='https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1' alt='' className='w-[100px] h-[150px]' />
             </td>
@@ -48,7 +48,7 @@ const InfoCart = () => {
       
       <hr className='my-6' />
       <Link to={"/"}>
-      <button className='bg-[#595959] hover:bg-[#BF0000] text-white  py-2 px-4 rounded'>Continue shopping</button>
+      <button className='hover:bg-[#595959] bg-[#BF0000] text-white  py-2 px-4 rounded'>Continue shopping</button>
       </Link>
     </div>
   )

@@ -5,6 +5,7 @@ import Help from './help/help.component'
 import Home from './home/home.component'
 import { RouteObject } from 'react-router-dom'
 import WishlistComponent from './wishlist/wishlist.component'
+import CheckoutComponent from './checkout/checkout.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -27,5 +28,9 @@ export const clientRouter: RouteObject[] = [
   },
   { path: '/wishlish',
   element: <WishlistComponent/>
-  }
+  },
+  {
+    path: "/checkout",
+    element: <CheckoutComponent />
+}
 ]

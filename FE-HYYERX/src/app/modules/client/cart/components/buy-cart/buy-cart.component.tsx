@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { Link } from "react-router-dom"
 import ButtonComponent from "~/app/components/parts/button/button.component"
 const BuyCart = () => {
     return (
@@ -8,7 +9,9 @@ const BuyCart = () => {
                 <span className="font-mono">$14,9</span>
             </div>
                 <div className="py-6">
-                    <ButtonComponent title={"Payment"} className="w-[250px] hover:bg-[#BF0000]" />
+                    <Link to={'/checkout'}>
+                        <ButtonComponent title={"Payment"} handleColor className="w-[250px] hover:bg-[#595959]" />
+                    </Link>
                 </div>
         </div>
     )
