@@ -3,6 +3,7 @@ import { SwiperSlide } from 'swiper/react'
 import Itemproduct from '~/app/components/parts/item-product/item-product.component'
 import SwiperList from '~/app/components/stack/swiper-list/swiper-list.component'
 import { useProductRedux } from '../../../redux/hook/useProductReducer'
+import { Link } from 'react-router-dom'
 
 const Fantastic = () => {
 
@@ -32,7 +33,9 @@ const Fantastic = () => {
     <SwiperList title={"Fantastic fiction"}>
         {products?.map((item:any, index: any)=>(
             <SwiperSlide key={index +1}>
-                <Itemproduct itemproduct={item}/>
+                <Link to={`/detail/${item._id}`}>
+                    <Itemproduct itemproduct={item}/>
+                </Link>
             </SwiperSlide>   
         ))}
     </SwiperList>

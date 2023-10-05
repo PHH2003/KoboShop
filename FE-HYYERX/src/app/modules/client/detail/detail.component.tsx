@@ -24,7 +24,7 @@ const DetailComponent = () => {
             </div>
       <hr className='my-6' />
 
-            {/*  */}
+            
             <div>
                 <IdentityComponent/>
             </div>

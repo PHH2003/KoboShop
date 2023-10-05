@@ -6,17 +6,6 @@ import { useProductRedux } from '../../../redux/hook/useProductReducer'
 import { Link } from 'react-router-dom'
 
 const Trending = () => {
-
-    // const arrayImg = [
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    //     "http://c3nguyenchithanh.daknong.edu.vn/wp-content/uploads/2020/04/nhung-cuon-sach-hay-nen-doc-mot-lan-trong-doi-3724-7.jpg",
-    // ]
     const {
         data: { products },
         actions
@@ -24,6 +13,7 @@ const Trending = () => {
     useEffect(()=> {
         actions.getAllProducts()
     },[])
+    console.log(products)
   return (
     <div>
     <SwiperList title={"Trending Now in eBooks"}>

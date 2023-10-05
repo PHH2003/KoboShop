@@ -3,22 +3,9 @@ import { SwiperSlide } from 'swiper/react'
 import Itemproduct from '~/app/components/parts/item-product/item-product.component'
 import SwiperList from '~/app/components/stack/swiper-list/swiper-list.component'
 import { useProductRedux } from '../../../redux/hook/useProductReducer'
+import { Link } from 'react-router-dom'
 
 const NewReleases = () => {
-
-    // const arrayImg = [
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",
-    //    "https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1",  
-    // ]
     const {
       data: { products },
       actions
@@ -33,7 +20,9 @@ const NewReleases = () => {
     <SwiperList title={"New releases you don't want to miss"}>
         {products?.map((item:any, index: any)=>(
             <SwiperSlide key={index +1}>
-                <Itemproduct itemproduct={item}/>
+                <Link to={`/detail/${item._id}`}>
+                    <Itemproduct itemproduct={item}/>
+                </Link>
             </SwiperSlide>   
         ))}
     </SwiperList>
