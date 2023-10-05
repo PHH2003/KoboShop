@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import ButtonComponent from "~/app/components/parts/button/button.component"
 
-const RegisterComponent = () => {
+const ForgotPasswordComponent = () => {
     return (
         <div className="relative h-[90vh]" css={cssRegister}>
             <div className="">
@@ -12,28 +12,13 @@ const RegisterComponent = () => {
                 <div className='bg-white border p-4 rounded w-[300px] m-auto'>
                     <a href="/login" className="text-gray-700 font-semibold hover:text-red-700 float-right underline">Login Kobo account</a>
                     <div className='mt-10'>
-                        <h2 className='text-center'>Register</h2>
+                        <h2 className='text-center'>Forgot Password</h2>
                     </div>
-                    <input type="email" name="" id="" placeholder='Email' /> <br />
-                    <input type="password" name="" id="" placeholder='Password' />
+                    <input type="email" name="" id="" placeholder='Email' />
+                    
                     <p className='text-[12px] text-gray-800 font-semibold mt-3'>By continuing you confirm that you agree to the Terms of Use and confirm that you have read the Privacy Policy, updated August 15, 2023</p>
 
-                    <ButtonComponent handleColor title={"Continue"} className="hover:bg-[#595959] w-full mt-3" />
-
-                    <div className="flex border border-gray-300 rounded-sm items-center mt-3">
-                        <img src="https://static.kobo.com/1.0.1.3568/Images/social/Facebook.png" alt="" className="px-3 py-1 w-[45px]" />
-                        <p className="text-[13px] font-semibold">Continue with Facebook</p>
-                    </div>
-
-                    <div className="flex border border-gray-300 rounded-sm items-center mt-3">
-                        <img src="https://static.kobo.com/1.0.1.3568/Images/social/Twitter.png" alt="" className="px-3 py-1 w-[45px]" />
-                        <p className="text-[13px] font-semibold">Continue with Twitter</p>
-                    </div>
-
-                    <div className="flex border border-gray-300 rounded-sm items-center mt-3">
-                        <img src="https://static.kobo.com/1.0.1.3568/Images/social/Instagram.png" alt="" className="px-3 py-1 w-[45px]" />
-                        <p className="text-[13px] font-semibold">Continue with Instagram</p>
-                    </div>
+                    <ButtonComponent handleColor title={"Get Password"} className="w-full mt-3 hover:bg-[#595959]" />
                 </div>
                 <div className="w-[300px] m-auto text-center mt-4 text-[13px] font-bold text-gray-900">
                     Terms of Use Privacy Policy
@@ -49,7 +34,7 @@ const RegisterComponent = () => {
     )
 }
 
-export default RegisterComponent
+export default ForgotPasswordComponent
 
 export const cssRegister = css`
 input{

@@ -8,6 +8,7 @@ import WishlistComponent from './wishlist/wishlist.component'
 import CheckoutComponent from './checkout/checkout.component'
 import LoginComponent from './login/login.component'
 import RegisterComponent from './register/register.component'
+import ForgotPasswordComponent from './forgot-password/forgot-password.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -42,5 +43,9 @@ export const clientRouter: RouteObject[] = [
   {
       path: "/register",
       element: <RegisterComponent />
+  },
+  {
+    path: '/forgotpassword',
+    element: <ForgotPasswordComponent/>
   }
 ]

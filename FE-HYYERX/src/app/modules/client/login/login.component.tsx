@@ -19,9 +19,9 @@ const LoginComponent = () => {
                     <input type="password" name="" id="" placeholder='Password' />
                     <p className='text-[12px] text-gray-800 font-semibold mt-3'>By continuing you confirm that you agree to the Terms of Use and confirm that you have read the Privacy Policy, updated August 15, 2023</p>
 
-                    <ButtonComponent handleColor title={"Login"} className="w-full mt-3" />
+                    <ButtonComponent handleColor title={"Login"} className="hover:bg-[#595959] w-full mt-3" />
 
-                    <a href="#" className="py-4 text-[13px] font-bold underline">Forgot password ?</a>
+                    <a href="/forgotpassword" className="py-4 text-[13px] font-bold underline">Forgot password ?</a>
 
                     <div className="flex border border-gray-300 rounded-sm items-center mt-3">
                         <img src="https://static.kobo.com/1.0.1.3568/Images/social/Facebook.png" alt="" className="px-3 py-1 w-[45px]" />
