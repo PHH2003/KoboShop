@@ -59,8 +59,12 @@ const Header = () => {
           </div>
          
           <div className='px-3 pt-3'>
-            <button className='button-register bg-[#BF0000] py-3 px-5 text-sm font-semibold text-white'>Create account</button>
-            <p className='button-signin text-xs mt-2 text-[#595959] font-semibold'>Have an account? <button className='text-[#BF0000]'>Sign in</button></p>
+            <Link to={'/register'}>
+              <button className='button-register bg-[#BF0000] py-3 px-5 text-sm font-semibold text-white'>Create account</button>
+            </Link>
+            <Link to={'/login'}>
+              <p className='button-signin text-xs mt-2 text-[#595959] font-semibold'>Have an account? <button className='text-[#BF0000]'>Sign in</button></p>
+            </Link>
           </div>
 
         </div>

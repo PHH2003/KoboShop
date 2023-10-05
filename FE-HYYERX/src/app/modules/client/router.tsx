@@ -6,6 +6,8 @@ import Home from './home/home.component'
 import { RouteObject } from 'react-router-dom'
 import WishlistComponent from './wishlist/wishlist.component'
 import CheckoutComponent from './checkout/checkout.component'
+import LoginComponent from './login/login.component'
+import RegisterComponent from './register/register.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -32,5 +34,13 @@ export const clientRouter: RouteObject[] = [
   {
     path: "/checkout",
     element: <CheckoutComponent />
-}
+  },
+  {
+    path: "/login",
+    element: <LoginComponent />
+  },
+  {
+      path: "/register",
+      element: <RegisterComponent />
+  }
 ]
