@@ -22,7 +22,7 @@ const ItemProduct: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
       </p>
       <span> ${itemproduct?.newPrice}</span>
       <div className='mt-4'>
-        <ButtonComponent title={"Add to cart"} className="w-[140px]" />
+        <ButtonComponent title={"Add to cart"} className="w-[140px] hover:bg-[#BF0000]" />
       </div>
     </div>
   )
