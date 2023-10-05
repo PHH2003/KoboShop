@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const authSchema = mongoose.Schema({
-    fullName: String,
+    fullname: String,
     email: {
         type: String,
         default: "",
