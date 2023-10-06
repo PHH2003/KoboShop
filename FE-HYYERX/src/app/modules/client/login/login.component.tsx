@@ -34,7 +34,7 @@ const LoginComponent = () => {
             <div className="absolute top-[20px] left-[40%]">
                 <img className="mx-auto" src="https://res.cloudinary.com/dpfndtcya/image/upload/t_logo-kobo-web-admin/v1696241284/rakuten-kobo1-removebg-preview_efmks8.png" alt="" />
                 <div className='bg-white border p-4 rounded w-[300px] m-auto'>
-                    <Link to={"/register"}> <a href="#" className="text-gray-700 font-semibold hover:text-red-700 float-right underline">Create Kobo account</a></Link>
+                    <Link to={"/register"}> <a href="#" className="text-gray-700 font-semibold hover:text-red-700 float-right underline">Create account</a></Link>
                     <div className='mt-10'>
                         <h2 className='text-center'>Login</h2>
                     </div>

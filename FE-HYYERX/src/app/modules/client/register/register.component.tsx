@@ -34,7 +34,7 @@ const RegisterComponent = () => {
             <div className="absolute top-[20px] left-[40%] ">
                 <img className="mx-auto" src="https://res.cloudinary.com/dpfndtcya/image/upload/t_logo-kobo-web-admin/v1696241284/rakuten-kobo1-removebg-preview_efmks8.png" alt="" />
                 <div className='bg-white border p-4 rounded w-[300px] m-auto'>
-                    <a href="/login" className="text-gray-700 font-semibold hover:text-red-700 float-right underline">Login Kobo account</a>
+                    <a href="/login" className="text-gray-700 font-semibold hover:text-red-700 float-right underline">Login</a>
                     <div className='mt-10'>
                         <h2 className='text-center'>Register</h2>
                     </div>

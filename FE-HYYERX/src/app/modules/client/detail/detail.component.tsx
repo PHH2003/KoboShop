@@ -34,7 +34,7 @@ const DetailComponent = () => {
             <div>
                 <BookRelatedCompnonent/>
             </div>
-      <hr className='my-6' />
+      <hr className='' />
 
             <div>
                 <MoreByAuthorComponent/>
