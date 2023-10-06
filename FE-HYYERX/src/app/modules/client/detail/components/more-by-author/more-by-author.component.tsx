@@ -4,7 +4,7 @@ import Itemproduct from '~/app/components/parts/item-product/item-product.compon
 import SwiperList from '~/app/components/stack/swiper-list/swiper-list.component'
 import { useProductRedux } from '../../../redux/hook/useProductReducer'
 
-const RobertsComponent = () => {
+const MoreByAuthorComponent = () => {
 
     const {
         data: { products },
@@ -28,4 +28,4 @@ const RobertsComponent = () => {
   )
 }
 
-export default RobertsComponent
+export default MoreByAuthorComponent

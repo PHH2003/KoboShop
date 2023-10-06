@@ -4,7 +4,7 @@ import Itemproduct from '~/app/components/parts/item-product/item-product.compon
 import SwiperList from '~/app/components/stack/swiper-list/swiper-list.component'
 import { useProductRedux } from '../../../redux/hook/useProductReducer'
 
-const IdentityCompnonent = () => {
+const BookRelatedCompnonent = () => {
 
   const {
     data: { products },
@@ -29,4 +29,4 @@ useEffect(()=> {
   )
 }
 
-export default IdentityCompnonent
+export default BookRelatedCompnonent

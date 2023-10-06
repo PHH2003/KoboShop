@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import LinkDetail from './components/link-detail/link-detail.component'
 import InfoDetail from './components/info-detail/info-detail.component'
 import BuyDetail from './components/buy-detail/buy-detail.component'
-import IdentityComponent from './components/books-related/books-related.component'
-import RobertsComponent from './components/more-by-author/more-by-author.component'
+import BookRelatedCompnonent from './components/books-related/books-related.component'
+import MoreByAuthorComponent from './components/more-by-author/more-by-author.component'
 import AllReviewBook from './components/all-review-book/all-review-book.component'
 import ReviewComponent from '~/app/components/parts/review/review.component'
 
@@ -32,12 +32,12 @@ const DetailComponent = () => {
 
             
             <div>
-                <IdentityComponent/>
+                <BookRelatedCompnonent/>
             </div>
       <hr className='my-6' />
 
             <div>
-                <RobertsComponent/>
+                <MoreByAuthorComponent/>
             </div>
       <hr className='my-6' />
 
