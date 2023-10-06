@@ -13,7 +13,6 @@ const Trending = () => {
     useEffect(()=> {
         actions.getAllProducts()
     },[])
-    console.log(products)
   return (
     <div>
     <SwiperList title={"Trending Now in eBooks"}>

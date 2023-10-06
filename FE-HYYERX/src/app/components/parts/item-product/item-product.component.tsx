@@ -7,8 +7,6 @@ interface IItemProduct {
   itemproduct?: any
 }
 const ItemProduct: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
-  console.log(itemproduct);
-  
   return (
     <div css={cssItemProduct} className='w-[140px] my-7' >
       <img src={itemproduct?.images[0]} className="w-[140px] h-[200px]" alt="" />

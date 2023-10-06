@@ -5,17 +5,20 @@ import { schemaRegister } from "../utils/validateForm"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { register } from "~/app/api/auth/auth.api";
 import toast from "react-hot-toast";
-import { message } from 'antd';
-import { data } from "autoprefixer";
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterComponent = () => {
+    const navigate = useNavigate()
     const { handleSubmit, control, formState: {errors}, } = useForm({
         resolver: yupResolver(schemaRegister)
     })
     const onSubmit = (data: any) => {
+        
         register(data).then((res)=>{
             if(res) {
                 toast.success('Register success')
+                navigate('/login')
             }
         }, (err)=>{
             toast.error(err?.response?.data)

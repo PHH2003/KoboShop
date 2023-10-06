@@ -2,9 +2,16 @@ import React from 'react'
 import { css } from '@emotion/react'
 import {BsSearch, BsHeart} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
+import {VscAccount} from 'react-icons/vsc'
+import {AiOutlineUser} from 'react-icons/ai'
+import {BiLogOut} from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const accsetToken = localStorage.getItem('accessToken')
+  const handelLogout = () => {
+    localStorage.removeItem("accessToken")
+  }
   return (
     <div css={cssHeader} className='shadow-md'>
       <div className='bg-[#f5f5f5]'>
@@ -57,7 +64,27 @@ const Header = () => {
               </button>  
             </Link>
           </div>
-         
+{ accsetToken ? (
+          <div className='title'>
+            <Link to={"/"}>
+              <button className='px-3 text-[#595959] font-semibold pt-[6px]'>
+                <VscAccount className='m-auto' size={34}/>
+                <span>
+                  <p className='text-xs mt-2'>My Account</p>
+                  <ul className='links'>
+                      <li>
+                        <button >
+                          <p className='hover:text-red-700 font-normal text-[15px] flex items-center' onClick={handelLogout}>Log out <p className='px-2'><BiLogOut className='text-[20px]' /></p></p>
+                          <p className='hover:text-red-700 font-normal text-[15px] flex items-center py-2'>Manage <p className='px-2'><AiOutlineUser className='text-[20px]' /> </p></p>
+                        </button>
+                      </li>
+                    </ul>
+                </span>
+              
+              </button>  
+            </Link>
+          </div>
+) : (
           <div className='px-3 pt-3'>
             <Link to={'/register'}>
               <button className='button-register bg-[#BF0000] py-3 px-5 text-sm font-semibold text-white'>Create account</button>
@@ -66,6 +93,9 @@ const Header = () => {
               <p className='button-signin text-xs mt-2 text-[#595959] font-semibold'>Have an account? <button className='text-[#BF0000]'>Sign in</button></p>
             </Link>
           </div>
+)
+}
+          
 
         </div>
       </div>
@@ -108,5 +138,25 @@ li a:hover{
 select:hover,
 .menu div:hover {
   color: #BF0000;
+}
+.links {
+  list-style: none;
+  background-color: white;
+  box-shadow: 0 0 7px gray;
+  position: absolute;
+  top: 100%;
+   width:100px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  z-index: 1;
+  visibility: hidden;
+}
+.title:hover .links {
+  visibility: visible;
+}
+.title{
+  cursor: pointer;
+  position: relative;
 }
 `

@@ -7,20 +7,6 @@ import { Link } from 'react-router-dom'
 
 const Fantastic = () => {
 
-    // const arrayImg = [
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    //     "https://th.bing.com/th/id/R.662c1f06b89f20ee2557f43e8080bb55?rik=P0TG2RdsJolSDw&pid=ImgRaw&r=0",
-    // ]
     const {
         data: { products },
         actions

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LinkDetail from './components/link-detail/link-detail.component'
 import InfoDetail from './components/info-detail/info-detail.component'
 import BuyDetail from './components/buy-detail/buy-detail.component'
@@ -9,6 +9,12 @@ import ReviewComponent from '~/app/components/parts/review/review.component'
 
 
 const DetailComponent = () => {
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: "instant",
+          });
+    },[])
     return (
         <div className='w-[1140px] m-auto'>
             <div className='mt-3'>

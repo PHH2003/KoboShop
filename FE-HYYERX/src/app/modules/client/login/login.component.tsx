@@ -1,8 +1,31 @@
 import { css } from "@emotion/react"
-import { Link } from "react-router-dom"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { Link, useNavigate } from "react-router-dom"
 import ButtonComponent from "~/app/components/parts/button/button.component"
+import { schemaLogin} from "../utils/validateForm"
+import { Controller, useForm } from "react-hook-form"
+import toast from "react-hot-toast"
+import { login } from "~/app/api/auth/auth.api"
 
 const LoginComponent = () => {
+    const navigate = useNavigate()
+    const { handleSubmit, control, formState: {errors}, } = useForm({
+        resolver: yupResolver(schemaLogin)
+    })
+    const onSubmit = (data: any) => {
+       login(data).then((res)=>{
+        if(res){
+            localStorage.setItem('accessToken', res.accessToken)
+            toast.success('Singin success')
+            navigate('/')
+        }
+       },
+       (err)=>{
+        toast.error(err?.response?.data)
+    }
+       )
+        
+    }
     return (
         <div className="relative h-[90vh]" css={cssLogin}>
             <div>
@@ -15,11 +38,39 @@ const LoginComponent = () => {
                     <div className='mt-10'>
                         <h2 className='text-center'>Login</h2>
                     </div>
-                    <input type="email" name="" id="" placeholder='Email' /> <br />
-                    <input type="password" name="" id="" placeholder='Password' />
-                    <p className='text-[12px] text-gray-800 font-semibold mt-3'>By continuing you confirm that you agree to the Terms of Use and confirm that you have read the Privacy Policy, updated August 15, 2023</p>
+                    <form action="" onSubmit={handleSubmit(onSubmit)}>
+  
 
+                        <div>
+                            <Controller
+                                control={control}
+                                name="email"
+                                render={({ 
+                                    field: { onChange, value, ref },
+                                    fieldState:{error}}) => (
+                                    <input type="email" value={value} placeholder="email" onChange={onChange} ref={ref} />
+                                )}
+                            />
+                            {errors && <span className="text-red-800 font-serif">{errors.email?.message}</span>}
+                        </div>
+
+                        <div>
+                            <Controller
+                                control={control}
+                                name="password"
+                                render={({ 
+                                    field: { onChange, value, ref },
+                                    fieldState:{error}}) => (
+                                    <input type="password" value={value} placeholder="password" onChange={onChange} ref={ref} />
+                                )}
+                            />
+                            {errors && <span className="text-red-800 font-serif">{errors.password?.message}</span>}
+
+
+                        </div>
+                     <p className='text-[12px] text-gray-800 font-semibold mt-3'>By continuing you confirm that you agree to the Terms of Use and confirm that you have read the Privacy Policy, updated August 15, 2023</p>
                     <ButtonComponent handleColor title={"Login"} className="hover:bg-[#595959] w-full mt-3" />
+                    </form>
 
                     <a href="/forgotpassword" className="py-4 text-[13px] font-bold underline">Forgot password ?</a>
 
