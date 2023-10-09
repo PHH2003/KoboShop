@@ -5,7 +5,7 @@ import BannerComponent from './components/banner/banner.component';
 
 const Home = () => {
   return (
-    <div className="w-[1140px] m-auto">
+    <div className="w-[1140px] m-auto max-sm:px-3">
       
       <div className=''>
       <BannerComponent/>

@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { FunctionComponent } from 'react';
 import { css } from '@emotion/react';
+import useWindowSizeLayout from '~/app/hook/useWindow';
 
 interface ISwiperList {
     children?:any
@@ -13,6 +14,8 @@ interface ISwiperList {
 } 
 
 const SwiperList: FunctionComponent<ISwiperList> = ({children, title}) => {
+  const windowSize = useWindowSizeLayout()
+  console.log(windowSize.width)
   return (
     <div css={cssSwiper} className='h-[450px]'>
         <div className='mt-11'>
@@ -24,7 +27,7 @@ const SwiperList: FunctionComponent<ISwiperList> = ({children, title}) => {
             
         </div>
         <Swiper
-        slidesPerView={6}
+        slidesPerView={windowSize.width < 739 ? 2 : 6}
         spaceBetween={60}
         pagination={true}
         modules={[Navigation]}
