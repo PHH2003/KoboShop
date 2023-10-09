@@ -75,7 +75,10 @@ const Header = () => {
                       <li>
                         <button >
                           <p className='hover:text-red-700 font-normal text-[15px] flex items-center' onClick={handelLogout}>Log out <p className='px-2'><BiLogOut className='text-[20px]' /></p></p>
-                          <p className='hover:text-red-700 font-normal text-[15px] flex items-center py-2'>Manage <p className='px-2'><AiOutlineUser className='text-[20px]' /> </p></p>
+                          <Link to={'/manage'}>
+                            <p className='hover:text-red-700 font-normal text-[15px] flex items-center py-2'>Manage <p className='px-2'><AiOutlineUser className='text-[20px]' /> </p></p>
+                          </Link>
+                          
                         </button>
                       </li>
                     </ul>
