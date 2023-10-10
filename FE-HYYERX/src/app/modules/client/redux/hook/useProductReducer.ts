@@ -1,4 +1,4 @@
-import { getAllProducts } from '../reducer/productSlice/thunk/product.thunk';
+import { getAllProducts, getProductById } from '../reducer/productSlice/thunk/product.thunk';
 import { shallowEqual } from "react-redux"
 import { useAppDispatch, useAppSelector } from "~/app/store/hook"
 import {actions as productActions} from '../reducer/productSlice/productSlice'
@@ -10,7 +10,8 @@ export const useProductRedux = () =>{
     const dispatch = useAppDispatch()
     const allActions = {
         ...productActions,
-        getAllProducts
+        getAllProducts,
+        getProductById
     }
     const actions = useMemo(()=> bindActionCreators(allActions, dispatch), [dispatch])
 

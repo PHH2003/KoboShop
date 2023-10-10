@@ -15,9 +15,8 @@ interface ISwiperList {
 
 const SwiperList: FunctionComponent<ISwiperList> = ({children, title}) => {
   const windowSize = useWindowSizeLayout()
-  console.log(windowSize.width)
   return (
-    <div css={cssSwiper} className='h-[450px]'>
+    <div css={cssSwiper} className='sm:h-[450px]'>
         <div className='mt-11'>
             <span className='name-books'>eBooks</span>
             <div className='flex items-center justify-between'>

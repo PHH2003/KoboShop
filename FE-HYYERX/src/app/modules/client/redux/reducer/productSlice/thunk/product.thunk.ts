@@ -6,3 +6,8 @@ export const getAllProducts = createAsyncThunk("product/getallproduct", async ()
     const response = await confisAxios.get("/product")
     return response.data
 })
+
+export const getProductById = createAsyncThunk('product/getProductById', async (productId: any) => {
+    const response = await confisAxios.get('/product/' + productId)
+    return response.data
+})

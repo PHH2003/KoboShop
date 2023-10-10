@@ -1,14 +1,27 @@
 import { css } from "@emotion/react"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { useProductRedux } from "../../../redux/hook/useProductReducer"
+import QuantityCompoennt from "~/app/components/parts/quantity/quantity.component"
 import StarComponent from "~/app/components/parts/star/star.component"
 
 
+
 const InfoDetail = () => {
+    const [quantity, setQuantity] = useState(1)
+    let { id } = useParams()
+    const { data: { product }, actions } = useProductRedux()
+    useEffect(() => {
+        actions.getProductById(id)
+    }, [id])
+    console.log(product)
     return (
         <div css={cssDetail} className="flex justify-between">
             <div className="w-[246px]">
                 <div>
-                    <img src="https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1" alt="" className="w-[246px] h-[376px]" />
+                    <img src="" alt="" className="w-[246px] h-[376px]" />
                 </div>
+
                 <div className="flex items-center py-5 justify-center">
                     <StarComponent />
                     <StarComponent />
@@ -24,55 +37,37 @@ const InfoDetail = () => {
                 </div>
             </div>
             <div className="px-6 w-[633px]">
-                <h2>Her Hidden Shadow</h2>
-                <span className="title">A completely nail-biting and gripping crime thriller</span>
-                <p className="mt-4">by <a href="#">Carla Kovach</a></p>
+                <h2>{product?.name}</h2>
+                <span className="title">{product?.company}</span>
+                <p className="mt-4">by <a href="#">{product?.author}</a></p>
 
                 <div className="flex mt-6">
                     <div className="title-price border border-[#bbb]">
                         <span>Audiobook</span>
-                        <div> $0.00</div>
+                        <div> ${product?.cost}</div>
                     </div>
                     <div className="px-5">
                         <div className="title-price border border-red-600 bg-red-200">
                             <span>eBook</span>
-                            <div> $14.79</div>
+                            <div> ${product?.newPrice}</div>
                         </div>
                     </div>
 
                 </div>
                 <p className="my-4">Free with Trial</p>
+                <div className="py-3 flex items-center">
+                    <QuantityCompoennt
+                        listQuantityRemain={product}
+                        setQuantity={setQuantity}
+                        quantity={quantity}
+                    />
+                    <p className="text-[16px] px-3 font-medium">available quantity:{product?.quantity}</p>
+                </div>
                 <hr className="my-4"/>
 
                 <h2 className="title-name">Synopsis</h2>
                 <span>
-                    'A gutsy heroine. A ticking clock. A breathless pace. Wow! This one had me reeling' JANE CORRY
-
-                    'Compelling' Crime Monthly
-
-                    **_____________________
-
-                    Her name is Jane Smith. But to friends and foes, she's Jane Effing Smith.**
-
-                    Why? Because she's the best criminal defence attorney in the Hamptons - the elite world of New York's rich and infamous. Because she's as good an investigator as she is a lawyer. Because she's tough. She's strong.
-
-                    As Jane is preparing to defend a high-profile client accused of a triple homicide, she's also hired to revive a cold case - a cluster of unsolved murders.
-
-                    Then another bombshell lands. A devastating medical diagnosis. Terminal. She's got a year to live.
-
-                    But for now, she has a trial to win. Unless one of her many enemies kills her first.
-
-                    **____________________________
-
-                    Readers are loving 12 Months to Live!
-
-                    'You are going to love Jane Smith! She is a fantastic new character from one of my favourite authors'
-                    'Wow what a book! I could not put it down'
-                    'A fast, easy to read, enjoyable and entertaining read'
-
-                    ________________________________
-
-                    PRAISE FOR JAMES PATTERSON**
+                    {product?.description}
                 </span>
             </div>
         </div>
