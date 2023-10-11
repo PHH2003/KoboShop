@@ -9,11 +9,11 @@ export const getAllUser = async () => {
     return await confisAxios.get('/auth')
 }
 export const deleteUser = async (userId: any) => {
-    return await confisAxios.delete("/auth" + userId)
+    return await confisAxios.delete("/auth/delete/" + userId)
 }
 
 export const changeUser = async (userId: any, bodyRequest: any) => {
-    return await confisAxios.delete(`/auth/${userId}`, bodyRequest)
+    return await confisAxios.put(`/auth/update/${userId}`, bodyRequest)
 }
 
 

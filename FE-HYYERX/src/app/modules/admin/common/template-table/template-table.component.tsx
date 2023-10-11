@@ -73,7 +73,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         if(type=='CHANGE'){
             form.validateFields().then((value)=> {
                 form.resetFields()
-                changeFunc(value,  defaultValue._id).then((res:any)=>{
+                changeFunc(  defaultValue._id, value).then((res:any)=>{
                 if(res){
                     setTimeout(()=> {
                         setTriggerLoadding(false)
@@ -126,7 +126,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             render: (_, record: any) => (
                 <Space size="middle">
                     <Button type="primary" onClick={()=>showModel('CHANGE', record)} >
-                        edit
+                        Edit
                     </Button>
                     <Popconfirm
                         className='m-auto'
@@ -162,7 +162,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             </div>
             <div>
             <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} >
-                        <Form layout='vertical' name='form_in_modal' initialValues={defaultValue || {}}>
+                        <Form form={form} layout='vertical' name='form_in_modal' initialValues={defaultValue || {}}>
                             {formEdit}
                         </Form>
                     </TemplateModal>
