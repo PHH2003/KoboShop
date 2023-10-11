@@ -158,7 +158,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 </div>
             </div>
             <div className='overflow-auto'>
-                <Table columns={columsTable} dataSource={dataTable} pagination={{ pageSize: dataPage }} />
+                <Table columns={columns} dataSource={dataTable} pagination={{ pageSize: dataPage }} />
             </div>
             <div>
             <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} >
