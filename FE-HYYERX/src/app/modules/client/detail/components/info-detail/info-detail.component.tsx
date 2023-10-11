@@ -19,7 +19,7 @@ const InfoDetail = () => {
         <div css={cssDetail} className="flex justify-between">
             <div className="w-[246px]">
                 <div>
-                    <img src="" alt="" className="w-[246px] h-[376px]" />
+                    <img src="{product?.images[0]}" alt="" className="w-[246px] h-[376px]" />
                 </div>
 
                 <div className="flex items-center py-5 justify-center">

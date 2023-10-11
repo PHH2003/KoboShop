@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Button, Input, Popconfirm, Space, Table, Tag, message } from 'antd';
+import { Button, Form, Input, Popconfirm, Space, Table,  message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import TemplateModal from '../template-modal/teamplate-modal.component';
 import LayoutLoading from '~/app/components/stack/layout-loading/layout-loading.component';
@@ -14,22 +14,26 @@ interface DataType {
 }
 
 interface ITemplateTableProp {
-    dataTable: any[],
-    createFunc?: any,
+    dataTable?: any[]
+    columsTable?: any
+    createFunc?: any
     deleteFunc?: any
     changeFunc?: any
     searchFunc?: any
 }
 
 
-const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc}) => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable}) => {
     const [isModelOpen, setIsModelOpen] = useState(false)
     const [triggerLoadding, setTriggerLoadding] =useState(false)
     const [type, setType] = useState('CREATE')
-    const [columTable, setColumTable] = useState<any[]>([])
-    const confirmDelete = (e: any) => {
+    // const [columTable, setColumTable] = useState<any[]>([])
+    const [defaultValue, setDefaultvalue] = useState<any>()
+    const [form] = Form.useForm()
+
+    const confirmDelete = (ItemId: any) => {
         setTriggerLoadding(true)
-        deleteFunc(type).then((res: any)=>{
+        deleteFunc(ItemId).then((res: any)=>{
             if(res){
                 setTimeout(()=> {
                     setTriggerLoadding(false)
@@ -49,20 +53,26 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         setIsModelOpen(false)
         setTriggerLoadding(true)
         if(type=='CREATE'){
-            createFunc(type).then((res:any)=>{
-                if(res){
-                    setTimeout(()=> {
+            form.validateFields().then((value)=>{
+                form.resetFields()
+                createFunc(value).then((res:any)=>{
+                    if(res){
+                        setTimeout(()=> {
+                            setTriggerLoadding(false)
+                        }, 1000)
+                    }
+                }, (err: any)=>{
+                    setTimeout(() => {
                         setTriggerLoadding(false)
                     }, 1000)
-                }
-            },(err:any)=>{
-                setTimeout(()=> {
-                    setTriggerLoadding(false)
-                }, 1000)
+                })
             })
+            
         }
         if(type=='CHANGE'){
-            changeFunc(type, type).then((res:any)=>{
+            form.validateFields().then((value)=> {
+                form.resetFields()
+                changeFunc(value,  defaultValue._id).then((res:any)=>{
                 if(res){
                     setTimeout(()=> {
                         setTriggerLoadding(false)
@@ -73,6 +83,8 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                     setTriggerLoadding(false)
                 }, 1000)
             })
+            })
+            
         }
     }
 
@@ -84,7 +96,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                     setTriggerLoadding(false)
                 },1000)
             }
-        }, (errr:any)=>{
+        }, (err:any)=>{
             setTimeout(() => {
                 setTriggerLoadding(false)
             }, 1000)
@@ -93,26 +105,33 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
 
     const handleCancel = () => {
         setIsModelOpen(false)
+        setDefaultvalue(null)
+        form.resetFields()
     }
-    const showModel = (typeAction: any) => {
+    const showModel = (typeAction: any, recordTable?:any) => {
         setIsModelOpen(true)
         setType(typeAction)
+        if(typeAction === "CHANGE"){
+            setDefaultvalue(recordTable)
+        }else{
+            setDefaultvalue(null)
+        }
     }
     const columns: ColumnsType<DataType> = [
-
+        ...columsTable,
         {
             title: 'Action',
             key: 'action',
-            render: (_, record) => (
+            render: (_, record: any) => (
                 <Space size="middle">
-                    <Button type="primary" onClick={()=>showModel('CHANGE')} >
+                    <Button type="primary" onClick={()=>showModel('CHANGE', record)} >
                         edit
                     </Button>
                     <Popconfirm
                         className='m-auto'
                         title="Delete the task"
                         description="Are you sure to delete this task?"
-                        onConfirm={confirmDelete}
+                        onConfirm={()=>confirmDelete(record._id)}
                         onCancel={cancel}
                         okText="Yes"
                         cancelText="No"
@@ -123,27 +142,14 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             ),
         },
     ];
-    useEffect(() => {
-        const columTemp: any[] = []
-        if(dataTable.length > 0){
-            Object?.keys(dataTable[0]).map((itemKey) => 
-                columTemp.push({
-                    title: itemKey,
-                    dataIndex: itemKey,
-                    key: itemKey
-                })
-            )
-        }
-        const merArray = [...columTemp, ...columns]
-        setColumTable(merArray)
-    }, [dataTable])
-
+   
     return (
+        <>
        <LayoutLoading condition={triggerLoadding}>
          <div className=''>
             <div className='flex pb-4 justify-between'>
                 <Button type="primary" onClick={()=>showModel('CREATE')}>
-                    Create user
+                    Create
                 </Button>
                 <div>
                     <Input placeholder='search item here' className='w-[350px]' prefix={<SearchOutlined />}/>
@@ -151,7 +157,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 </div>
             </div>
             <div className='overflow-auto'>
-                <Table columns={columTable} dataSource={dataTable} />
+                <Table columns={columsTable} dataSource={dataTable} />
             </div>
             <div>
                 <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} />
@@ -159,6 +165,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         </div>
 
        </LayoutLoading>
+       </>
     )
 
 }
