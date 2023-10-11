@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { Button, Form, Input, Popconfirm, Space, Table,  message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import TemplateModal from '../template-modal/teamplate-modal.component';
@@ -20,14 +20,15 @@ interface ITemplateTableProp {
     deleteFunc?: any
     changeFunc?: any
     searchFunc?: any
+    dataPage?: any
+    formEdit?: ReactNode
 }
 
 
-const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable}) => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable, formEdit, dataPage}) => {
     const [isModelOpen, setIsModelOpen] = useState(false)
     const [triggerLoadding, setTriggerLoadding] =useState(false)
     const [type, setType] = useState('CREATE')
-    // const [columTable, setColumTable] = useState<any[]>([])
     const [defaultValue, setDefaultvalue] = useState<any>()
     const [form] = Form.useForm()
 
@@ -157,10 +158,14 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 </div>
             </div>
             <div className='overflow-auto'>
-                <Table columns={columsTable} dataSource={dataTable} />
+                <Table columns={columsTable} dataSource={dataTable} pagination={{ pageSize: dataPage }} />
             </div>
             <div>
-                <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} />
+            <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} >
+                        <Form layout='vertical' name='form_in_modal' initialValues={defaultValue || {}}>
+                            {formEdit}
+                        </Form>
+                    </TemplateModal>
             </div>
         </div>
 

@@ -25,7 +25,7 @@ const TemplateModal: FC<ITemplateModel> = ({isModelOpen,handleOk,handleCancel,ch
 
     return (
         <>
-            <Modal title="Basic Modal" open={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="FORM" open={isModelOpen} onOk={handleOk} onCancel={handleCancel}>
                 {children}
             </Modal>
         </>

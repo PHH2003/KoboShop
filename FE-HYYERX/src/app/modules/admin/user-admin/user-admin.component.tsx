@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import TemplateTable from '../common/template-table/template-table.component';
 import { getAllUser } from './service/user.service';
+import { Form, Input, Select } from 'antd';
 
 const UserAdminComponent = () => {
   const [dataUser, setDataUser] = useState([])
@@ -12,7 +13,7 @@ const UserAdminComponent = () => {
   }, [])
   useEffect(()=>{
     const columTemp: any = []
-    console.log(columTemp)
+    console.log(dataUser[0])
     if (dataUser.length > 0) {
         Object?.keys(dataUser[0]).map((itemKey) => {
             if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {
@@ -29,7 +30,34 @@ const UserAdminComponent = () => {
   },[dataUser])
   return (
     <div>
-      <TemplateTable columsTable={colums} dataTable={dataUser} />
+     <TemplateTable columsTable={colums} dataTable={dataUser} dataPage={8} formEdit={
+                <Fragment>
+                    <Form.Item
+                        label='fullname'
+                        name='nickname'
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item label='Email' name='email' rules={[{ required: true, message: 'Please input your username!' }]} >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label='password'
+                        name='password'
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label='Role' name='role' rules={[{ required: true, message: 'Please input your username!' }]}>
+                        <Select placeholder='Please select'>
+                            <Select.Option value='ADMIN'>ADMIN</Select.Option>
+                            <Select.Option value='USER'>USER</Select.Option>
+                        </Select>
+                    </Form.Item>
+                </Fragment>
+            } />
     </div>
   )
 }
