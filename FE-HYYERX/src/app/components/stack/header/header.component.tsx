@@ -17,7 +17,7 @@ const Header = () => {
       <div className='bg-[#f5f5f5]'>
           <div className='flex justify-between w-[1140px] m-auto pb-2 pt-2 text-xs'>
             <div className=''>
-              <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Earn Rewards</h2></a>
+              <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Wellcome to Renkuten</h2></a>
             </div>
             <div className='menu flex'>
               {/* <div className='px-3 text-[#595959] font-semibold'>English</div> */}
@@ -27,7 +27,7 @@ const Header = () => {
               </select>
               <a href="#" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
               <a href="/blog" className='px-3 text-[#595959] font-semibold'>Blog</a>
-              <a href="/help" className='px-3 text-[#595959] font-semibold  '>Help</a>
+              <a href="/help" className='px-3 text-[#595959] font-semibold  '>Contact</a>
             </div>
           </div>
       </div>
