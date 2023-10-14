@@ -25,9 +25,9 @@ const Header = () => {
                 <option value="0">English</option>
                 <option value="1">Vietnamese</option>
               </select>
-              <a href="#" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
+              <a href="gift-cards" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
               <a href="/blog" className='px-3 text-[#595959] font-semibold'>Blog</a>
-              <a href="/help" className='px-3 text-[#595959] font-semibold  '>Contact</a>
+              <a href="/contact" className='px-3 text-[#595959] font-semibold  '>Contact</a>
             </div>
           </div>
       </div>
@@ -98,15 +98,13 @@ const Header = () => {
           </div>
 )
 }
-          
-
         </div>
       </div>
       <div className='m-auto w-[1140px] mt-2'>
         <ul className=' w-[300px] flex justify-between italic pb-7'>
           <li><a href="/">Home</a></li>
           <li><a href="#">Product</a></li>
-          <li><a href="/help">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </div>
     </div>

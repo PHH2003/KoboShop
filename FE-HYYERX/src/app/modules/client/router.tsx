@@ -10,6 +10,7 @@ import LoginComponent from './login/login.component'
 import RegisterComponent from './register/register.component'
 import ForgotPasswordComponent from './forgot-password/forgot-password.component'
 import ManageComponent from './manage/manage.component'
+import GiftCardComponent from './gift-cards/gift-cards.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -21,8 +22,12 @@ export const clientRouter: RouteObject[] = [
     element: <Blog />
   },
   {
-    path: '/help',
+    path: '/contact',
     element: <Help />
+  },
+  {
+    path: '/gift-cards',
+    element: <GiftCardComponent/>
   },
   { path: '/detail/:id',
     element: <DetailComponent /> 
