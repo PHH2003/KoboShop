@@ -165,7 +165,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                         <Form form={form} layout='vertical' name='form_in_modal' initialValues={defaultValue || {}}>
                             {formEdit}
                         </Form>
-                    </TemplateModal>
+            </TemplateModal>
             </div>
         </div>
 

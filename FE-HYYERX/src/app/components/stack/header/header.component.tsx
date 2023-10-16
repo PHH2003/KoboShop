@@ -17,7 +17,7 @@ const Header = () => {
       <div className='bg-[#f5f5f5]'>
           <div className='flex justify-between w-[1140px] m-auto pb-2 pt-2 text-xs'>
             <div className=''>
-              <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Wellcome to Renkuten</h2></a>
+              <a href="#"><h2 className='text-[#BF0000] font-semibold italic'>Wellcome to Rakuten kobo</h2></a>
             </div>
             <div className='menu flex'>
               {/* <div className='px-3 text-[#595959] font-semibold'>English</div> */}
@@ -59,8 +59,11 @@ const Header = () => {
             
             <Link to={"/cart"}>
               <button className='px-3 text-[#595959] font-semibold'>
+
+              <div>
                 <GiShoppingCart  size={38}/>
                 <a href="" className='text-xs'>Cart</a>
+              </div>
               </button>  
             </Link>
           </div>
