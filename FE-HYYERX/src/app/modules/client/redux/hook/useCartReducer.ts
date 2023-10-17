@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { getAllCarts } from '../reducer/cartSlice/thunk/cart.thunk';
 
 export const useCartRedux = () =>{
-    const data = useAppSelector((state: any)=> state.clientReducer.productReducer as any, shallowEqual)
+    const data = useAppSelector((state: any)=> state.clientReducer.cartReducer as any, shallowEqual)
     const dispatch = useAppDispatch()
     const allActions = {
         ...cartActions,

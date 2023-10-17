@@ -12,21 +12,25 @@ const cartSlice = createSlice({
     addProductToCart: (state, action) => {
       const payloadProduct = action.payload
       const findProductCart = state.carts.findIndex((item: any) => {
-        item.product._id == payloadProduct._id
+        item.product._id == payloadProduct.product._id
       })
       if (findProductCart > -1) {
-        state.carts[findProductCart].quantity = state.cart[findProductCart].quantity + payloadProduct.quantity
+        state.carts[findProductCart].quantity = state.carts[findProductCart].quantity + payloadProduct.quantity
       } else {
         state.carts.push(payloadProduct)
       }
+    },
+    deleteProductTocarts: (state, action) => {
+      const productId = action.payload
+      state.carts = state.carts.filter((item: any) => item._id != productId)
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllCarts.fulfilled, (state: any, action:any)=>{
-        state.carts = action.payload
+    builder.addCase(getAllCarts.fulfilled, (state: any, action: any) => {
+      state.carts = action.payload.carts
     })
-}
+  }
 })
 
-export const {actions} = cartSlice
+export const { actions } = cartSlice
 export default cartSlice.reducer

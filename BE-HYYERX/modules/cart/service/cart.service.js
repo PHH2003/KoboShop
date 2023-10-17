@@ -34,7 +34,7 @@ export const addCart = async(dataBody) => {
 
 export const getAllCart = async(req)=>{
     const carts = await cartModel.findOne({
-        user: req.user.id
+        user: req.user._id
     }).populate({
         path: 'carts',
         populate: {

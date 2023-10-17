@@ -4,13 +4,13 @@ const cartSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Types.ObjectId,
-      refs: "Auth",
+      ref: 'Auth',
     },
     carts: [
       {
         product: {
           type: mongoose.Types.ObjectId,
-          refs: "Product",
+          ref: 'Product',
         },
         quantity: Number,    
       },

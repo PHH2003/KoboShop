@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { css } from '@emotion/react'
 import {BsSearch, BsHeart} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
@@ -6,12 +6,19 @@ import {VscAccount} from 'react-icons/vsc'
 import {AiOutlineUser} from 'react-icons/ai'
 import {BiLogOut} from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import { useCartRedux } from '~/app/modules/client/redux/hook/useCartReducer'
+import { Avatar, Badge, Space } from 'antd'
 
 const Header = () => {
   const accsetToken = localStorage.getItem('accessToken')
   const handelLogout = () => {
     localStorage.removeItem("accessToken")
   }
+  const { data: { carts }, actions } = useCartRedux()
+  useEffect(() => {
+    actions.getAllCarts()
+  }, [])
+
   return (
     <div css={cssHeader} className='shadow-md'>
       <div className='bg-[#f5f5f5]'>
@@ -31,7 +38,7 @@ const Header = () => {
             </div>
           </div>
       </div>
-      <div className='flex justify-between m-auto w-[1140px] mt-2'>
+      <div className='flex justify-between m-auto w-[1140px] mt-3'>
         <div className='flex items-center'>
           <Link to={"/"}>
             <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1695868388/Screenshot_2023-09-28_093249_lfrm2d.png" alt="" />
@@ -52,18 +59,22 @@ const Header = () => {
           <div className='icon-header'>
             <Link to={"/wishlish"}>
               <button className='px-3 text-[#595959] font-semibold'>
-                <BsHeart size={28} className='m-auto mt-3 ' />
+                <BsHeart size={28} className='m-auto mt-3' />
                 <a href="/" className='text-xs'>Wishlist</a>  
               </button>
             </Link>
-            
+           
             <Link to={"/cart"}>
               <button className='px-3 text-[#595959] font-semibold'>
-
-              <div>
+              <Space size="large">
+                <Badge count={carts?.length > 0 ? (carts?.length) : (0)}>     
+                  <div>
                 <GiShoppingCart  size={38}/>
                 <a href="" className='text-xs'>Cart</a>
               </div>
+                </Badge>
+              </Space>
+              
               </button>  
             </Link>
           </div>
@@ -85,8 +96,7 @@ const Header = () => {
                         </button>
                       </li>
                     </ul>
-                </span>
-              
+                </span>              
               </button>  
             </Link>
           </div>

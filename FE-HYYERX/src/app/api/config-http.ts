@@ -10,7 +10,7 @@ export const confisAxios = axios.create({
 })
 
 export const axiosFormData = axios.create({
-    baseURL: "http://localhost:8081/api",
+    baseURL: "http://localhost:8081/api/v1",
     headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*',

@@ -7,7 +7,7 @@ const ActionsComponent = () => {
     <div className='w-[20%] p-4 ' css={cssActions}>
     <div className='price-wishlist text-center'>$26.29 USD</div>
     <div className="py-6">
-      <ButtonComponent  title={"Add to cart"} className="w-[200px] hover:bg-[#BF0000]" />
+      <ButtonComponent  handleColor title={"Add to cart"} className="w-[200px] hover:bg-[#595959]" />
     </div>
     <div className='text-center'>
       <button className='text-remove underline font-medium hover:text-[#BF0000] '>Remove from Wishlist</button>
