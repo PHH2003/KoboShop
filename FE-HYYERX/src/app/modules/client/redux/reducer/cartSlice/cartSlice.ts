@@ -23,6 +23,35 @@ const cartSlice = createSlice({
     deleteProductTocarts: (state, action) => {
       const productId = action.payload
       state.carts = state.carts.filter((item: any) => item._id != productId)
+    },
+    updateQuantityCart: (state, action) =>{
+      const {itemProductCart, quantityOrder, newDataInput} = action.payload
+      const filterItemCart = state.carts.findIndex((item: any)=> item._id == itemProductCart._id)
+      switch (action.payload.type) {
+        case 'INCREMENT':
+          if(itemProductCart.quantity < itemProductCart.product.quantity){
+            state.carts[filterItemCart].quantity += 1
+          }
+          break;
+        case 'DECREMENT':
+          if(itemProductCart.quantity ==1 ){
+            state.carts[filterItemCart].quantity = 1
+          }
+          else{
+            state.carts[filterItemCart].quantity -= 1
+          }
+          break;
+        case 'INPUTCHANGE':
+          if(newDataInput > itemProductCart.product.quantity){
+            state.carts[filterItemCart].quantity = itemProductCart?.product?.quantity
+          }
+          if(newDataInput < 1) {
+            state.carts[filterItemCart].quantity = 1
+          }
+          break;
+        default:
+          break;
+      }
     }
   },
   extraReducers: (builder) => {

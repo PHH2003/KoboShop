@@ -32,9 +32,9 @@ const Header = () => {
                 <option value="0">English</option>
                 <option value="1">Vietnamese</option>
               </select>
-              <a href="gift-cards" className='px-3 text-[#595959] font-semibold'>Gift Cards</a>
-              <a href="/blog" className='px-3 text-[#595959] font-semibold'>Blog</a>
-              <a href="/contact" className='px-3 text-[#595959] font-semibold  '>Contact</a>
+              <Link to={'/gift-cards'}><a className='px-3 text-[#595959] font-semibold'>Gift Cards</a></Link>
+              <Link to={'/blog'}><a className='px-3 text-[#595959] font-semibold'>Blog</a></Link>
+              <Link to={'/contact'}><a className='px-3 text-[#595959] font-semibold  '>Contact</a></Link>
             </div>
           </div>
       </div>
@@ -65,10 +65,10 @@ const Header = () => {
             </Link>
            
             <Link to={"/cart"}>
-              <button className='px-3 text-[#595959] font-semibold'>
+              <button className='px-3 '>
               <Space size="large">
                 <Badge count={carts?.length > 0 ? (carts?.length) : (0)}>     
-                  <div>
+              <div className='text-[#595959] font-semibold'>
                 <GiShoppingCart  size={38}/>
                 <a href="" className='text-xs'>Cart</a>
               </div>
@@ -115,9 +115,9 @@ const Header = () => {
       </div>
       <div className='m-auto w-[1140px] mt-2'>
         <ul className=' w-[300px] flex justify-between italic pb-7'>
-          <li><a href="/">Home</a></li>
-          <li><a href="#">Product</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <Link to={'/'}><li><a href="">Home</a></li> </Link>
+          <Link to={'/'}><li><a>Product</a></li></Link>
+          <Link to={'/contact'}><li><a>Contact</a></li></Link>
         </ul>
       </div>
     </div>

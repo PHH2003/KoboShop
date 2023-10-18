@@ -6,6 +6,7 @@ import { useCartRedux } from '../../../redux/hook/useCartReducer'
 import { deleteProductToCart } from '~/app/api/cart/cart.api'
 import { message, Popconfirm } from 'antd'
 import ButtonComponent from '~/app/components/parts/button/button.component'
+import QuantityCart from '~/app/components/parts/quantity/quantity-cart.component'
 
 const InfoCart = () => {
   const {
@@ -16,19 +17,17 @@ const InfoCart = () => {
   useEffect(() => {
     actions.getAllCarts()
   }, [])
-  console.log(carts);
-  
+
   const confirm = (id: any) => {
-    console.log(id)
     deleteProductToCart(id).then((res) => {
-      if (res) {deleteProductToCart(id)
+      if (res) {
+        actions.deleteProductTocarts(id)
       }
     })
     message.success('Product successfully removed from cart')
   }
 
   const cancel = (e: any) => {
-    console.log(e)
     message.error('cancelled')
   }
 
@@ -46,6 +45,7 @@ const InfoCart = () => {
             </th>
             <th className='taitle-table font-semibold'>Information</th>
             <th className='taitle-table font-semibold'>Unit price</th>
+            <th className='taitle-table font-semibold'>Quantity</th>
             <th className='taitle-table font-semibold'>Into money</th>
             <th className='remove-all'>
               <RiDeleteBin5Line size={17} className='delete-icon' />
@@ -53,22 +53,25 @@ const InfoCart = () => {
           </tr>
         </thead>
 
-        <tbody >
+        <tbody className='' >
           {carts?.map((item: any, index: any) => (
-            <tr className='trbody' key={index + 1}>
+            <tr className='' key={index + 1}>
               <td className='flex items-center space-x-3'>
                 <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' />
-                <img src='https://th.bing.com/th/id/OIP.nVRzDIJP6TFqhcO0Hf-3RgHaJr?pid=ImgDet&rs=1' alt='' className='w-[70px] h-[80px]' />
+                <img src={item?.product?.images[0]} alt='' className='w-[70px] h-[105px] my-2' />
               </td>
               <td className=''>
-                <span className='flex'>Her Hidden Shadow</span>
-                <span>by <a className='underline hover:text-[#BF0000]' href="#">Carla Kovach</a></span>
+                <span className='flex'>{item?.product?.name}</span>
+                <span>by <a className='underline hover:text-[#BF0000]' href="#">{item?.product?.author}</a></span>
               </td>
               <td>
-                <span className='flex'>radioBook: $14,9</span>
+                <span className='font-bold'>${item?.product?.newPrice}</span>
               </td>
               <td>
-                <span>$14,9</span>
+                <span><QuantityCart quantity={item?.quantity} itemProductCart={item}/></span>
+              </td>
+              <td>
+                <span className='text-[#BF0000] font-bold'>${item?.product?.newPrice*item.quantity}</span>
               </td>
               <td className='product-delete'>
                 <Popconfirm
@@ -87,13 +90,12 @@ const InfoCart = () => {
             </tr>
 
           ))}
-
         </tbody>
+
       </table>
 
       <hr className='my-6' />
       <Link to={'/'}>
-        {/* <button className='hover:bg-[#595959] bg-[#BF0000] text-white  py-2 px-4 rounded'>Continue shopping</button> */}
         <ButtonComponent handleColor title={"Continue shopping"} className='py-2 px-4 w-[166px] h-[40px] hover:bg-[#595959] rounded' />
       </Link>
     </div>
