@@ -11,6 +11,7 @@ import RegisterComponent from './register/register.component'
 import ForgotPasswordComponent from './forgot-password/forgot-password.component'
 import ManageComponent from './manage/manage.component'
 import GiftCardComponent from './gift-cards/gift-cards.component'
+import ProductComponent from './product/product.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -57,5 +58,9 @@ export const clientRouter: RouteObject[] = [
   {
     path: "/manage",
     element: <ManageComponent />
-}
+  },
+  {
+    path:'/product',
+    element: <ProductComponent/>
+  }
 ]

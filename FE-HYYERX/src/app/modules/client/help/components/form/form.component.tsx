@@ -20,9 +20,8 @@ const FormComponent = () => {
 
   const sendEmail = (e: any) => {
     e.preventDefault()
-
     emailjs.send(
-      'service_8emck25',
+      'service_9jwonbg',
        'template_vshb50c',
        values,
        'ke1yKLn-ThEsICxpr').then(
@@ -68,5 +67,4 @@ const FormComponent = () => {
     </div>
   )
 }
-
 export default FormComponent

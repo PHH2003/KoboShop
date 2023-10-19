@@ -58,7 +58,7 @@ const InfoCart = () => {
             <tr className='' key={index + 1}>
               <td className='flex items-center space-x-3'>
                 <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' />
-                <img src={item?.product?.images[0]} alt='' className='w-[70px] h-[105px] my-2' />
+                <img src={item?.product?.images} alt='' className='w-[70px] h-[105px] my-2' />
               </td>
               <td className=''>
                 <span className='flex'>{item?.product?.name}</span>

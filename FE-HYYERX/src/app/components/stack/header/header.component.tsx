@@ -116,7 +116,7 @@ const Header = () => {
       <div className='m-auto w-[1140px] mt-2'>
         <ul className=' w-[300px] flex justify-between italic pb-7'>
           <Link to={'/'}><li><a href="">Home</a></li> </Link>
-          <Link to={'/'}><li><a>Product</a></li></Link>
+          <Link to={'/product'}><li><a>Product</a></li></Link>
           <Link to={'/contact'}><li><a>Contact</a></li></Link>
         </ul>
       </div>

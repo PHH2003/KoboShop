@@ -9,8 +9,8 @@ interface IItemProduct {
 const ItemProduct: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
   return (
     <div css={cssItemProduct} className='w-[140px] my-7' >
-      <img src={itemproduct?.images[0]} className="w-[140px] h-[200px]" alt="" />
-      <h2>{itemproduct?.name}</h2>
+      <img src={itemproduct?.images} className="w-[140px] h-[200px]" alt="" />
+      <h2 className='truncate-text'>{itemproduct?.name}</h2>
       <p className='text-gray-600 text-[0.8rem] font-semibold'>{itemproduct?.author}</p>
       <p className='flex'>
         <StarComponent />
@@ -41,4 +41,10 @@ const cssItemProduct = css`
     font-weight: 600;
     font-size: 0.8rem;
   }
+  .truncate-text {
+    white-space: nowrap;     
+    overflow: hidden;         
+    text-overflow: ellipsis;   
+    max-width: 200px;         
+}
 `
