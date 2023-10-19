@@ -13,20 +13,18 @@ const SidebarComponent = () => {
   return (
     <div css={cssSaidbar}>
             <div>
-                <h3 className="bg-[#ededed] py-2 font-semibold px-3 ">Category</h3>
-                <div>
+                <h3 className="bg-[#ededed] py-2 font-semibold px-3 text-center">Category</h3>
+                <div className="mt-2">
                     {categorys?.map((item: any, index: any) => (
                         <p key={index + 1}>
                             {item?.name}
                         </p>
                     ))}
-
-
                 </div>
             </div>
 
             <div>
-                <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2">price filter</h3>
+                <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">price filter</h3>
                 <div>
                     <p>1$ to 10$</p>
                     <p>11$ to 20$</p>

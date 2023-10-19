@@ -3,7 +3,7 @@ import MainProductComponent from './main-product/main-product.component'
 
 const ProductComponent = () => {
   return (
-    <div className='w-[1140px] m-auto flex justify-between mt-3'>
+    <div className='w-[1140px] m-auto flex justify-between mt-9'>
         <div>
             <SidebarComponent/>
         </div>

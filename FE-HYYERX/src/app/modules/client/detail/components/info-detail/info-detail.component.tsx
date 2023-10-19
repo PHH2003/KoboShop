@@ -95,7 +95,7 @@ const InfoDetail = () => {
 
             <hr />
 
-            <h2 className='title-name'>Synopsis</h2>
+            <h2 className='title-name py-2'>Synopsis:</h2>
             <span>{productDetail?.description}</span>
           </div>
         </div>

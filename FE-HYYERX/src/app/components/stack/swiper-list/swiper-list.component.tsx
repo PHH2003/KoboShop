@@ -7,6 +7,7 @@ import { Navigation } from 'swiper/modules';
 import { FunctionComponent } from 'react';
 import { css } from '@emotion/react';
 import useWindowSizeLayout from '~/app/hook/useWindow';
+import { Link } from 'react-router-dom';
 
 interface ISwiperList {
     children?:any
@@ -21,7 +22,8 @@ const SwiperList: FunctionComponent<ISwiperList> = ({children, title}) => {
             <span className='name-books'>eBooks</span>
             <div className='flex items-center justify-between'>
                 <h2 className='title font-semibold mt-4 text-2xl'>{title}</h2>
-                <a href="#" className='viewall font-semibold underline'>View all</a>
+                <Link to={'/product'}><a className='viewall font-semibold underline'>View all</a></Link>
+                
             </div>
             
         </div>

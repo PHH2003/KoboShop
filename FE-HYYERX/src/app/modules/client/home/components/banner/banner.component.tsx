@@ -2,12 +2,12 @@ const BannerComponent = () => {
     return (
         <div className="flex justify-between mb-20">
             <div className="w-[760px] h-[300px]">
-                <img src="https://www.quipper.com/id/blog/wp-content/uploads/2022/12/crop-hands-holding-opened-book.webp" alt="" />
+                <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1697685518/banner-to_mc3r8q.png" alt="" />
             </div>
 
-            <div className="w-[370px]">
-                <img src="https://penerbitwidina.com/wp-content/uploads/2019/12/book-2852903_1920.jpg" alt="" />
-                <img src="https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/04/05201929/old-book-flying-letters-magic-light-background-bookshelf-library-ancient-books-as-symbol-knowledge-history-218640948.jpg" alt="" className="pt-3 h-[260px]" />
+            <div className="w-[376px] h-[170px]">
+                <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1697685528/banner1_rown5q.png" alt="" className="h-[169px]" />
+                <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1697685536/banner2_nkllgq.png" alt="" className="pt-[5px] " />
             </div>
         </div>
     )

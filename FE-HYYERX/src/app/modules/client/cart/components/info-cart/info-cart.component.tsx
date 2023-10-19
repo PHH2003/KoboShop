@@ -61,7 +61,7 @@ const InfoCart = () => {
                 <img src={item?.product?.images} alt='' className='w-[70px] h-[105px] my-2' />
               </td>
               <td className=''>
-                <span className='flex'>{item?.product?.name}</span>
+                <span className='truncate-text flex'>{item?.product?.name}</span>
                 <span>by <a className='underline hover:text-[#BF0000]' href="#">{item?.product?.author}</a></span>
               </td>
               <td>
@@ -112,4 +112,10 @@ const cssInfoCart = css`
   .delete-icon:hover {
     color: red;
   }
+  .truncate-text {
+    white-space: nowrap;     
+    overflow: hidden;         
+    text-overflow: ellipsis;   
+    max-width: 200px;         
+}
 `
