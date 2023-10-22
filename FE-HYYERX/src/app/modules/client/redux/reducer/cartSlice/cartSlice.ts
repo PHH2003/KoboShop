@@ -45,6 +45,9 @@ const cartSlice = createSlice({
           if(newDataInput > itemProductCart.product.quantity){
             state.carts[filterItemCart].quantity = itemProductCart?.product?.quantity
           }
+          if(newDataInput < itemProductCart?.product?.quantity){
+            state.carts[filterItemCart].quantity = newDataInput 
+          }
           if(newDataInput < 1) {
             state.carts[filterItemCart].quantity = 1
           }

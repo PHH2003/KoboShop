@@ -29,11 +29,14 @@ const QuantityCart: FC<QuantityCartProps> = ({ quantity, itemProductCart }) => {
       itemProductCart
     }
     actions.updateQuantityCart(objectDecrement)
-    const requestQuantityCart = {
-      productId: itemProductCart.product._id,
-      quantity: quantityOrder - 1
+    
+    if(quantityOrder > 1){
+      const requestQuantityCart = {
+        productId: itemProductCart.product._id,
+        quantity: quantityOrder - 1
+      }
+      updateProductToCart(requestQuantityCart)
     }
-    updateProductToCart(requestQuantityCart)
   }
   const handleIncrement = () => {
     const objectIncrement = {
@@ -71,7 +74,9 @@ const QuantityCart: FC<QuantityCartProps> = ({ quantity, itemProductCart }) => {
     }
     const requestQuantityCart = {
         productId: itemProductCart.product._id,
-        quantity: event.target.value
+        quantity: event.target.value > itemProductCart.product.quantity && itemProductCart.product.quantity || 
+        event.target.value == "" && Number(1) || 
+        event.target.value < itemProductCart.product.quantity && Number(event.target.value)
     }
     updateProductToCart(requestQuantityCart)
 }

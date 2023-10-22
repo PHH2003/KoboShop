@@ -23,6 +23,9 @@ const LoginComponent = () => {
           localStorage.setItem('accessToken', res.accessToken)
           toast.success('Singin success')
           navigate('/')
+          setTimeout(() => {
+            location.reload()
+          }, 1000)
         }
       },
       (err) => {

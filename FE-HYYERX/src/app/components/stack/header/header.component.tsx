@@ -1,24 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/react'
 import {BsSearch, BsHeart} from 'react-icons/bs'
 import {GiShoppingCart} from 'react-icons/gi'
 import {VscAccount} from 'react-icons/vsc'
 import {AiOutlineUser} from 'react-icons/ai'
 import {BiLogOut} from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCartRedux } from '~/app/modules/client/redux/hook/useCartReducer'
 import { Avatar, Badge, Space } from 'antd'
 
 const Header = () => {
   const accsetToken = localStorage.getItem('accessToken')
+  const [searchItem, setSearchItem] = useState('')
+  const handleSearch = (event:any)=>{
+    setSearchItem(event.target.value)
+  }
+  const  handleSearchProduct = () => {
+    navigate(`product?q=${searchItem}`)
+  }
+  const navigate = useNavigate()
   const handelLogout = () => {
     localStorage.removeItem("accessToken")
+    navigate("/login")
+    location.reload()
   }
   const { data: { carts }, actions } = useCartRedux()
   useEffect(() => {
     actions.getAllCarts()
   }, [])
-
   return (
     <div css={cssHeader} className='shadow-md'>
       <div className='bg-[#f5f5f5]'>
@@ -45,11 +54,12 @@ const Header = () => {
           </Link>
           <div className='flex mx-10'>
             <input
+                onChange={handleSearch}
                 type='text'
                 className='px-8 w-[448px] border border-[#D8D8D8] py-3 text-[11px]'
                 placeholder='Search by title, author, series or ISBN'
             />
-            <button className='bg-black text-white px-[10px] py-[10px]'>
+            <button className='bg-black text-white px-[10px] py-[10px]' onClick={handleSearchProduct}>
               <BsSearch size={22}/>
             </button>
           </div>
