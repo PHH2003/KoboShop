@@ -6,8 +6,10 @@ import { schemaLogin } from '../utils/validateForm'
 import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { login } from '~/app/api/auth/auth.api'
+import { message } from 'antd'
 
 const LoginComponent = () => {
+  const [messageApi, contextHolder] = message.useMessage()
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -21,11 +23,15 @@ const LoginComponent = () => {
       (res) => {
         if (res) {
           localStorage.setItem('accessToken', res.accessToken)
-          toast.success('Singin success')
-          navigate('/')
-          setTimeout(() => {
-            location.reload()
-          }, 1000)
+          // toast.success('Singin success')
+          // navigate('/')
+          // setTimeout(() => {
+          //   location.reload()
+          // }, 1000)
+          message.success("Singin success", () => {
+            navigate("/");
+            location.reload();
+        });
         }
       },
       (err) => {
@@ -35,6 +41,7 @@ const LoginComponent = () => {
   }
   return (
     <div className='relative h-[90vh]' css={cssLogin}>
+      {contextHolder}
       <div>
         <img src='https://authorize.kobo.com/Images/prism_large.png' alt='' className='w-full' />
       </div>

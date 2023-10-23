@@ -46,8 +46,8 @@ const InfoDetail = () => {
         <div css={cssDetail} className='flex justify-between'>
           <div className='w-[246px]'>
             <div>
-              <img src='' alt='' className='w-[246px] h-[376px]' />
-              {/* sau update lại be nên ch cần list */}
+              <img src={productDetail.images} alt='' className='w-[246px] h-[376px]' />
+              
             </div>
             <div className='flex items-center py-5'>
               <StarComponent />
