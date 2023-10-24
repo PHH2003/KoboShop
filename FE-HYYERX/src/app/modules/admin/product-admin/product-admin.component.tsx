@@ -11,6 +11,7 @@ const ProductAdminComponent = () => {
     })
   }, [])
 
+  
   useEffect(() => {
     const columTemp: any = []
     if (dataProduct.length > 0) {
@@ -24,8 +25,7 @@ const ProductAdminComponent = () => {
                         if (itemKey === 'images' && dataProduct[index]?.images && dataProduct[index].images.length > 0) {
                             return (
                                 <img
-                                    src={dataProduct[index].images[0]}
-                                    alt="Product Image"
+                                    src={dataProduct[index].images[0]}                                 
                                     style={{ maxWidth: '50px' }}
                                 />
                             );
@@ -39,6 +39,7 @@ const ProductAdminComponent = () => {
     }
     setColumn(columTemp)
 }, [dataProduct])
+console.log(dataProduct);
   return (
     <div>
       <TemplateTable dataTable={dataProduct} columsTable={column} dataPage={5} />

@@ -27,7 +27,7 @@ const ReviewComponent = () => {
                   <StarComponent />
                 </div>
                 <div className='px-5'>
-                  <h2 className='font-semibold'>Riveting!</h2>
+                  <h2 className='font-semibold'>{item?.user?.fullname}</h2>
                 </div>
               </div>
               <div>

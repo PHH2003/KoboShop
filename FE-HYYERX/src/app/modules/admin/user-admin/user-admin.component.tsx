@@ -6,11 +6,12 @@ import { Form, Input, Select } from 'antd';
 const UserAdminComponent = () => {
   const [dataUser, setDataUser] = useState([])
   const [colums, setColums] = useState([])
+  const [reset, setReset] = useState<boolean>(true)
   useEffect(() => {
     getAllUser().then((res) =>{
       setDataUser(res.data)
     })
-  }, [])
+  }, [reset])
   useEffect(()=>{
     const columTemp: any = []
     console.log(dataUser[0])
@@ -28,11 +29,14 @@ const UserAdminComponent = () => {
     }
     setColums(columTemp)
   },[dataUser])
-  console.log(dataUser);
-  
+ 
+  const handelGetlist = () => {
+    setReset(!reset)
+}
+
   return (
     <div>
-     <TemplateTable columsTable={colums} dataTable={dataUser} dataPage={8} deleteFunc={deleteUser} createFunc={createUser} changeFunc={changeUser} formEdit={
+     <TemplateTable columsTable={colums} handleGetList={handelGetlist} dataTable={dataUser} dataPage={8} deleteFunc={deleteUser} createFunc={createUser} changeFunc={changeUser} formEdit={
                 <Fragment>
                     <Form.Item
                         label='fullname'

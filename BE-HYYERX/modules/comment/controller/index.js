@@ -1,8 +1,14 @@
 import getComment from './api/getComment.controller.js';
 import createComment from './api/createComment.controllder.js';
+import deleteComment from './api/deleteComment.controller.js';
+import getAllComment from './api/getAllComment.controller.js';
+import updateComment from './api/updateComment.controller.js';
 const commentController = {
     getComment,
-    createComment
+    createComment,
+    deleteComment,
+    getAllComment,
+    updateComment
 }
 
 export default commentController

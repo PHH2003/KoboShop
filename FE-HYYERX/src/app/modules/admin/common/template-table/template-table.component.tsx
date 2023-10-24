@@ -22,10 +22,11 @@ interface ITemplateTableProp {
     searchFunc?: any
     dataPage?: any
     formEdit?: ReactNode
+    handleGetList?: any
 }
 
 
-const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable, formEdit, dataPage}) => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable, formEdit, dataPage,handleGetList}) => {
     const [isModelOpen, setIsModelOpen] = useState(false)
     const [triggerLoadding, setTriggerLoadding] =useState(false)
     const [type, setType] = useState('CREATE')
@@ -38,6 +39,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             if(res){
                 setTimeout(()=> {
                     setTriggerLoadding(false)
+                    handleGetList()
                 }, 1000)
             } 
         },(err: any) =>{
@@ -61,6 +63,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                         setTimeout(()=> {
                             setTriggerLoadding(false)
                         }, 1000)
+                        handleGetList()
                     }
                 }, (err: any)=>{
                     setTimeout(() => {
@@ -77,6 +80,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 if(res){
                     setTimeout(()=> {
                         setTriggerLoadding(false)
+                        handleGetList()
                     }, 1000)
                 }
             },(err:any)=>{
