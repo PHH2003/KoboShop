@@ -1,46 +1,50 @@
-import React from 'react'
+import { useEffect } from 'react'
 import StarComponent from '../star/star.component'
+import { useParams } from 'react-router-dom'
+import { useCommentRedux } from '~/app/modules/client/redux/hook/useCommentReducer'
 
 const ReviewComponent = () => {
-    return (
-        <>
-            <div className='flex justify-between mt-5'>
-                <div className='w-[745px]'>
-                    <div className='flex items-center'>
-                        <div className='flex'>
-                            <StarComponent />
-                            <StarComponent />
-                            <StarComponent />
-                            <StarComponent />
-                            <StarComponent />
-                        </div>
-                        <div className='px-5'>
-                            <h2 className='font-semibold'>Riveting!</h2>
-                        </div>
-                    </div>
-                    <div>
-                        <p className='text-gray-600'>
-                            I have read every book that Ms Roberts has written (this includes books by J. D. Robb)
-                            and this is probably one of the best. It includes suspense, romance, and family ties. Morgan
-                            and Miles were one of my favorite couples. They weren’t your typical sappy lovers but both had their heads on
-                        </p>
+    let { id } = useParams()
+    const { data: {comments}, actions: commentActions } = useCommentRedux()
+    useEffect(() => {
+        commentActions.getAllComments(id)
+    }, [])
 
-                        <em className='text-[13px] font-semibold'>
-                            by Ttutor on May 23, 2023
-                        </em>
-
-                    </div>
+    console.log(comments);
+    
+  return (
+    <>
+      {comments?.map((item: any, index: any) => (
+        <div>
+          <div className='flex justify-between mt-5' key={index +1}>
+            <div className='w-[745px]'>
+              <div className='flex items-center'>
+                <div className='flex'>
+                  <StarComponent />
+                  <StarComponent />
+                  <StarComponent />
+                  <StarComponent />
+                  <StarComponent />
                 </div>
-
-                <div>
-                    <em className='text-[15px] font-semibold text-gray-500'>5 of 6 people found this review helpful</em>
+                <div className='px-5'>
+                  <h2 className='font-semibold'>Riveting!</h2>
                 </div>
-
+              </div>
+              <div>
+                <p className='text-gray-600'>{item?.comment}</p>
+                <em className='text-[13px] font-semibold'>by {item?.createdAt}</em>
+              </div>
             </div>
-            <hr className='mt-4 ' />
-        </>
 
-    )
+            <div>
+              <em className='text-[15px] font-semibold text-gray-500'>5 of 6 people found this review helpful</em>
+            </div>
+          </div>
+          <hr className='mt-4 ' />
+        </div>
+      ))}
+    </>
+  )
 }
 
 export default ReviewComponent

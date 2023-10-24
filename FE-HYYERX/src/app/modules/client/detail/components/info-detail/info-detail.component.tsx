@@ -37,7 +37,7 @@ const InfoDetail = () => {
             toast.success("Add Product to Cart Success")
         }
     }, (err) => {
-        toast.success(err?.reponse?.data)
+        toast.error(err?.reponse?.data)
     })
   }
   return (

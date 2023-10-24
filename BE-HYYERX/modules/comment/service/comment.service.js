@@ -11,7 +11,6 @@ export const createComments = async (data) => {
     return newComment
 }
 
-
 export const getComments = async (productId) => {
     const comments = await commentModel.find({ product: productId });
     await commentModel.populate(comments, { path: 'user', model: 'Auth' });

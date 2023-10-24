@@ -5,10 +5,11 @@ interface IButton {
     handleColor?: any
     className?: any
     onClick?: any
+    type?:any
 }
-const ButtonComponent: FC<IButton> = ({ title, handleColor, className, onClick }) => {
+const ButtonComponent: FC<IButton> = ({ title, handleColor, className, onClick, type }) => {
     return (
-        <button css={cssButotn(handleColor)} className={className} onClick={onClick}>{title}</button>
+        <button css={cssButotn(handleColor)} type={type} className={className} onClick={onClick}>{title}</button>
     )
 }
 

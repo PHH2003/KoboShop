@@ -40,9 +40,6 @@ const DetailComponent = () => {
       </div>
       <div>
         <ReviewComponent />
-        <ReviewComponent />
-        <ReviewComponent />
-        <ReviewComponent />
       </div>
     </div>
   )
