@@ -1,11 +1,12 @@
 import commentModel from "../model/comment.model.js";
 
 export const createComments = async (data) => {
-    const { userId, productId, comment } = data;
+    const { userId, productId, comment, star } = data;
     const newComment = new commentModel({
         user: userId,
         product: productId,
         comment: comment,
+        star: star
     });
     await newComment.save();
     return newComment

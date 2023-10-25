@@ -22,10 +22,10 @@ const ProductAdminComponent = () => {
                     dataIndex: itemKey,
                     key: itemKey,
                     render: (text: any, record: any, index: any) => {
-                        if (itemKey === 'images' && dataProduct[index]?.images && dataProduct[index].images.length > 0) {
+                        if (itemKey === 'images') {
                             return (
                                 <img
-                                    src={dataProduct[index].images[0]}                                 
+                                    src={record.images}                                 
                                     style={{ maxWidth: '50px' }}
                                 />
                             );

@@ -1,16 +1,16 @@
-import { Modal } from 'antd';
+import { Modal,Rate } from 'antd';
 import { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ButtonComponent from '~/app/components/parts/button/button.component'
-import StarComponent from '~/app/components/parts/star/star.component';
 import { useCommentRedux } from '../../../redux/hook/useCommentReducer';
 import { createComment } from '~/app/api/comment/comment.api';
 import toast from 'react-hot-toast';
-
+const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 const AllReviewBook = () => {
     let { id } = useParams()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [commentText, setCommentText] = useState('')
+    const [value, setValue] = useState(5);
     const { actions } = useCommentRedux()
     const showModal = () => {
         setIsModalOpen(true);
@@ -18,18 +18,17 @@ const AllReviewBook = () => {
     const handleTextAreaChange = (event: any) => {
         setCommentText(event.target.value)
     };
-
+    console.log(value)
 
     const handelSubmitComment = () => {
-        createComment({ comment: commentText, productId: id }).then((res) => {
+        createComment({ comment: commentText, productId: id, star:value }).then((res) => {
             if (res) {
                 toast.success("comment success")
                 setIsModalOpen(false);
                 actions.getAllComments(id)
             }
         })
-        
-        
+                
     }
     const handleOk = () => {
         setIsModalOpen(false);
@@ -79,11 +78,10 @@ const AllReviewBook = () => {
                                                 Rate it *
                                             </div>
                                             <div className='flex'>
-                                                <StarComponent />
-                                                <StarComponent />
-                                                <StarComponent />
-                                                <StarComponent />
-                                                <StarComponent />
+                                            <span>
+                                                <Rate tooltips={desc} onChange={setValue} value={value} />
+                                                {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
+                                                </span>
                                             </div>
                                         </div>
                                         <hr />

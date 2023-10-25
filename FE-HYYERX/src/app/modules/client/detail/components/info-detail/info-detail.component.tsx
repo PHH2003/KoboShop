@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useProductRedux } from '../../../redux/hook/useProductReducer'
 import QuantityCompoennt from '~/app/components/parts/quantity/quantity.component'
 import StarComponent from '~/app/components/parts/star/star.component'
@@ -10,6 +10,7 @@ import ButtonComponent from '~/app/components/parts/button/button.component'
 import toast from 'react-hot-toast'
 
 const InfoDetail = () => {
+  const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
   let { id } = useParams()
   const {
@@ -37,7 +38,7 @@ const InfoDetail = () => {
             toast.success("Add Product to Cart Success")
         }
     }, (err) => {
-        toast.error(err?.reponse?.data)
+      navigate('/login')
     })
   }
   return (
