@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getAllCarts } from './thunk/cart.thunk'
 
 const initialState = {
-  carts: []
+  carts: [],
+  listBuyProduct: JSON.parse(localStorage.getItem("productSelectCart")!) || []
 } as any
 
 const cartSlice = createSlice({
@@ -23,6 +24,30 @@ const cartSlice = createSlice({
     deleteProductTocarts: (state, action) => {
       const productId = action.payload
       state.carts = state.carts.filter((item: any) => item._id != productId)
+    },
+    selectProductCartBuy: (state, action) => {
+      const buyProduct = action.payload
+      if (state.listBuyProduct.flatMap((item: any) => item._id).includes(buyProduct?._id)) {
+          const index = state.listBuyProduct.findIndex((item: any) => item._id == buyProduct?._id)
+          state.listBuyProduct.splice(index, 1)
+      }
+      else {
+          state.listBuyProduct.push(buyProduct)
+      }
+
+      localStorage.setItem("productSelectCart", JSON.stringify(state.listBuyProduct))
+
+    },
+    selectProductCartBuyAll: (state) => {
+      const productBuy = state.listBuyProduct.length == state.carts.length
+      if (productBuy) {
+          localStorage.removeItem("productSelectCart")
+          state.listBuyProduct = []
+      }
+      else {
+          state.listBuyProduct = [...state.carts]
+          localStorage.setItem("productSelectCart", JSON.stringify(state.listBuyProduct))
+      }
     },
     updateQuantityCart: (state, action) =>{
       const {itemProductCart, quantityOrder, newDataInput} = action.payload

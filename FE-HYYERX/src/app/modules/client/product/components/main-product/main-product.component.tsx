@@ -9,8 +9,6 @@ interface IMainProduct {
 }
 
 const MainProductComponent: FC<IMainProduct> = ({ selectedCategory, selectedPriceRange }) => {
-  console.log(selectedCategory)
-
   const keyWords = new URLSearchParams(location.search).get('q')
   const {
     data: { products },

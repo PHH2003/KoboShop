@@ -10,14 +10,14 @@ import QuantityCart from '~/app/components/parts/quantity/quantity-cart.componen
 
 const InfoCart = () => {
   const {
-    data: { carts },
+    data: { carts,listBuyProduct },
     actions
   } = useCartRedux()
 
   useEffect(() => {
     actions.getAllCarts()
   }, [])
-
+  console.log(listBuyProduct)
   const confirm = (id: any) => {
     deleteProductToCart(id).then((res) => {
       if (res) {
@@ -30,7 +30,15 @@ const InfoCart = () => {
   const cancel = (e: any) => {
     message.error('cancelled')
   }
+  const handleSelectBuyProduct = (product: any) => {
+    actions.selectProductCartBuy(product)
+  }
 
+  const handleSelectBuyProductAll = (product: any) => {
+    actions.selectProductCartBuyAll(product)
+  }
+
+  const isCheckedAll = listBuyProduct.length >= carts.length && listBuyProduct.every((itembuy: any) => carts.some((items: any) => items._id == itembuy._id))
   return (
     <div className='w-[70%]' css={cssInfoCart}>
       <hr className='my-6' />
@@ -38,7 +46,7 @@ const InfoCart = () => {
         <thead>
           <tr className='text-[#595959]'>
             <th className='taitle-table sm:flex max-sm:flex px-5 font-mono py-3'>
-              <input type='checkbox' className='w-[18px] mr-3 ' />
+              <input type='checkbox' className='w-[18px] mr-3' onChange={() => handleSelectBuyProductAll(carts)}  checked={isCheckedAll} />
               <a className='font-semibold' href='#'>
                 Select all
               </a>
@@ -57,7 +65,8 @@ const InfoCart = () => {
           {carts?.map((item: any, index: any) => (
             <tr className='' key={index + 1}>
               <td className='flex items-center space-x-3'>
-                <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' />
+                <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' onChange={() => handleSelectBuyProduct(item)}
+                 checked={listBuyProduct?.flatMap((items: any) => items._id)?.includes(item?._id)} />
                 <img src={item?.product?.images} alt='' className='w-[70px] h-[105px] my-2' />
               </td>
               <td className=''>
