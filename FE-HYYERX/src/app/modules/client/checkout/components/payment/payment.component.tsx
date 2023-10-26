@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { FaMoneyCheckAlt } from "react-icons/fa"
 
@@ -9,6 +9,33 @@ interface IPaymentComponent {
 }
 
 const PaymentComponent: FC<IPaymentComponent> = ({control,errors}) => {
+    const [citis, setCitis] = useState<any>([])
+    const [districts, setDistricts] = useState<any>([])
+    const [communs, setCommuns] = useState<any>([])
+    const [selectedCity, setSelectedCity] = useState<any>([])
+    const [selecteddistricts, setSelectedDistricts] = useState<any>([])
+    const [selectedCommuns, setSelectedCommuns] = useState<any>([])
+
+    const loadCitis = async () => {
+        const res = await fetch(`https://provinces.open-api.vn/api/`)
+        const data = await res.json()
+        setCitis(data)
+    }
+
+    const loadDistricts = async (dataCiti: any) => {
+        const seletedCity = citis.find((city: any) => city.name == dataCiti)
+        if (seletedCity) {
+            const res = await fetch(`https://provinces.open-api.vn/api/p/${selectedCity.code}?depth=2`)
+            const data = await res.json()
+            setDistricts(data)
+        }
+    }
+
+    // const loadCommuns = async () => {
+    //     const res = await fetch(`https://provinces.open-api.vn/api/`)
+    //     const data = await res.json()
+    //     setCitis(data)
+    // }
     return (
         <div css={cssPayment}>
             <div className='flex justify-between'>

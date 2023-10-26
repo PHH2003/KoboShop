@@ -16,14 +16,15 @@ const CommentAdminComponent = () => {
         if (dataComment.length > 0) {
             Object.keys(dataComment[0]).forEach((itemKey) => {
                 if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {
+                    console.log(dataComment);                    
                     columnTemp.push({
                         title: itemKey,
                         dataIndex: itemKey,
                         key: itemKey,
-                        render: (text: any, record: any, index: any) => {
-                            if (itemKey === 'user') {
-                                return record.user.fullname;
-                            }
+                        render: (text: any, record: any) => {
+                            // if (itemKey === 'user') {
+                            //     return record.user.fullname;
+                            // }
                            
                             if (itemKey === 'product') {
                                 return record.product.name;

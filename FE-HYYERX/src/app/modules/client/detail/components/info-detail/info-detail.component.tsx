@@ -8,6 +8,7 @@ import { addProductToCart } from '~/app/api/cart/cart.api'
 import { useCartRedux } from '../../../redux/hook/useCartReducer'
 import ButtonComponent from '~/app/components/parts/button/button.component'
 import toast from 'react-hot-toast'
+import { getAllComment } from '~/app/api/comment/comment.api'
 
 const InfoDetail = () => {
   const navigate = useNavigate()
@@ -18,6 +19,23 @@ const InfoDetail = () => {
     actions
   } = useProductRedux()
   const { actions: actionscart } = useCartRedux()
+  const [averageStar, setAverageStar] = useState(0);
+  useEffect(() => {
+    getAllComment().then((res) => {
+        if (res) {
+            console.log(res)
+            const productComments = res.filter((item: any) => item.product._id === id);
+            const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);
+            const avgStar = productComments.length > 0 ? totalStars / productComments.length : 1;
+
+            setAverageStar(avgStar);
+        }
+    });
+}, []);
+const starComponents = [];
+for (let i = 1; i <= averageStar; i++) {
+    starComponents.push(<StarComponent key={i} />);
+}
   useEffect(() => {
     actions.getProductById(id)
   }, [id])
@@ -51,12 +69,8 @@ const InfoDetail = () => {
               
             </div>
             <div className='flex items-center py-5'>
-              <StarComponent />
-              <StarComponent />
-              <StarComponent />
-              <StarComponent />
-              <StarComponent />
-              (1)
+              {starComponents}
+              ({starComponents.length})
             </div>
             <div>
               <p className='text-[0.9rem]'>

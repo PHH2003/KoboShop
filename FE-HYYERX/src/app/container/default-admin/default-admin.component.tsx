@@ -21,7 +21,7 @@ const DefaultAdmin: React.FC = () => {
     } 
 
   return (
-    <Layout style={{height:'100vh'}}>
+    <Layout className='h-full'>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className='mr-5'>
             <img src="https://res.cloudinary.com/dpfndtcya/image/upload/t_logo-kobo-web-admin/v1696241284/rakuten-kobo1-removebg-preview_efmks8.png" alt="" />

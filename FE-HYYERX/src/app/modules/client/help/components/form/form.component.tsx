@@ -1,7 +1,7 @@
 import ButtonComponent from '~/app/components/parts/button/button.component'
-import emailjs from '@emailjs/browser'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import emailjs from '@emailjs/browser';
 
 const FormComponent = () => {
 
@@ -25,10 +25,10 @@ const FormComponent = () => {
        'template_vshb50c',
        values,
        'ke1yKLn-ThEsICxpr').then(
-      (result) => {
+      (result: any) => {
         toast.success("Feedback sent successfully")
       },
-      (error) => {
+      (error:any) => {
         toast.success("Response has not been sent")
       }
     )
