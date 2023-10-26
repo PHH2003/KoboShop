@@ -17,15 +17,15 @@ const MainProductComponent: FC<IMainProduct> = ({ selectedCategory, selectedPric
     actions
   } = useProductRedux()
   const filteredProducts = keyWords
-    ? products.filter((item: any) => item.name.toLowerCase().includes(keyWords.toLowerCase()))
-    : selectedCategory
-    ? products.filter((item: any) => item.name.toLowerCase().includes(keyWords?.toLowerCase()))
-    : selectedPriceRange
-    ? products.filter((item: any) => {
-        const [min, max] = selectedPriceRange.split('-')
-        return item.newPrice >= parseInt(min, 10) && item.newPrice <= parseInt(max, 10)
-      })
-    : products
+  ? products.filter((item: any) => item.name.toLowerCase().includes(keyWords.toLowerCase()))
+  : selectedCategory
+      ? products.filter((item: any) => item.categoryId === selectedCategory)
+      : selectedPriceRange
+          ? products.filter((item: any) => {
+              const [min, max] = selectedPriceRange.split('-');
+              return item.newPrice >= parseInt(min, 10) && item.newPrice <= parseInt(max, 10);
+          })
+          : products;
   useEffect(() => {
     actions.getAllProducts()
   }, [keyWords])

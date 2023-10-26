@@ -22,6 +22,7 @@ const SidebarComponent: FC<ISaidBarComponent> = ({selectedCategory, onSelectCate
     }
     const handleShowAll = () => {
         onSelectCategory(null);
+        onSelectPriceRange(null)
     };
 
     const handleSelectPriceRange = (priceRange: any) => {
@@ -44,6 +45,7 @@ const SidebarComponent: FC<ISaidBarComponent> = ({selectedCategory, onSelectCate
             <div>
                 <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">price filter</h3>
                 <div className="text-center">
+                    <p onClick={handleShowAll}>Show all</p>
                     <p onClick={() => handleSelectPriceRange("1-10")}>1$ to 10$</p>
                     <p onClick={() => handleSelectPriceRange("11-20")}>11$ to 20$</p>
                 </div>

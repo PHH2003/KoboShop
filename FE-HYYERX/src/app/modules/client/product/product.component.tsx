@@ -12,7 +12,7 @@ const ProductComponent = () => {
              selectedCategory={selectedCategory}
              onSelectCategory={setSelectedCategory}
              selectedPriceRange={selectedPriceRange}
-             onSelectPriceRange={setSelectedPriceRange} 
+             onSelectPriceRange={setSelectedPriceRange}            
             />
         </div>
         <div>
