@@ -7,6 +7,7 @@ const orderSchema = mongoose.Schema({
     district: String,
     commune: String,
     detailAddress: String,
+    total: Number,
     orderStatus: {
         type: String,
         default: 'Đang chờ duyệt',
@@ -14,13 +15,13 @@ const orderSchema = mongoose.Schema({
     },
     user: {
         type: mongoose.Types.ObjectId,
-        refs: "Auth",
+        ref: "Auth",
     },
     productOrder: [
         {
             product: {
                 type: mongoose.Types.ObjectId,
-                refs:"Product"
+                ref:"Product"
             },
             quantity: Number
         }

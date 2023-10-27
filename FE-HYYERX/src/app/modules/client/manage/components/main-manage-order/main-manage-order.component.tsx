@@ -1,14 +1,24 @@
 import { css } from '@emotion/react'
-import { FunctionComponent } from 'react'
-
+import { FunctionComponent, useEffect, useState } from 'react'
+import { getAllOrderUser } from '~/app/api/order/order.api'
 interface MainManangeOrderProps {
     props?: any
 }
 
 const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
+    const [dataOrder, setDataOrder] = useState([])
+    useEffect(() => {
+        getAllOrderUser().then((res) => {
+            if (res) {
+                setDataOrder(res)
+            }
+        })
+    }, [])
+    console.log(getAllOrderUser);
+    
     return (
-        <div css={cssMainManangeOrder}>
-            <h1>Order management</h1>
+    <div css={cssMainManangeOrder}>
+        <h1>Order management</h1>
 
             <div>
                 <table className='w-full'>
@@ -22,17 +32,24 @@ const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
                             <th >actions</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td><button className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>cancel order</button></td>
-                    </tr>
+                    {dataOrder?.map((item: any, index: any) => (
+                            <tbody className='w-full' key={index + 1}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{item?.createdAt}</td>
+                                <td>{item?.orderStatus}</td>
+                                {
+                                    item?.productOrder.map((item: any, index: any) => (
+                                        <td key={index + 1}>{item?.product?.name}</td>
+                                    ))
+                                }
+                                <td>{item?.total}$</td>
+                                <td><button className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>cancel order</button></td>
+                            </tbody>
+                        ))
+                    }
                 </table>
             </div>
-        </div>
+    </div>
     )
 }
 

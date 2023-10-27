@@ -17,7 +17,6 @@ const InfoCart = () => {
   useEffect(() => {
     actions.getAllCarts()
   }, [])
-  console.log(listBuyProduct)
   const confirm = (id: any) => {
     deleteProductToCart(id).then((res) => {
       if (res) {
@@ -93,11 +92,8 @@ const InfoCart = () => {
                 >
                   <RiDeleteBin5Line className='delete-icon' />
                 </Popconfirm>
-
               </td>
-
             </tr>
-
           ))}
         </tbody>
 

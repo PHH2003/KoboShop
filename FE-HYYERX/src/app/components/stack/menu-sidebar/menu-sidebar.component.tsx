@@ -23,13 +23,16 @@ const MenuSideBar: FunctionComponent<MenuSideBarProps> = () => {
                 <ul>
                     <li className='flex'>
 
-                        <p><BiSolidUserBadge className='text-[22px]' /></p> <p className='px-3'>account information</p>
+                        <p><BiSolidUserBadge className='text-[22px]' /></p> 
+                        <p className='px-3'>account information</p>
                     </li>
                     <li className='flex'>
-                        <p><RiLuggageCartFill className='text-[22px]' /></p> <p className='px-3'> Order management</p>
+                        <p><RiLuggageCartFill className='text-[22px]' /></p>
+                         <p className='px-3'> Order management</p>
                     </li>
                     <li className='flex'>
-                        <p><BiSupport className='text-[22px]' /></p><p className='px-3'>Support</p>
+                        <p><BiSupport className='text-[22px]' /></p>
+                        <a className='px-3'>Support</a>
                     </li>
                 </ul>
             </div>

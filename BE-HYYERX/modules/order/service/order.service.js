@@ -4,7 +4,7 @@ import orderModel from "../model/order.model.js"
 
 export const addOrders = async(req) => {
     const listProductOrder = req.body.productOrder
-    const userId = req.body.id
+    const userId = req.user.id
     const cartUser = await cartModel.findOne({
         user: req.user._id
     })
@@ -19,7 +19,6 @@ export const addOrders = async(req) => {
         for(let index = 0; index < listProductOrder.length; index++) {
             const element = listProductOrder[index];
             const productOrder = element.quantity
-            console.log(productOrder);
             const productDetail = await productModel.findOne({
                 _id: element.product
             })
@@ -50,10 +49,13 @@ export const updateOrders = async(req) => {
 
 export const getAllOrders = async(req) => {
     
-        const order = await orderModel.find({
-            user: req.user.id
+        const orders = await orderModel.find({
+            user: req.user.id,
         }).populate({
-            path: 'productOrder'
+            path: 'productOrder',
+            populate: {
+                path: 'product',
+            },
         })
-        return order    
+        return orders  
 }
