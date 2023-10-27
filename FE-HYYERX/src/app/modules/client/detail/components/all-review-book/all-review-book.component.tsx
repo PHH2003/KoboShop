@@ -27,9 +27,13 @@ const AllReviewBook = () => {
                 setIsModalOpen(false);
                 actions.getAllComments(id)
             }
-        })
+        },
+        (err) => {
+            toast.error('Login to comment')
+          })
                 
     }
+    
     const handleOk = () => {
         setIsModalOpen(false);
     };
@@ -92,7 +96,7 @@ const AllReviewBook = () => {
 
                                         <div className='flex items-center mt-3 float-right'>
                                             <div className=''>
-                                                <ButtonComponent title={"Cancel"} className="w-[100px]" />
+                                                <ButtonComponent title={"Cancel"} onClick={handleCancel} className="w-[100px]" />
                                             </div>
                                             <div>
                                                 <ButtonComponent type="submit" handleColor title={"Submit"} className="w-[100px]" onClick={handelSubmitComment} />
