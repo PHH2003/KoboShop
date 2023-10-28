@@ -14,7 +14,7 @@ const CheckoutComponent = () => {
     const navigate = useNavigate()
     const [totalPrice, setTotalPrice] = useState<any>(0)
     const accessToken = localStorage.getItem("accessToken")
-    const {data: {listBuyProduct}} = useCartRedux()
+    const {data: {carts,listBuyProduct}} = useCartRedux()
     const { handleSubmit, control, formState: { errors }, } = useForm({
         resolver: yupResolver(schemaShiping)
     })

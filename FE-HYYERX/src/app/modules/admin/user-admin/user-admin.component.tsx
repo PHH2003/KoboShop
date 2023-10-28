@@ -14,7 +14,6 @@ const UserAdminComponent = () => {
   }, [reset])
   useEffect(()=>{
     const columTemp: any = []
-    console.log(dataUser[0])
     if (dataUser.length > 0) {
         Object?.keys(dataUser[0]).map((itemKey) => {
             if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {

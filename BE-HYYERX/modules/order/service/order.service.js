@@ -12,7 +12,7 @@ export const addOrders = async(req) => {
     if(cartUser) {
         const filterData = cartUser.carts.filter(
             (itemCart) => listProductOrder.filter(
-                (itemListProduct) => itemListProduct.product === String(itemCart.product)
+                (itemListProduct) => itemListProduct.product._id === String(itemCart.product)
             ).length === 0
         )
 
@@ -58,4 +58,9 @@ export const getAllOrders = async(req) => {
             },
         })
         return orders  
+}
+
+export const deleteOrders = async (req) => {
+    const remove = await orderModel.findByIdAndDelete(req.params.id)
+    return remove
 }

@@ -43,7 +43,8 @@ const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
                                     ))
                                 }
                                 <td>{item?.total}$</td>
-                                <td><button className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>cancel order</button></td>
+                                <td><button className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>Cancel</button></td>
+                               
                             </tbody>
                         ))
                     }

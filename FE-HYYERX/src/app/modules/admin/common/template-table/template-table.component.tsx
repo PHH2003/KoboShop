@@ -4,6 +4,7 @@ import type { ColumnsType } from 'antd/es/table';
 import TemplateModal from '../template-modal/teamplate-modal.component';
 import LayoutLoading from '~/app/components/stack/layout-loading/layout-loading.component';
 import { SearchOutlined } from '@ant-design/icons';
+import toast from 'react-hot-toast';
 
 interface DataType {
     key: string;
@@ -45,6 +46,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         },(err: any) =>{
             setTimeout(()=> {
                 setTriggerLoadding(false)
+                toast.error(err?.response?.data)
             }, 1000)      
         })
         message.success('Click on Yes');
