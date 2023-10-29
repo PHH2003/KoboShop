@@ -54,20 +54,41 @@ export const updateUsers = async(req) => {
 
 export const sendEmails = async(email)=> {
 
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: process.env.EMAIL_APP,
-          pass: process.env.EMAIL_APP_PASSWORD
-        }
-      });
-      const info = await transporter.sendMail({
-        from: '"Rakuten Kobo 👻" <hiepphdemo@gmail.com>', // sender address
-        to: email, // list of receivers
-        subject: `Xác nhận mật khẩu Rakuten Kobo cho tài khoản: ${email}`,
-        html: `<b>Hello world?</b>`
-      });
-    return info
+    try {
+        // Generate a random password
+        const newPassword = Math.random().toString(36).slice(-8);
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        const user = await authModel.findOne({ email: email });
+        if (user) {
+            user.password = hashedPassword;
+            await user.save();  
+        }    
+        const transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
+          auth: {
+            user: process.env.EMAIL_APP,
+            pass: process.env.EMAIL_APP_PASSWORD
+          }
+        });
+    
+        const info = await transporter.sendMail({
+          from: '"Rakuten Kobo 👻" <hiepphdemo@gmail.com>',
+          to: email,
+          subject: "Rakuten Kobo Password Reset",
+          html:`
+            <p>Mật khẩu mới của bạn là: <strong>${newPassword}</strong></p>
+            <p>Vui lòng giữ thông tin này riêng tư và không chia sẻ với người khác.</p>
+            <p>Để bảo mật tài khoản. Hãy đổi mật khẩu đăng nhập ngay sau khi nhận được email này.<p/>
+            <p>Trân trọng!<p/>
+          `
+        });
+    
+        return info;
+      } catch (error) {
+        console.error("Error sending password reset email: ", error);
+        throw error;
+      }
 }
