@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import authModel from '../model/auth.model.js'
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
 export const registers = async(dataBody) => {
     const { password} = dataBody
     const hashPassword = await bcrypt.hash(password, 10)
@@ -49,4 +50,24 @@ export const updateUsers = async(req) => {
         }
     )
     return user
+}
+
+export const sendEmails = async(email)=> {
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.EMAIL_APP,
+          pass: process.env.EMAIL_APP_PASSWORD
+        }
+      });
+      const info = await transporter.sendMail({
+        from: '"Rakuten Kobo 👻" <hiepphdemo@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: `Xác nhận mật khẩu Rakuten Kobo cho tài khoản: ${email}`,
+        html: `<b>Hello world?</b>`
+      });
+    return info
 }

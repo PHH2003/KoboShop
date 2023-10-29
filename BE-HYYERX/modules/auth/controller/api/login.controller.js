@@ -15,7 +15,6 @@ const login = catchAsync(async(req, res) => {
     const {user, validPassword, accessToken} = await logins(req.body)
     if(!validPassword){
         return res.status(status.BAD_REQUEST).json('Mật khẩu không chính xác')
-
     }
     return res.status(status.OK).json({
         user,
