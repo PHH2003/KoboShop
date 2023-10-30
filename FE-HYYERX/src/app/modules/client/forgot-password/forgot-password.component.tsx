@@ -1,8 +1,30 @@
 import { css } from '@emotion/react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import ButtonComponent from '~/app/components/parts/button/button.component'
+import { schemaForgotPassword } from '../utils/validateForm'
+import { sendEmail } from '~/app/api/auth/auth.api'
+import toast from 'react-hot-toast'
 
 const ForgotPasswordComponent = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaForgotPassword)
+  })
+  const handleSendemail = (data:any) => {
+    sendEmail(data).then((res)=>{
+      if(res){
+        toast.success('Successfully emailing passwords')
+      }
+    },
+    (err:any)=>{
+      toast.error(err.response.data)
+    })
+  }
   return (
     <div className='relative h-[90vh]' css={cssRegister}>
       <div className=''>
@@ -22,7 +44,15 @@ const ForgotPasswordComponent = () => {
           <div className='mt-10'>
             <h2 className='text-center'>Forgot Password</h2>
           </div>
-          <input type='email' name='' id='' placeholder='Email' />
+          <form action="" onSubmit={handleSubmit(handleSendemail)}>
+          <Controller
+                control={control}
+                name='email'
+                render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
+                  <input type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
+                )}
+              />
+              {errors && <span className='text-red-800 font-serif'>{errors.email?.message}</span>}
 
           <p className='text-[12px] text-gray-800 font-semibold mt-3'>
             By continuing you confirm that you agree to the Terms of Use and confirm that you have read the Privacy
@@ -30,7 +60,9 @@ const ForgotPasswordComponent = () => {
           </p>
 
           <ButtonComponent handleColor title={'Get Password'} className='w-full mt-3 hover:bg-[#595959]' />
+          </form>
         </div>
+        
         <div className='w-[300px] m-auto text-center mt-4 text-[13px] font-bold text-gray-900'>
           Terms of Use Privacy Policy 2023 Rakuten Kobo Inc. This site is protected by hCaptcha and its Privacy Policy
           and Terms of Service apply.

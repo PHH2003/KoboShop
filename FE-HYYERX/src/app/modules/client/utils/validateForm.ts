@@ -19,3 +19,7 @@ export const schemaShiping = yup.object().shape({
     commune: yup.string().required('Can not be empty'),
     detailAddress: yup.string().required('Can not be empty')
 })
+
+export const schemaForgotPassword = yup.object().shape({
+    email: yup.string().required('Can not be empty')
+})

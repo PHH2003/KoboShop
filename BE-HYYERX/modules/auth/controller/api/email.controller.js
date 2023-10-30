@@ -9,7 +9,7 @@ const sendEmail = catchAsync(async(req,res)=> {
         return res.status(status.BAD_REQUEST).json('Vui lòng nhập đầy đủ thông tin')
     }
     if(!checkEmail) {
-        return res.status(status.BAD_REQUEST).json('Email không tồn tại trong hệ thống')
+        return res.status(status.BAD_REQUEST).json('Email does not exist in the system')
     }
     try {
         const {email} = req.body

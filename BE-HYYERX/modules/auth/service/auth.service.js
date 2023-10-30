@@ -79,9 +79,9 @@ export const sendEmails = async(email)=> {
           to: email,
           subject: "Rakuten Kobo Password Reset",
           html:`
-            <p>Mật khẩu mới của bạn là: <strong>${newPassword}</strong></p>
+            <p>Mật khẩu mới của tài khoản ${email} là: <strong>${newPassword}</strong></p>
             <p>Vui lòng giữ thông tin này riêng tư và không chia sẻ với người khác.</p>
-            <p>Để bảo mật tài khoản. Hãy đổi mật khẩu đăng nhập ngay sau khi nhận được email này.<p/>
+            <p>Để bảo mật tài khoản. Hãy đổi mật khẩu sau khi đăng nhập thành công.<p/>
             <p>Trân trọng!<p/>
           `
         });
