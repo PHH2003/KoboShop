@@ -5,7 +5,8 @@ export const createOrder = async (data: any) => {
     return response.data
 }
 
-export const getAllOrderUser = async () => {
-    const response = await confisAxios.get("/order")
+
+export const deleteOrder = async (id:any) => {
+    const response = await confisAxios.delete(`/order/delete/${id}`)
     return response.data
 }

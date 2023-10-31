@@ -1,21 +1,29 @@
 import { css } from '@emotion/react'
 import { FunctionComponent, useEffect, useState } from 'react'
-import { getAllOrderUser } from '~/app/api/order/order.api'
+import toast from 'react-hot-toast'
+import { deleteOrder } from '~/app/api/order/order.api'
+import { useOrderRedux } from '../../../redux/hook/useOrderReducer'
 interface MainManangeOrderProps {
     props?: any
 }
 
 const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
-    const [dataOrder, setDataOrder] = useState([])
+    const { data: { orders }, actions } = useOrderRedux()
     useEffect(() => {
-        getAllOrderUser().then((res) => {
-            if (res) {
-                setDataOrder(res)
-            }
-        })
+        actions.getAllOrders()
     }, [])
-    console.log(getAllOrderUser);
-    
+ 
+    const handleDeleteOrder =(id:any) => {
+        deleteOrder(id).then((res)=>{
+            if(res){            
+                toast.success('Cancel order success')
+                actions.getAllOrders()
+            }
+            
+        }, (err)=>{
+            toast.error(err.reponse.data)
+        })
+    }
     return (
     <div css={cssMainManangeOrder}>
         <h1>Order management</h1>
@@ -32,7 +40,7 @@ const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
                             <th >actions</th>
                         </tr>
                     </thead>
-                    {dataOrder?.map((item: any, index: any) => (
+                    {orders?.map((item: any, index: any) => (
                             <tbody className='w-full' key={index + 1}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{item?.createdAt}</td>
@@ -43,7 +51,7 @@ const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
                                     ))
                                 }
                                 <td>{item?.total}$</td>
-                                <td><button className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>Cancel</button></td>
+                                <td><button onClick={()=>handleDeleteOrder(item._id)} className='bg-red-500 text-white py-2 px-6 hover:bg-red-300'>Cancel</button></td>
                                
                             </tbody>
                         ))

@@ -8,7 +8,7 @@ const deleteOrder = catchAsync(async (req, res) => {
     const order = await orderModel.findById(orderId);
     if (order) {
         const orderStatus = order.orderStatus;
-        if (orderStatus == "đang chờ duyệt") {
+        if (orderStatus == "Đang chờ duyệt") {
             await deleteOrders(req)
             return res.status(status.OK).json("huỷ thành công");
         }
