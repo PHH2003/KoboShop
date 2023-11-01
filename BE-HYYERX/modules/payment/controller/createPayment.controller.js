@@ -9,7 +9,7 @@ var vnpUrl = config.VnPay.url
 
 
 const createPayment = catchAsync(async (req, res) => {
-    var ipAddr = req.headers['x-forwarded-for'] || '127.0.0.1'
+    var ipAddr = req.ipv4 || '127.0.0.1'
     var returnUrl = config.get('vnp_ReturnUrl');
     var date = new Date();
     var createDate = dateFormat(date, 'yyyymmddHHmmss');
@@ -18,7 +18,7 @@ const createPayment = catchAsync(async (req, res) => {
     var bankCode = req.body.bankCode || 'NCB';
 
     var orderInfo = req.body.orderDescription || 'Thanh toán đơn hàng';
-    var orderType = req.body.orderType;
+    var orderType = req.body.orderType || "other"
     var locale = req.body.language || 'vn';
     if (locale === null || locale === '') {
         locale = 'vn';
@@ -43,11 +43,14 @@ const createPayment = catchAsync(async (req, res) => {
     }
 
     vnp_Params = sortObject(vnp_Params);
+    const queryStringBefore = queryStringData(vnp_Params)
     var hmac = crypto.createHmac("sha512", secretKey);
-    var signed = hmac.update(Buffer(signData, 'utf-8')).digest("hex");
+    var signed = hmac.update(Buffer(queryStringBefore, 'utf-8')).digest("hex");
     vnp_Params['vnp_SecureHash'] = signed;
 
-    res.redirect(vnpUrl)
+    const queryStringNew = queryStringData(vnp_Params)
+    const redirectURL = (vnpUrl += '?' + queryStringNew)
+    res.redirect(redirectURL)
 })
 
 export default createPayment

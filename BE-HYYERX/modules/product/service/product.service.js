@@ -1,11 +1,11 @@
 import productModel from "../model/product.model.js"
 
 export const createProducts = async(req) => {
-    const  fileImg = req.file
-    // const checkImage = fileImg.flatMap((item) => item.path)
+    const  fileImg = req.files
+    const checkImage = fileImg.flatMap((item) => item.path)
     const product = await productModel.create({
         ...req.body,
-        images: fileImg.path,
+        images: checkImage,
     })
     return product
 }
