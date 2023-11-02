@@ -2,13 +2,17 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { createProduct, getAllProduct, removeProduct, updateProduct } from './service/product.service'
 import TemplateTable from '../common/template-table/template-table.component'
 import axios from 'axios'
-import { Form, Input, Upload } from 'antd'
+import { Form, Input, Select, Upload } from 'antd'
+import { getAllCategory } from '../category-admin/service/category.service'
 
 const ProductAdminComponent = () => {
   const [dataProduct, setDataProduct] = useState<any>([])
   const [reset, setReset] = useState<boolean>(true)
   const [column, setColumn] = useState([])
   const [file, setFile] = useState(null)
+  const [categorys, setCategorys] = useState([])
+
+  const Option = Select
   //https://stackoverflow.com/questions/58128062/using-customrequest-in-ant-design-file-upload
   const uploadImage = async (options: any) => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -36,6 +40,9 @@ const ProductAdminComponent = () => {
   useEffect(() => {
     getAllProduct().then((res) =>{
       setDataProduct(res.data)
+    })
+    getAllCategory().then((res) => {
+        setCategorys(res.data)
     })
   }, [reset])
   
@@ -164,6 +171,19 @@ const handleGetList = () =>{
             >
                 <Input />
             </Form.Item>
+
+            <Form.Item
+                        label='Category'
+                        name='categoryId'
+                        rules={[{ required: true, message: 'Please input your categorys!' }]}
+                    >
+                        <Select placeholder="lựa chọn danh mục">
+                            {categorys.map((item: any) => (
+                                <Option value={item._id} key={item._id}>{item.name}</Option>
+                            ))}
+
+                        </Select>
+                    </Form.Item>
 
         </Fragment>
     } />

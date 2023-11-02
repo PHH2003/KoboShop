@@ -40,6 +40,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             if(res){
                 setTimeout(()=> {
                     setTriggerLoadding(false)
+                    toast.success('Deleted successfully')
                     handleGetList()
                 }, 1000)
             } 
@@ -64,8 +65,10 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                     if(res){
                         setTimeout(()=> {
                             setTriggerLoadding(false)
+                            toast.success('Added successfully')
+                            handleGetList()
                         }, 1000)
-                        handleGetList()
+                        
                     }
                 }, (err: any)=>{
                     setTimeout(() => {
@@ -82,12 +85,14 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 if(res){
                     setTimeout(()=> {
                         setTriggerLoadding(false)
+                        toast.success('successfully repaired')
                         handleGetList()
                     }, 1000)
                 }
             },(err:any)=>{
                 setTimeout(()=> {
                     setTriggerLoadding(false)
+                    toast.error(err?.response?.data)
                 }, 1000)
             })
             })
@@ -106,6 +111,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         }, (err:any)=>{
             setTimeout(() => {
                 setTriggerLoadding(false)
+                toast.error(err?.response?.data)
             }, 1000)
         })
     }
