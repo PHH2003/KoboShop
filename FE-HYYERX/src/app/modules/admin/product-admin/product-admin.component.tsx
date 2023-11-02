@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { createProduct, getAllProduct, removeProduct } from './service/product.service'
+import { createProduct, getAllProduct, removeProduct, updateProduct } from './service/product.service'
 import TemplateTable from '../common/template-table/template-table.component'
 import axios from 'axios'
 import { Form, Input, Upload } from 'antd'
@@ -8,7 +8,7 @@ const ProductAdminComponent = () => {
   const [dataProduct, setDataProduct] = useState<any>([])
   const [reset, setReset] = useState<boolean>(true)
   const [column, setColumn] = useState([])
-  const [fileList, setFileList] = useState<any>([])
+  const [file, setFile] = useState(null)
   //https://stackoverflow.com/questions/58128062/using-customrequest-in-ant-design-file-upload
   const uploadImage = async (options: any) => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -19,23 +19,16 @@ const ProductAdminComponent = () => {
             onProgress({ percent: (event.loaded / event.total) * 100 });
         }
     }
-    fmData.append("file", file);
-    fmData.append("upload_preset", "b45tqe77");
-    fmData.append("cloud_name", "dpfndtcya");
-    fmData.append("folder", "samples");
+    fmData.append('file', file);
+    fmData.append('upload_preset', 'b45tqe77');
+    fmData.append('cloud_name', 'dpfndtcya');
+    fmData.append('folder', 'samples');
     try {
         // tài liệu https://cloudinary.com/documentation/upload_images
-        const response: any = axios.post(`https://api.cloudinary.com/v1_1/dpfndtcya/image/upload`, fmData, config)
-        onSuccess(response.data.url)
-        setFileList((prevFileList: any) => [
-            ...prevFileList, 
-            {
-                uid: file.uid,
-                name: file.name,
-                status: response.status,
-                url: response.data.url
-            }
-        ])
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/dpfndtcya/image/upload`, fmData, config);
+            onSuccess(response.data.url);
+            setFile(response.data.url);
+            console.log(file)
     } catch (error) {
         onError({error})
     }
@@ -74,14 +67,14 @@ const ProductAdminComponent = () => {
     setColumn(columTemp)
 }, [dataProduct])
 const onRemove = (file:any) =>{
-    setFileList((prevFileList:any)=>prevFileList.filter((item:any)=>item.uid !== file.uid))
+    setFile((prevFileList:any)=>prevFileList.filter((item:any)=>item.uid !== file.uid))
 }
 const handleGetList = () =>{
     setReset(!reset)
 }
   return (
     <div>
-    <TemplateTable dataTable={dataProduct} columsTable={column} handleGetList={handleGetList} createFunc={createProduct} deleteFunc={removeProduct} dataPage={5} formEdit={
+    <TemplateTable dataTable={dataProduct} columsTable={column} handleGetList={handleGetList} changeFunc={updateProduct} createFunc={createProduct} deleteFunc={removeProduct} dataPage={5} formEdit={
         <Fragment>
             <Form.Item
                 label='name'
@@ -113,15 +106,14 @@ const handleGetList = () =>{
                 name="images"
                 getValueFromEvent={(event: any) => event.fileList}
                 rules={[{ required: true, message: 'Please input your image!' }]}
-                valuePropName={'listFile'}
-                initialValue={fileList}
+                
             >
                 <Upload
                     customRequest={uploadImage}
                     listType='picture-card'
                     onRemove={onRemove}
                 >
-                    {fileList.length < 1 && '+ Upload'}
+                    {'+ Upload'}
                 </Upload>
             </Form.Item>
 

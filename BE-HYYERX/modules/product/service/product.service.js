@@ -1,8 +1,8 @@
 import productModel from "../model/product.model.js"
 
 export const createProducts = async(req) => {
-    const  fileImg = req.files
-    const checkImage = fileImg.flatMap((item) => item.path)
+    const  fileImg = req.body.images
+    const checkImage = fileImg.flatMap((item) => item.response)
     const product = await productModel.create({
         ...req.body,
         images: checkImage,
@@ -26,15 +26,15 @@ export const deleteProducts = async(req) => {
 }
 
 export const updateProducts = async(req) => {
-    const fileImg = req.file 
-    // const checkImage = fileImg.flatMap((item)=>item.path)
+    const fileImg = req.body.images 
+    const checkImage = fileImg.flatMap((item)=>item.response)
     const product = await productModel.updateOne(
        {
         _id: req.params.id
        },
        {
         ...req.body,
-        images: fileImg.path
+        images: checkImage
        }
     )
     return product

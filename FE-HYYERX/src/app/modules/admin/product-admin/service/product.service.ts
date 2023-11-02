@@ -12,3 +12,6 @@ export const createProduct = async (data:any) => {
 export const removeProduct = async (id:any) => {
     return await confisAxios.delete(`/product/delete/${id}`)
 }
+export const updateProduct = async (id: any, bodyRequest: any) => {
+    return await confisAxios.put(`/product/update/${id}`, bodyRequest)
+}
