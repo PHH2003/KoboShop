@@ -11,7 +11,7 @@ const orderSchema = mongoose.Schema({
     orderStatus: {
         type: String,
         default: 'Đang chờ duyệt',
-        enum: ['Đang chờ duyệt', 'Đã nhận đơn', 'Đang giao hàng', 'Đã hoàn thành'],
+        enum: ['Đang chờ duyệt', 'Đã nhận đơn', 'Đang giao hàng', 'Đã hoàn thành', 'đã huỷ'],
     },
     user: {
         type: mongoose.Types.ObjectId,

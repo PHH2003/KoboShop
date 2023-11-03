@@ -1,13 +1,14 @@
 import { css } from '@emotion/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ButtonComponent from '~/app/components/parts/button/button.component'
 import { schemaForgotPassword } from '../utils/validateForm'
 import { sendEmail } from '~/app/api/auth/auth.api'
 import toast from 'react-hot-toast'
 
 const ForgotPasswordComponent = () => {
+  const navigate = useNavigate()
   const {
     handleSubmit,
     control,
@@ -19,6 +20,7 @@ const ForgotPasswordComponent = () => {
     sendEmail(data).then((res)=>{
       if(res){
         toast.success('Successfully emailing passwords')
+        navigate('/login')
       }
     },
     (err:any)=>{

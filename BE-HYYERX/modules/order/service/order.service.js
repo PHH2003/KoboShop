@@ -64,3 +64,45 @@ export const deleteOrders = async (req) => {
     const remove = await orderModel.findByIdAndDelete(req.params.id)
     return remove
 }
+
+export const filterDataOrders = async (bodyRequest) => {
+    const { status } = bodyRequest
+    const orders = await orderModel.aggregate([
+        {
+            $match: { "orderStatus": { $in: [status] } }
+        },
+        {
+            $unwind: "$productOrder"
+        },
+        {
+            $lookup:
+            {
+                from: "products",
+                localField: "productOrder.product",
+                foreignField: "_id",
+                as: "productInfo"
+            }
+        },
+        {
+            $unwind: "$productInfo"
+        },
+        {
+            $set: {
+                "productOrder.product": "$productInfo"
+            }
+        },
+        {
+            $group: {
+                _id: "{$_id}",
+                infoOrder: { $first: "$infoOrder" },
+                orderStatus: { $first: "$orderStatus" },
+                productOrder: { $push: "$productOrder" },
+                createAt: { $first: "$createAt" },
+                updateAt: { $first: "$updateAt" },
+                __v: { $first: "$__v" }
+            }
+        }
+
+    ]);
+    return order
+}

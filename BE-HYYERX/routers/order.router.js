@@ -7,4 +7,5 @@ router.get('/', orderController.getAllOrder)
 router.post('/add', orderController.addOrder)
 router.post('/update', orderController.updateOrder)
 router.delete("/delete/:id", orderController.deleteOrder)
+router.get("filter-data-status", orderController.filterDataOrder)
 export default router
