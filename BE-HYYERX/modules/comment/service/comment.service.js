@@ -3,8 +3,8 @@ import commentModel from "../model/comment.model.js";
 export const createComments = async (data) => {
     const { userId, productId, comment, star } = data;
     const newComment = new commentModel({
-        user: userId,
-        product: productId,
+        userId: userId,
+        productId: productId,
         comment: comment,
         star: star
     });
@@ -13,8 +13,8 @@ export const createComments = async (data) => {
 }
 
 export const getComments = async (productId) => {
-    const comments = await commentModel.find({ product: productId });
-    await commentModel.populate(comments, { path: 'user', model: 'Auth' });
+    const comments = await commentModel.find({ productId: productId });
+    await commentModel.populate(comments, { path: 'userId', model: 'Auth' });
     return comments;
 }
 
@@ -25,8 +25,8 @@ export const deleteComments = async (req) => {
 
 export const getAllComments = async () => {
     const comments = await commentModel.find();
-    await commentModel.populate(comments, { path: 'user', model: 'Auth' });
-    await commentModel.populate(comments, { path: 'product', model: 'Product' });
+    // await commentModel.populate(comments, { path: 'userId', model: 'Auth' });
+    // await commentModel.populate(comments, { path: 'productId', model: 'Product' });
     return comments;
 }
 

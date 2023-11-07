@@ -5,7 +5,7 @@ import { createComments } from "../../service/comment.service.js";
 
 const createComment = catchAsync(async (req, res) => {
     const bodyData = {
-        userId: req.user.id,
+        userId: req.body.userId,
         productId: req.body.productId,
         comment: req.body.comment,
         star: req.body.star

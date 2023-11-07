@@ -22,6 +22,7 @@ const LoginComponent = () => {
     login(data).then(
       (res) => {
         if (res) {
+          localStorage.setItem("userId", res.user._id)
           localStorage.setItem('accessToken', res.accessToken)
           // toast.success('Singin success')
           // navigate('/')

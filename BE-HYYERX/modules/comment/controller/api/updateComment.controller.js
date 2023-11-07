@@ -6,5 +6,4 @@ const updateComment = catchAsync(async (req, res) => {
     const comment = await updateComments(req)
     return res.status(status.OK).json(comment)
 })
-
 export default updateComment

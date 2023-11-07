@@ -17,7 +17,7 @@ const ReviewComponent = () => {
             <div className='w-[745px]'>
               <div className='flex items-center'>
                 <div>
-                  <h2 className='font-semibold'>{item?.user?.fullname}</h2>
+                  <h2 className='font-semibold'>{item?.userId?.fullname}</h2>
                 </div>
                 <div className='px-5'>
                   <p>{item.star == "1" && <StarComponent/>}</p>

@@ -6,3 +6,6 @@ export const getAllComment = async () => {
 export const deleteComment = async (id: any) => {
     return await confisAxios.delete(`/comment/delete/${id}`)
 }
+ export const updateComment = async( id:any, bodyData:any) =>{
+    return await confisAxios.put(`/comment/update/${id}`, bodyData)
+}

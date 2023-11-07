@@ -12,6 +12,7 @@ const AllReviewBook = () => {
     const [commentText, setCommentText] = useState('')
     const [value, setValue] = useState(5);
     const { actions } = useCommentRedux()
+    const userId: any = localStorage.getItem("userId")
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -21,7 +22,7 @@ const AllReviewBook = () => {
     console.log(value)
 
     const handelSubmitComment = () => {
-        createComment({ comment: commentText, productId: id, star:value }).then((res) => {
+        createComment({ comment: commentText, productId: id, star:value, userId }).then((res) => {
             if (res) {
                 toast.success("comment success")
                 setIsModalOpen(false);
