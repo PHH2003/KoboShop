@@ -45,9 +45,13 @@ const SidebarComponent: FC<ISaidBarComponent> = ({selectedCategory, onSelectCate
             <div>
                 <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">price filter</h3>
                 <div className="text-center">
-                    <p onClick={handleShowAll}>Show all</p>
-                    <p onClick={() => handleSelectPriceRange("1-10")}>1$ to 10$</p>
-                    <p onClick={() => handleSelectPriceRange("11-20")}>11$ to 20$</p>
+                <p onClick={handleShowAll}>Show all</p>
+                        <p onClick={() => handleSelectPriceRange("1-10")}>1$ to 10$</p>
+                        <p onClick={() => handleSelectPriceRange("11-20")}>11$ to 20$</p>
+                        <p onClick={() => handleSelectPriceRange("21-30")}>21$ to 30$</p>
+                        <p onClick={() => handleSelectPriceRange("31-40")}>31$ to 40$</p>
+                        <p onClick={() => handleSelectPriceRange("41-50")}>41$ to 50$</p>
+                        <p onClick={() => handleSelectPriceRange("51-60")}>51$ to 60$</p>
                 </div>
             </div>
         </div>

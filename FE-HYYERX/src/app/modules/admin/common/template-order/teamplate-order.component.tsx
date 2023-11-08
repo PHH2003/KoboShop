@@ -1,4 +1,4 @@
-import { Button, Modal, Space, Table, Tag, Typography } from 'antd'
+import { Button, Descriptions, DescriptionsProps, Modal, Space, Table, Tag, Typography } from 'antd'
 import { ColumnsType } from 'antd/es/table';
 import React, { useState } from 'react'
 
@@ -75,6 +75,62 @@ const TemplateOrder = () => {
         },
     ];
 
+    const items: DescriptionsProps['items'] = [
+        {
+            key: '1',
+            label: 'Họ Và Tên',
+            children: 'Phan Huy Hiệp'
+        },
+        {
+            key: '2',
+            label: 'Số Điện Thoại',
+            children: '0971080029'
+        },
+        {
+            key: '3',
+            label: 'Tỉnh / Thành Phố',
+            children: 'Hải Dương'
+        },
+        {
+            key: '4',
+            label: 'Quận / Huyện',
+            children: 'Tứ Kỳ'
+        },
+        {
+            key: '5',
+            label: 'Xã',
+            children: 'An Thanh'
+        },
+        {
+            key: '6',
+            label: 'Thông Tin Chi Tiết',
+            children: 'Ái Quốc - An Định'
+        }
+    ]
+
+    const columListProduct = [
+        {
+            title: "Tên Sản Phẩm",
+            key: "1",
+            render: (_: any, record: any) => <div>sản phẩm a</div>
+        },
+        {
+            title: "Ảnh Sản Phẩm",
+            key: "2",
+            render: (_: any, record: any) => <div><img className='w-[50px]' src="https://res.cloudinary.com/df3xmajf8/image/upload/v1698547496/ECMA/j5xnwm2jk2d1klx5jyxg.jpg" alt="" /></div>
+        },
+        {
+            title: "Giá Sản Phẩm",
+            key: "3",
+            render: (_: any, record: any) => <div>200 000 VNĐ</div>
+        },
+        {
+            title: "Số Lượng Mua",
+            key: "4",
+            render: (_: any, record: any) => <div>2</div>
+        }
+    ]
+
     const data: DataType[] = [
         {
             key: '1',
@@ -103,10 +159,12 @@ const TemplateOrder = () => {
             <div>
                 <Table columns={columns} dataSource={data} />;
             </div>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} width={900} footer={null} onCancel={handleCancel}>
+                <Descriptions title="Thông Tin Khách Hàng" items={items} />
+                <Title level={4}>Sản Phẩm Khách Hàng mua</Title>
+                <div>
+                    <Table columns={columListProduct} dataSource={columListProduct} />
+                </div>
             </Modal>
 
         </div>

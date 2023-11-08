@@ -19,8 +19,6 @@ const AllReviewBook = () => {
     const handleTextAreaChange = (event: any) => {
         setCommentText(event.target.value)
     };
-    console.log(value)
-
     const handelSubmitComment = () => {
         createComment({ comment: commentText, productId: id, star:value, userId }).then((res) => {
             if (res) {
@@ -30,11 +28,9 @@ const AllReviewBook = () => {
             }
         },
         (err) => {
-            toast.error('Login to comment')
-          })
-                
-    }
-    
+            toast.error(err.response.data)
+          })        
+    } 
     const handleOk = () => {
         setIsModalOpen(false);
     };

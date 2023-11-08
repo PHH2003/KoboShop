@@ -75,8 +75,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                         setTriggerLoadding(false)
                     }, 1000)
                 })
-            })
-            
+            })            
         }
         if(type=='CHANGE'){
             form.validateFields().then((value)=> {

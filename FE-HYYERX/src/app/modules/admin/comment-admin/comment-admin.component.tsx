@@ -26,9 +26,7 @@ const CommentAdminComponent = () => {
         })
     }, [reset])
     useEffect(() => {
-        const columnTemp: any = [];
-        console.log(dataComment);
-        
+        const columnTemp: any = [];    
         if (dataComment.length > 0) {
             Object.keys(dataComment[0]).forEach((itemKey) => {
                 if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {

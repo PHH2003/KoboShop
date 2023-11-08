@@ -23,11 +23,9 @@ const InfoDetail = () => {
   useEffect(() => {
     getAllComment().then((res) => {
         if (res) {
-            console.log(res)
-            const productComments = res.filter((item: any) => item.product._id === id);
+            const productComments = res.filter((item: any) => item.productId === id);
             const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);
             const avgStar = productComments.length > 0 ? totalStars / productComments.length : 1;
-
             setAverageStar(avgStar);
         }
     });
@@ -39,7 +37,6 @@ for (let i = 1; i <= averageStar; i++) {
   useEffect(() => {
     actions.getProductById(id)
   }, [id])
-
   const HandelAddProductToCart = () => {
   
     const requestProductCartAPI = {

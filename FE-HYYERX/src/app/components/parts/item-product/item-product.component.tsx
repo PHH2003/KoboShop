@@ -13,7 +13,7 @@ const ItemProduct: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
   useEffect(() => {
     getAllComment().then((res) => {
       if (res) {
-        const productComments = res.filter((item: any) => item.product._id === itemproduct?._id);
+        const productComments = res.filter((item: any) => item.productId=== itemproduct?._id);
         const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);
         const avgStar = productComments.length > 0 ? totalStars / productComments.length : 1;
 
