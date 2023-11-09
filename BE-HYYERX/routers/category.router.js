@@ -4,8 +4,8 @@ import { checkRoleAdminAuthorization, veryFileToken } from '../middlewares/check
 
 const router = express.Router()
 router.get('/', categoryController.getAllCategory)
+router.get('/search', categoryController.searchCategory)
 router.get('/:id', categoryController.getOneCategory)
-
 router.use(veryFileToken)
 router.use(checkRoleAdminAuthorization)
 router.post('/add', categoryController.createCategory)

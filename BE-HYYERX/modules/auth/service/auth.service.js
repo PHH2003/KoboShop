@@ -92,3 +92,13 @@ export const sendEmails = async(email)=> {
         throw error;
       }
 }
+
+export const searchUsers = async(req) =>{
+    const {email} = req.query
+    const user = await authModel.find({ 
+        email: {
+          $regex: '.*' + email + '.*',
+          $options: 'i'
+      }})
+      return user
+}

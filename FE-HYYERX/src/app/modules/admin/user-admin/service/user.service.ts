@@ -17,6 +17,7 @@ export const changeUser = async (userId: any, bodyRequest: any) => {
 }
 
 
-export const searchUser = async (nameUser: any) => {
-    return await confisAxios.get(`/auth/user?name=${nameUser}`)
+export const searchUser = async (keyword: any) => {
+    return await confisAxios.get(`/auth/search?email=${keyword}`)
+
 }

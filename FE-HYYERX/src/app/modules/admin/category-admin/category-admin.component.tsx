@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { createCategory, deleteCategory, getAllCategory, updateCategory } from './service/category.service'
+import { createCategory, deleteCategory, getAllCategory, searchCategory, updateCategory } from './service/category.service'
 import TemplateTable from '../common/template-table/template-table.component'
 import { Form, Input } from 'antd'
 
@@ -33,7 +33,7 @@ const CategoryAdmin = () => {
     }
     return (
         <div>
-            <TemplateTable dataTable={dataCategory} columsTable={colums} deleteFunc={deleteCategory} changeFunc={updateCategory} handleGetList={handleGetList} createFunc={createCategory} formEdit={
+            <TemplateTable dataTable={dataCategory}  setNewData={setDataCategory} searchFunc={searchCategory} columsTable={colums} deleteFunc={deleteCategory} changeFunc={updateCategory} handleGetList={handleGetList} createFunc={createCategory} formEdit={
                 <Fragment>
                     <Form.Item
                         label='name'

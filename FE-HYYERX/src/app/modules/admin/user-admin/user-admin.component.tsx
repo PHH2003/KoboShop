@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import TemplateTable from '../common/template-table/template-table.component';
-import { changeUser, createUser, deleteUser, getAllUser } from './service/user.service';
+import { changeUser, createUser, deleteUser, getAllUser, searchUser } from './service/user.service';
 import { Form, Input, Select } from 'antd';
 
 const UserAdminComponent = () => {
@@ -35,7 +35,7 @@ const UserAdminComponent = () => {
 
   return (
     <div>
-     <TemplateTable columsTable={colums} handleGetList={handelGetlist} dataTable={dataUser} dataPage={8} deleteFunc={deleteUser} createFunc={createUser} changeFunc={changeUser} formEdit={
+     <TemplateTable columsTable={colums} handleGetList={handelGetlist} searchFunc={searchUser} setNewData={setDataUser} dataTable={dataUser} dataPage={8} deleteFunc={deleteUser} createFunc={createUser} changeFunc={changeUser} formEdit={
                 <Fragment>
                     <Form.Item
                         label='fullname'

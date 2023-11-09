@@ -24,16 +24,18 @@ interface ITemplateTableProp {
     dataPage?: any
     formEdit?: ReactNode
     handleGetList?: any
+    setNewData?: any
 }
 
 
-const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable, formEdit, dataPage,handleGetList}) => {
+const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc, changeFunc, searchFunc, columsTable, formEdit, dataPage,handleGetList, setNewData}) => {
     const [isModelOpen, setIsModelOpen] = useState(false)
     const [triggerLoadding, setTriggerLoadding] =useState(false)
     const [type, setType] = useState('CREATE')
     const [defaultValue, setDefaultvalue] = useState<any>()
     const [form] = Form.useForm()
-
+    const [errSearch, setErrSearch] = useState("")
+    const [keyword, setKeyword] = useState("")
     const confirmDelete = (ItemId: any) => {
         setTriggerLoadding(true)
         deleteFunc(ItemId).then((res: any)=>{
@@ -99,12 +101,18 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         }
     }
 
+    const handleSearchData = (event: any) => {
+        console.log(event.target.value)
+        setKeyword(event.target.value)
+    }
+
     const handleSearchItem = () => {
         setTriggerLoadding(true)
-        searchFunc(type).then((res:any)=>{
+        searchFunc(keyword).then((res:any)=>{
             if(res){
                 setTimeout(()=>{
                     setTriggerLoadding(false)
+                    setNewData(res.data)
                 },1000)
             }
         }, (err:any)=>{
@@ -164,7 +172,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                     Create
                 </Button>
                 <div>
-                    <Input placeholder='search item here' className='w-[350px]' prefix={<SearchOutlined />}/>
+                    <Input placeholder='search item here' className='w-[350px]' prefix={<SearchOutlined />} onChange={handleSearchData} />
                     <Button type='primary' className='ml-3'  onClick={handleSearchItem}>Search</Button>
                 </div>
             </div>

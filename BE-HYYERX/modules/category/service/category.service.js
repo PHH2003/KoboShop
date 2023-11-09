@@ -33,3 +33,13 @@ export const updateCategorys = async(req) => {
     )
     return category
 }
+
+export const searchCategorys = async(req) =>{
+    const {name} = req.query
+    const category = await categoryModel.find({ 
+        name: {
+          $regex: '.*' + name + '.*',
+          $options: 'i'
+      }})
+    return category
+}

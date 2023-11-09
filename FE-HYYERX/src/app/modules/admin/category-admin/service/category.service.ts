@@ -14,3 +14,7 @@ export const deleteCategory = async (id: any) => {
 export const updateCategory = async (id: any, data: any) => {
     return await confisAxios.put(`/category/update/${id}`, data)
 }
+
+export const searchCategory = async (keyword:any) => {
+    return await confisAxios.get(`/category/search?name=${keyword}`)
+}
