@@ -57,7 +57,7 @@ const Header = () => {
             <input
                 onChange={handleSearch}
                 type='text'
-                className='px-8 w-[448px] border border-[#D8D8D8] py-3 text-[11px]'
+                className='px-8 w-[448px] border border-[#D8D8D8] py-3 text-[11px] focus:outline-none'
                 placeholder='Search by title, author, series or ISBN'
             />
             <button className='bg-black text-white px-[10px] py-[10px]' onClick={handleSearchProduct}>

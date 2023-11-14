@@ -67,13 +67,13 @@ const AllReviewBook = () => {
                                 <div className='flex'>
                                     <div>
                                         <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1696389469/Duongkachmenh.jpg.jpg" alt="" className='w-[200px]' />
-                                        <h2 className='text-[15px] font-semibold py-2'>True Colors</h2>
-                                        <p className='text-[14px] text-gray-600 font-semibold'>by Kristin Hannah</p>
+                                        {/* <h2 className='text-[15px] font-semibold py-2'>True Colors</h2>
+                                        <p className='text-[14px] text-gray-600 font-semibold'>by Kristin Hannah</p> */}
                                     </div>
 
                                     <div className='px-4 w-[650px]'>
-                                        <h1 className='text-[22px] font-semibold'>Share your thoughts</h1>
-                                        <p className='text-[14px] text-gray-600 font-semibold'>Tell readers what you thought by rating and reviewing this book.</p>
+                                        <h1 className='text-[22px] font-semibold'>Name</h1>
+                                        <p className='text-[14px] text-gray-600 font-semibold'>By: Author</p>
                                         <div className='flex justify-between items-center'>
                                             <div className='text-[16px] text-gray-600 font-semibold'>
                                                 Rate it *
@@ -89,7 +89,7 @@ const AllReviewBook = () => {
 
                                         <h2 className='text-[15px] my-4 font-semibold'>Add a review</h2>
 
-                                        <textarea placeholder='comment here' className='w-full border border-gray-600 px-2' onChange={handleTextAreaChange}></textarea>
+                                        <textarea placeholder='comment here' className='focus:outline-none h-[110px] p-2 w-full border border-gray-600 px-2' onChange={handleTextAreaChange}></textarea>
 
                                         <div className='flex items-center mt-3 float-right'>
                                             <div className=''>

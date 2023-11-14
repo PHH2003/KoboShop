@@ -51,7 +51,7 @@ const ForgotPasswordComponent = () => {
                 control={control}
                 name='email'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
+                  <input className='focus:outline-none' type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.email?.message}</span>}

@@ -15,8 +15,11 @@ const productSchema = mongoose.Schema({
     datePublish: String,
     size: String,
     categoryId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Category'
+        _id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Category',
+        },
+        name: String
     }
 },
 

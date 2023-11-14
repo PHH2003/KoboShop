@@ -64,6 +64,11 @@ const ProductAdminComponent = () => {
                                 />
                             );
                         }
+                        if (itemKey == 'categoryId') {
+                            return (
+                                <div>{record.categoryId.name}</div>
+                            )
+                        }
                         return text;
                     },
                 })
@@ -175,6 +180,8 @@ const handleGetList = () =>{
             <Form.Item
                         label='Category'
                         name='categoryId'
+                        getValueFromEvent={(event, select) => ({ name: select?.children, _id: select?.value })}
+                        getValueProps={(value) => ({ label: value?.name, value: value?._id })}
                         rules={[{ required: true, message: 'Please input your categorys!' }]}
                     >
                         <Select placeholder="lựa chọn danh mục">

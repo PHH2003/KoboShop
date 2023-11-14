@@ -62,7 +62,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         setTriggerLoadding(true)
         if(type=='CREATE'){
             form.validateFields().then((value)=>{
-                form.resetFields()
+                // form.resetFields()
                 createFunc(value).then((res:any)=>{
                     if(res){
                         setTimeout(()=> {
@@ -75,13 +75,15 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
                 }, (err: any)=>{
                     setTimeout(() => {
                         setTriggerLoadding(false)
+                        toast.error("add failure")
                     }, 1000)
                 })
+                form.resetFields()
             })            
         }
         if(type=='CHANGE'){
             form.validateFields().then((value)=> {
-                form.resetFields()
+                // form.resetFields()
                 changeFunc(  defaultValue._id, value).then((res:any)=>{
                 if(res){
                     setTimeout(()=> {
@@ -93,7 +95,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             },(err:any)=>{
                 setTimeout(()=> {
                     setTriggerLoadding(false)
-                    toast.error(err?.response?.data)
+                    toast.error("edit failure")
                 }, 1000)
             })
             })
@@ -102,7 +104,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
     }
 
     const handleSearchData = (event: any) => {
-        console.log(event.target.value)
+       
         setKeyword(event.target.value)
     }
 
@@ -125,16 +127,15 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
 
     const handleCancel = () => {
         setIsModelOpen(false)
-        setDefaultvalue(null)
-        form.resetFields()
+    
     }
     const showModel = (typeAction: any, recordTable?:any) => {
         setIsModelOpen(true)
         setType(typeAction)
         if(typeAction === "CHANGE"){
-            setDefaultvalue(recordTable)
+            form.setFieldsValue(recordTable)
         }else{
-            setDefaultvalue(null)
+            form.resetFields()
         }
     }
     const columns: ColumnsType<DataType> = [
@@ -181,7 +182,7 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             </div>
             <div>
             <TemplateModal isModelOpen={isModelOpen} handleOk={handleOk} handleCancel={handleCancel} >
-                        <Form form={form} layout='vertical' name='form_in_modal' initialValues={defaultValue || {}}>
+                        <Form form={form} layout='vertical' name='form_in_modal'>
                             {formEdit}
                         </Form>
             </TemplateModal>

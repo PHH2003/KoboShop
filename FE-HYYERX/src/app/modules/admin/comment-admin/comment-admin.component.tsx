@@ -35,13 +35,13 @@ const CommentAdminComponent = () => {
                         dataIndex: itemKey,
                         key: itemKey,
                         render: (text: any, record: any, index: any) => {
-                            // if (itemKey === 'user') {
-                            //     return record?.user?.fullname;
-                            // }
-                            // if (itemKey === 'product') {
-                            //     return record?.product?.name;
+                            if (itemKey == 'user') {
+                                return <div>{record?.user?.fullname}</div>
+                            }
+                            if (itemKey == 'product') {
+                                return <div>{record?.product?.name}</div>
 
-                            // }
+                            }
                             if (itemKey === 'star') {
                                 return <Rate disabled value={record?.star} />
                             }
@@ -67,6 +67,8 @@ const CommentAdminComponent = () => {
                      <Form.Item
                          label='userId'
                          name='userId'
+                         getValueFromEvent={(event, select) => ({ name: select?.children, _id: select?.value })}
+                         getValueProps={(value) => ({ label: value?.name, value: value?._id })}
                          rules={[{ required: true, message: 'Please input your fullname!' }]}
                      >
                          <Select placeholder="lựa chọn tài khoản">
@@ -79,6 +81,8 @@ const CommentAdminComponent = () => {
                      <Form.Item
                          label='productId'
                          name='productId'
+                         getValueFromEvent={(event, select) => ({ name: select?.children, _id: select?.value })}
+                         getValueProps={(value) => ({ label: value?.name, value: value?._id })}
                          rules={[{ required: true, message: 'Please input your fullname!' }]}
                      >
                          <Select placeholder="lựa chọn sản phẩm">

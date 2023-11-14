@@ -11,7 +11,7 @@ export const createProducts = async(req) => {
 }
 
 export const getAllProducts = async()=>{
-    const products = await productModel.find()
+    const products = await productModel.find().populate("categoryId")
     return products
 }
 

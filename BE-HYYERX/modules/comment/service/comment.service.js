@@ -24,9 +24,9 @@ export const deleteComments = async (req) => {
 }
 
 export const getAllComments = async () => {
-    const comments = await commentModel.find();
-    // await commentModel.populate(comments, { path: 'userId', model: 'Auth' });
-    // await commentModel.populate(comments, { path: 'productId', model: 'Product' });
+    const comments = await commentModel.find()
+    .populate("productId")
+    .populate("userId");
     return comments;
 }
 

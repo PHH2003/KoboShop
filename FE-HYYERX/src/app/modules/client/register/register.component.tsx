@@ -55,7 +55,7 @@ const RegisterComponent = () => {
                 control={control}
                 name='fullname'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='text' value={value} placeholder='fullname' onChange={onChange} ref={ref} />
+                  <input type='text' className='focus:outline-none' value={value} placeholder='fullname' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.fullname?.message}</span>}
@@ -66,7 +66,7 @@ const RegisterComponent = () => {
                 control={control}
                 name='email'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
+                  <input type='email' className='focus:outline-none' value={value} placeholder='email' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.email?.message}</span>}
@@ -77,7 +77,7 @@ const RegisterComponent = () => {
                 control={control}
                 name='password'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='password' value={value} placeholder='password' onChange={onChange} ref={ref} />
+                  <input type='password' className='focus:outline-none' value={value} placeholder='password' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.password?.message}</span>}

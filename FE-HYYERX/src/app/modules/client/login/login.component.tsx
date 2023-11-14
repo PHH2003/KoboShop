@@ -68,7 +68,7 @@ const LoginComponent = () => {
                 control={control}
                 name='email'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
+                  <input className='focus:outline-none' type='email' value={value} placeholder='email' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.email?.message}</span>}
@@ -79,7 +79,7 @@ const LoginComponent = () => {
                 control={control}
                 name='password'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  <input type='password' value={value} placeholder='password' onChange={onChange} ref={ref} />
+                  <input type='password' value={value} placeholder='password' className='focus:outline-none' onChange={onChange} ref={ref} />
                 )}
               />
               {errors && <span className='text-red-800 font-serif'>{errors.password?.message}</span>}

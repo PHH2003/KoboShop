@@ -3,12 +3,18 @@ import mongoose from "mongoose";
 const commentSchema = mongoose.Schema({
 
     userId: {
-        type: mongoose.Types.ObjectId,
-        ref: "Auth"
+        _id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Auth',
+        },
+        name: String
     },
     productId: {
-        type: mongoose.Types.ObjectId,
-        ref: "Product"
+        _id: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Product',
+        },
+        name: String
     },
     comment: String,
     star: {

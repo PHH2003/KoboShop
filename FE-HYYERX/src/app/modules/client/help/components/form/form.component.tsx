@@ -43,19 +43,19 @@ const FormComponent = () => {
           <p className='flex'>
             Your Name <p className='text-red-600 ml-2'>*</p>
           </p>
-          <input name='fullname' onChange={handleValue} type='text' className='mt-2 w-60 border border-gray-400 rounded text-lg' />
+          <input name='fullname' onChange={handleValue} type='text' className='mt-2 w-60 border focus:outline-none p-1 border-gray-400 rounded text-lg' />
         </div>
         <div className='my-3'>
           <p className='flex'>
             Your Email <p className='text-red-600 ml-2'>*</p>
           </p>
-          <input name='email' onChange={handleValue} type='text' className='mt-2 w-60 border border-gray-400 rounded text-lg' />
+          <input name='email' onChange={handleValue} type='text' className='mt-2 w-60 border focus:outline-none p-1 border-gray-400 rounded text-lg' />
         </div>
         <div>
           <p className='flex'>
             Your Message, Question, Comment, or Testimonial <p className='text-red-600 ml-2'>*</p>
           </p>
-          <textarea name='message' onChange={handleValue} className='mt-2 w-[450px] h-[200px] border border-gray-400 rounded text-lg  text-start' />
+          <textarea name='message' onChange={handleValue} className='mt-2 w-[450px] h-[200px] border p-1 focus:outline-none border-gray-400 rounded text-lg  text-start' />
         </div>
         <div className='my-3'>
           <ButtonComponent  onClick={sendEmail} handleColor title={'Submit'} className='rounded hover:bg-[#595959] mt-3 w-[100px]' />
