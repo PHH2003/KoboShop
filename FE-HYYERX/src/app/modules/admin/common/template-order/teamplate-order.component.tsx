@@ -1,10 +1,15 @@
 import { Button, Descriptions, DescriptionsProps, Modal, Space, Table, Tag, Typography } from 'antd'
 import { ColumnsType } from 'antd/es/table';
-import React, { useState } from 'react'
-
+import React, { FC, useState } from 'react'
+import dayjs from 'dayjs';
+interface PropsTypes {
+    buttonByStatus?: any
+    dataTable: any
+    isStatistical?: boolean,
+}
 
 const { Title } = Typography
-const TemplateOrder = () => {
+const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical}) => {
     interface DataType {
         key: string;
         name: string;
@@ -13,64 +18,98 @@ const TemplateOrder = () => {
         tags: string[];
     }
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const showModal = () => {
+    const [detailRecord, setDetailRecord] = useState({
+        fullname: "",
+        phoneNumber: "",
+        district: "",
+        commune: "",
+        locationDetail: "",
+        city: "",
+        productOrder: [],
+        totalprice: Number,
+    })
+    const showModal = (record: any) => {
         setIsModalOpen(true);
+        setDetailRecord({
+            city: record?.city,
+            fullname: record?.fullname,
+            phoneNumber: record?.phoneNumber,
+            district: record?.district,
+            commune: record?.commune,
+            locationDetail: record?.locationDetail,
+            productOrder: record?.productOrder,
+            totalprice: record?.totalprice
+        })
     };
 
     const handleOk = () => {
         setIsModalOpen(false);
     };
 
-    const handleCancel = () => {
+    const handleCancel = (record: any) => {
         setIsModalOpen(false);
+        setDetailRecord({
+            city: record?.city,
+            fullname: record?.fullname,
+            phoneNumber: record?.phoneNumber,
+            district: record?.district,
+            commune: record?.commune,
+            locationDetail: record?.locationDetail,
+            productOrder: record?.productOrder,
+            totalprice: record?.totalprice
+        })
     };
     const columns: ColumnsType<DataType> = [
         {
             title: 'Mã order / ngày',
             dataIndex: 'name',
-            key: 'name',
-            render: (text) => <a>{text}</a>,
+            key: '_id',
+            render: (_, record: any) => (
+                <div>
+                    {record._id} / {dayjs(record.createdAt).format('MM-DD-YYYY')}
+                </div>
+            )
+
         },
         {
             title: 'Trạng thái',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'orderStatus',
+            key: 'orderStatus',
         },
         {
             title: 'Tổng số lượng mua',
             dataIndex: 'address',
             key: 'address',
+            render: (_, record: any) => {
+                const orderTotal = record?.productOrder?.reduce((orderTotal: number, product: any) => {
+                    return orderTotal + product.quantity
+                }, 0)
+
+                return <strong className='block text-center'>{orderTotal}</strong>
+            }
         },
         {
             title: 'Tổng tiền',
             key: 'tags',
             dataIndex: 'tags',
-            render: (_, { tags }) => (
-                <>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
+            render: (_, record: any) => {
+                return <strong className='block text-center'>{record?.totalprice}</strong>
+            }
         },
         {
             title: 'Action',
             key: 'action',
-            render: (_, record) => (
-                <Space size="middle">
-                    <Button type="primary" onClick={showModal}>
-                        Xem chi tiết
-                    </Button>
-                </Space>
+            render: (_, record: any) => (
+                <Space size='middle'>
+                <Button type='primary' onClick={() => showModal(record)}>
+                    Xem chi tiết
+                </Button>
+                {!isStatistical && (
+                    <Space size='middle' direction='vertical'>
+                        {buttonByStatus(record._id, record.orderStatus)}
+                    </Space>
+                )}
+            </Space>
             ),
         },
     ];
@@ -79,32 +118,32 @@ const TemplateOrder = () => {
         {
             key: '1',
             label: 'Họ Và Tên',
-            children: 'Phan Huy Hiệp'
+            children: detailRecord.fullname
         },
         {
             key: '2',
             label: 'Số Điện Thoại',
-            children: '0971080029'
+            children:detailRecord.phoneNumber
         },
         {
             key: '3',
             label: 'Tỉnh / Thành Phố',
-            children: 'Hải Dương'
+            children: detailRecord.city
         },
         {
             key: '4',
             label: 'Quận / Huyện',
-            children: 'Tứ Kỳ'
+            children: detailRecord.district
         },
         {
             key: '5',
             label: 'Xã',
-            children: 'An Thanh'
+            children: detailRecord.commune
         },
         {
             key: '6',
             label: 'Thông Tin Chi Tiết',
-            children: 'Ái Quốc - An Định'
+            children: detailRecord.locationDetail
         }
     ]
 
@@ -131,33 +170,10 @@ const TemplateOrder = () => {
         }
     ]
 
-    const data: DataType[] = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
     return (
         <div>
             <div>
-                <Table columns={columns} dataSource={data} />;
+                <Table columns={columns} dataSource={dataTable} />;
             </div>
             <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} width={900} footer={null} onCancel={handleCancel}>
                 <Descriptions title="Thông Tin Khách Hàng" items={items} />

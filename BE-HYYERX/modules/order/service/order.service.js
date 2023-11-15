@@ -93,16 +93,23 @@ export const filterDataOrders = async (bodyRequest) => {
         },
         {
             $group: {
-                _id: "{$_id}",
-                infoOrder: { $first: "$infoOrder" },
-                orderStatus: { $first: "$orderStatus" },
+                _id: "$_id",
+                fullname: { $first: "$fullname" },
+                totalprice: { $first: "$totalprice" },
+                phoneNumber: { $first: "$phoneNumber" },
+                district: { $first: "$district" },
+                city: { $first: "$city" },
+                commune: { $first: "$commune" },
+                fullname: { $first: "$fullname" },
+                locationDetail: { $first: "$locationDetail" },
                 productOrder: { $push: "$productOrder" },
-                createAt: { $first: "$createAt" },
-                updateAt: { $first: "$updateAt" },
+                createdAt: { $first: "$createdAt" },
+                updatedAt: { $first: "$updatedAt" },
+                orderStatus: { $first: "$orderStatus" },
                 __v: { $first: "$__v" }
             }
         }
 
     ]);
-    return order
+    return orders
 }
