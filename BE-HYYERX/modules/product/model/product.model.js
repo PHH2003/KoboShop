@@ -5,8 +5,8 @@ const productSchema = mongoose.Schema({
     newPrice: Number,
     cost: Number,
     images: {
-        type: Object,
-        default:{},
+        type: Array,
+        default: [],
     },
     description: String,
     author: String,

@@ -2,14 +2,14 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { createProduct, getAllProduct, removeProduct, updateProduct } from './service/product.service'
 import TemplateTable from '../common/template-table/template-table.component'
 import axios from 'axios'
-import { Form, Input, Select, Upload } from 'antd'
+import { Form, Input, Select, Upload, UploadFile } from 'antd'
 import { getAllCategory } from '../category-admin/service/category.service'
 
 const ProductAdminComponent = () => {
   const [dataProduct, setDataProduct] = useState<any>([])
   const [reset, setReset] = useState<boolean>(true)
   const [column, setColumn] = useState([])
-  const [file, setFile] = useState(null)
+  const [fileList, setFileList] = useState<UploadFile[]>([])
   const [categorys, setCategorys] = useState([])
 
   const Option = Select
@@ -28,11 +28,17 @@ const ProductAdminComponent = () => {
     fmData.append('cloud_name', 'dpfndtcya');
     fmData.append('folder', 'samples');
     try {
-        // tài liệu https://cloudinary.com/documentation/upload_images
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/dpfndtcya/image/upload`, fmData, config);
-            onSuccess(response.data.url);
-            setFile(response.data.url);
-            console.log(file)
+        const res = await axios.post(`https://api.cloudinary.com/v1_1/dpfndtcya/image/upload`, fmData, config);
+        onSuccess(res.data.url);
+        setFileList((prevFileList: any) => [
+            ...prevFileList,
+            {
+                uid: file.uid,
+                name: file.name,
+                status: res.status,
+                url: res.data.url
+            }
+        ])
     } catch (error) {
         onError({error})
     }
@@ -57,12 +63,7 @@ const ProductAdminComponent = () => {
                     key: itemKey,
                     render: (text: any, record: any, index: any) => {
                         if (itemKey === 'images') {
-                            return (
-                                <img
-                                    src={record.images}                                 
-                                    style={{ maxWidth: '50px' }}
-                                />
-                            );
+                            return <img src={dataProduct[index]?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='Product Image' style={{ maxWidth: '50px' }} />
                         }
                         if (itemKey == 'categoryId') {
                             return (
@@ -79,7 +80,7 @@ const ProductAdminComponent = () => {
     setColumn(columTemp)
 }, [dataProduct])
 const onRemove = (file:any) =>{
-    setFile((prevFileList:any)=>prevFileList.filter((item:any)=>item.uid !== file.uid))
+    setFileList((prevFileList:any)=>prevFileList?.filter((item:any)=>item.uid !== file.uid))
 }
 const handleGetList = () =>{
     setReset(!reset)
@@ -116,16 +117,16 @@ const handleGetList = () =>{
             <Form.Item
                 label='Image'
                 name="images"
-                getValueFromEvent={(event: any) => event.fileList}
+                getValueFromEvent={(event: any) => event?.fileList}
                 rules={[{ required: true, message: 'Please input your image!' }]}
-                
+                valuePropName={'fileList'}
             >
                 <Upload
                     customRequest={uploadImage}
                     listType='picture-card'
                     onRemove={onRemove}
                 >
-                    {'+ Upload'}
+                   {fileList.length < 2 && '+ Upload'}
                 </Upload>
             </Form.Item>
 

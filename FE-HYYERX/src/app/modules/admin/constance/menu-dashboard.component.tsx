@@ -4,10 +4,19 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   OrderedListOutlined,
-  CommentOutlined
+  CommentOutlined,
+  LineChartOutlined,
+  MoneyCollectOutlined,
+  FileAddOutlined,
+  CustomerServiceOutlined
 } from '@ant-design/icons'
-
+import { SiAdminer } from 'react-icons/si';
 export const MenuDashboard = [
+  {
+    key: '/admin',
+    icon: <SiAdminer />,
+    label: 'Dashboard'
+  },
   {
     key: '/admin/product',
     icon: <OrderedListOutlined />,
@@ -34,8 +43,29 @@ export const MenuDashboard = [
     label: 'Comment'
   },
   {
+    key: '/admin/contact',
+    icon: <CustomerServiceOutlined />,
+    label: 'Contact',
+  },
+  {
+    key: '/admin/static',
+    icon: <LineChartOutlined />,
+    label: 'Statistical',
+  },
+  {
+    key: '/admin/voucher',
+    icon: <MoneyCollectOutlined />,
+    label: 'Voucher',
+  },
+  {
+    key: '/admin/slice',
+    icon: <FileAddOutlined />,
+    label: 'Slice',
+  },
+  {
     key: '/',
     icon: <HomeOutlined />,
     label: 'Home'
-  }
+  },
+
 ]

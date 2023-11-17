@@ -5,8 +5,13 @@ import UserAdminComponent from './user-admin/user-admin.component'
 import CategoryAdmin from './category-admin/category-admin.component'
 import OrderAdminComponent from './order-admin/order-admin.component'
 import CommentAdminComponent from './comment-admin/comment-admin.component'
+import DashboardAdmin from './dashboard-admin/dashboard-admin.component'
 
 export const AdminRouter: RouteObject[] = [
+  {
+    path: "",
+    element: <DashboardAdmin />
+  },
   {
     path: 'product',
     element: <ProductAdminComponent />
@@ -19,8 +24,9 @@ export const AdminRouter: RouteObject[] = [
     path: 'category',
     element: <CategoryAdmin />
   },
-  { path: 'order',
-   element: <OrderAdminComponent /> 
+  {
+    path: 'order',
+    element: <OrderAdminComponent />
   },
   {
     path: "comment",

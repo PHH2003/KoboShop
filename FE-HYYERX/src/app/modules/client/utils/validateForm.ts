@@ -23,3 +23,9 @@ export const schemaShiping = yup.object().shape({
 export const schemaForgotPassword = yup.object().shape({
     email: yup.string().required('Can not be empty')
 })
+
+export const validateSupport = yup.object().shape({
+    fullname: yup.string().required('Bạn cần nhập đầy đủ thông tin'),
+    email: yup.string().required('Bạn cần nhập đầy đủ thông tin'),
+    message: yup.string().required('Bạn cần nhập đầy đủ thông tin')
+})

@@ -173,7 +173,7 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
     return (
         <div>
             <div>
-                <Table columns={columns} dataSource={dataTable} />;
+                <Table columns={columns} dataSource={dataTable} />
             </div>
             <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} width={900} footer={null} onCancel={handleCancel}>
                 <Descriptions title="Thông Tin Khách Hàng" items={items} />

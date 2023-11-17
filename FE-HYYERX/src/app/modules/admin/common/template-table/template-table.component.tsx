@@ -34,7 +34,6 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
     const [type, setType] = useState('CREATE')
     const [defaultValue, setDefaultvalue] = useState<any>()
     const [form] = Form.useForm()
-    const [errSearch, setErrSearch] = useState("")
     const [keyword, setKeyword] = useState("")
     const confirmDelete = (ItemId: any) => {
         setTriggerLoadding(true)
@@ -188,7 +187,6 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
             </TemplateModal>
             </div>
         </div>
-
        </LayoutLoading>
        </>
     )
