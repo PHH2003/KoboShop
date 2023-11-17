@@ -9,3 +9,6 @@ export const deleteComment = async (id: any) => {
  export const updateComment = async( id:any, bodyData:any) =>{
     return await confisAxios.put(`/comment/update/${id}`, bodyData)
 }
+export const searchComment = async (keyword: any) => {
+    return await confisAxios.get(`/comment/search?name=${keyword}`)
+}

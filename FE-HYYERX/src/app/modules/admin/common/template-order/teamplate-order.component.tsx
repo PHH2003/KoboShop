@@ -18,15 +18,15 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
         tags: string[];
     }
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [detailRecord, setDetailRecord] = useState({
+    const [detailRecord, setDetailRecord] = useState<any>({
         fullname: "",
         phoneNumber: "",
         district: "",
         commune: "",
-        locationDetail: "",
+        detailAddress: "",
         city: "",
-        productOrder: [],
-        totalprice: Number,
+        productOrder: "",
+        total: Number,
     })
     const showModal = (record: any) => {
         setIsModalOpen(true);
@@ -36,9 +36,9 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
             phoneNumber: record?.phoneNumber,
             district: record?.district,
             commune: record?.commune,
-            locationDetail: record?.locationDetail,
+            detailAddress: record?.detailAddress,
             productOrder: record?.productOrder,
-            totalprice: record?.totalprice
+            total: record?.total
         })
     };
 
@@ -54,9 +54,9 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
             phoneNumber: record?.phoneNumber,
             district: record?.district,
             commune: record?.commune,
-            locationDetail: record?.locationDetail,
+            detailAddress: record?.detailAddress,
             productOrder: record?.productOrder,
-            totalprice: record?.totalprice
+            total: record?.total
         })
     };
     const columns: ColumnsType<DataType> = [
@@ -93,7 +93,7 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
             key: 'tags',
             dataIndex: 'tags',
             render: (_, record: any) => {
-                return <strong className='block text-center'>{record?.totalprice}</strong>
+                return <strong className='block text-center'>{record?.total}</strong>
             }
         },
         {
@@ -137,13 +137,13 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
         },
         {
             key: '5',
-            label: 'Xã',
+            label: 'Xã / Phường',
             children: detailRecord.commune
         },
         {
             key: '6',
             label: 'Thông Tin Chi Tiết',
-            children: detailRecord.locationDetail
+            children: detailRecord.detailAddress
         }
     ]
 
@@ -151,7 +151,7 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
         {
             title: "Tên Sản Phẩm",
             key: "1",
-            render: (_: any, record: any) => <div>sản phẩm a</div>
+            render: (_: any, record: any) => <div className=''>{record?.product?.name}</div>
         },
         {
             title: "Ảnh Sản Phẩm",
@@ -161,12 +161,12 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
         {
             title: "Giá Sản Phẩm",
             key: "3",
-            render: (_: any, record: any) => <div>200 000 VNĐ</div>
+            render: (_: any, record: any) => <strong className='block text-center'>{(record.quantity * record.product.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong>
         },
         {
             title: "Số Lượng Mua",
             key: "4",
-            render: (_: any, record: any) => <div>2</div>
+            render: (_: any, record: any) => <div>{record.quantity}</div>
         }
     ]
 
@@ -179,7 +179,7 @@ const TemplateOrder: FC<PropsTypes> = ({buttonByStatus, dataTable, isStatistical
                 <Descriptions title="Thông Tin Khách Hàng" items={items} />
                 <Title level={4}>Sản Phẩm Khách Hàng mua</Title>
                 <div>
-                    <Table columns={columListProduct} dataSource={columListProduct} />
+                    <Table columns={columListProduct} dataSource={detailRecord.productOrder} />
                 </div>
             </Modal>
 

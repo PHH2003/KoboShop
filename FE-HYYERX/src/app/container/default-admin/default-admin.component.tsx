@@ -49,10 +49,12 @@ const DefaultAdmin: React.FC = () => {
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: '0 16px',
+            marginBottom: '24px',
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
+            overflowY: 'auto',
+            background: colorBgContainer
           }}
         >
           <Outlet/>

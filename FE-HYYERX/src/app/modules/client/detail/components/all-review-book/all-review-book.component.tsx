@@ -5,6 +5,7 @@ import ButtonComponent from '~/app/components/parts/button/button.component'
 import { useCommentRedux } from '../../../redux/hook/useCommentReducer';
 import { createComment } from '~/app/api/comment/comment.api';
 import toast from 'react-hot-toast';
+import { useProductRedux } from '../../../redux/hook/useProductReducer';
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 const AllReviewBook = () => {
     let { id } = useParams()
@@ -13,6 +14,7 @@ const AllReviewBook = () => {
     const [value, setValue] = useState(5);
     const { actions } = useCommentRedux()
     const userId: any = localStorage.getItem("userId")
+    const { data: { product } } = useProductRedux()
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -20,7 +22,8 @@ const AllReviewBook = () => {
         setCommentText(event.target.value)
     };
     const handelSubmitComment = () => {
-        createComment({ comment: commentText, productId: id, star:value, userId }).then((res) => {
+        const email: any = localStorage.getItem("emailUser")
+        createComment({ comment: commentText, productId: { _id: id, name: product.name }, star: value, userId: { _id: userId, name: email } }).then((res) => {
             if (res) {
                 toast.success("comment success")
                 setIsModalOpen(false);

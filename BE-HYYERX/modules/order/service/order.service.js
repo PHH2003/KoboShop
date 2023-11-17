@@ -95,7 +95,7 @@ export const filterDataOrders = async (bodyRequest) => {
             $group: {
                 _id: "$_id",
                 fullname: { $first: "$fullname" },
-                totalprice: { $first: "$totalprice" },
+                totalprice: { $first: "$total" },
                 phoneNumber: { $first: "$phoneNumber" },
                 district: { $first: "$district" },
                 city: { $first: "$city" },

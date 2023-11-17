@@ -1,7 +1,7 @@
 
 import { Fragment, useEffect, useState } from 'react'
 import TemplateTable from '../common/template-table/template-table.component'
-import { deleteComment, getAllComment, updateComment } from './service/comment.service'
+import { deleteComment, getAllComment, searchComment, updateComment } from './service/comment.service'
 import { Form, Input, Rate, Select } from 'antd'
 import { createComment } from '~/app/api/comment/comment.api'
 import { getAllProduct } from '../product-admin/service/product.service'
@@ -62,7 +62,7 @@ const CommentAdminComponent = () => {
     return (
         <div>
             <div>
-                <TemplateTable columsTable={colums} changeFunc={updateComment} createFunc={createComment} dataTable={dataComment} dataPage={7} deleteFunc={deleteComment} handleGetList={handelGetList} formEdit={
+                <TemplateTable columsTable={colums} searchFunc={searchComment} setNewData={setDataComment} changeFunc={updateComment} createFunc={createComment} dataTable={dataComment} dataPage={7} deleteFunc={deleteComment} handleGetList={handelGetList} formEdit={
                      <Fragment>
                      <Form.Item
                          label='userId'

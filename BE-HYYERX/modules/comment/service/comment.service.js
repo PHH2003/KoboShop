@@ -13,7 +13,7 @@ export const createComments = async (data) => {
 }
 
 export const getComments = async (productId) => {
-    const comments = await commentModel.find({ productId: productId });
+    const comments = await commentModel.find({ "productId._id": productId });
     await commentModel.populate(comments, { path: 'userId', model: 'Auth' });
     return comments;
 }
@@ -40,4 +40,16 @@ export const updateComments = async (req) => {
         }
     )
     return comment
+}
+
+export const searchComments = async(req) =>{
+    const { name } = req.query;
+
+    const comments = await commentModel.find({
+        "userId.name": {
+            $regex: '.*' + name + '.*',
+            $options: 'i'
+        }
+    });
+    return comments
 }

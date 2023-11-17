@@ -3,6 +3,7 @@ import { veryFileToken } from "../middlewares/checkAuthorization.js"
 import commentController from "../modules/comment/controller/index.js"
 
 const router = express.Router()
+router.get('/search', commentController.searchComment)
 router.get('/:productId', commentController.getComment);
 router.get('/', commentController.getAllComment)
 router.use(veryFileToken)
