@@ -62,7 +62,7 @@ for (let i = 1; i <= averageStar; i++) {
         <div css={cssDetail} className='flex justify-between'>
           <div className='w-[246px]'>
             <div>
-              <img src={productDetail.images} alt='' className='w-[246px] h-[376px]' />
+              <img src={productDetail.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='' className='w-[246px] h-[376px]' />
               
             </div>
             <div className='flex items-center py-5'>

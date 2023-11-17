@@ -30,15 +30,16 @@ const ProductAdminComponent = () => {
     try {
         const res = await axios.post(`https://api.cloudinary.com/v1_1/dpfndtcya/image/upload`, fmData, config);
         onSuccess(res.data.url);
-        setFileList((prevFileList: any) => [
-            ...prevFileList,
-            {
-                uid: file.uid,
-                name: file.name,
-                status: res.status,
-                url: res.data.url
-            }
-        ])
+        const customFileObj = {
+            uid: file.uid,
+            name: file.name,
+            status: res.status,
+            url: res.data.url,
+            response: res.data.url
+        }
+
+        const updatedFiles: any[] = [...fileList, customFileObj]
+        setFileList(updatedFiles)
     } catch (error) {
         onError({error})
     }
@@ -54,11 +55,12 @@ const ProductAdminComponent = () => {
   
   useEffect(() => {
     const columTemp: any = []
+    const title = ['category', '', 'Product', 'newPrice', 'Cost', 'image', 'Product details', 'author', 'Quantity', 'Company', 'Date of publication', 'Size']
     if (dataProduct.length > 0) {
-        Object?.keys(dataProduct[0]).map((itemKey) => {
+        Object?.keys(dataProduct[0]).map((itemKey, key = 0) => {
             if (!['_id', '__v', 'updatedAt', 'createdAt'].includes(itemKey)) {
                 return columTemp.push({
-                    title: itemKey,
+                    title: title[key++],
                     dataIndex: itemKey,
                     key: itemKey,
                     render: (text: any, record: any, index: any) => {

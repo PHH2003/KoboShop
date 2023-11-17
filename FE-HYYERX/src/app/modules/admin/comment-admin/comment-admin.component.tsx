@@ -26,12 +26,13 @@ const CommentAdminComponent = () => {
         })
     }, [reset])
     useEffect(() => {
-        const columnTemp: any = [];    
+        const columnTemp: any = [];  
+        const title = ['User', 'Product', '', 'Comment', 'evaluate']  
         if (dataComment.length > 0) {
-            Object.keys(dataComment[0]).forEach((itemKey) => {
+            Object.keys(dataComment[0]).forEach((itemKey, key = 0) => {
                 if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {
                     columnTemp.push({
-                        title: itemKey,
+                        title: title[key++],
                         dataIndex: itemKey,
                         key: itemKey,
                         render: (text: any, record: any, index: any) => {
@@ -65,7 +66,7 @@ const CommentAdminComponent = () => {
                 <TemplateTable columsTable={colums} searchFunc={searchComment} setNewData={setDataComment} changeFunc={updateComment} createFunc={createComment} dataTable={dataComment} dataPage={7} deleteFunc={deleteComment} handleGetList={handelGetList} formEdit={
                      <Fragment>
                      <Form.Item
-                         label='userId'
+                         label='User comment & evaluate'
                          name='userId'
                          getValueFromEvent={(event, select) => ({ name: select?.children, _id: select?.value })}
                          getValueProps={(value) => ({ label: value?.name, value: value?._id })}
@@ -79,7 +80,7 @@ const CommentAdminComponent = () => {
                          </Select>
                      </Form.Item>
                      <Form.Item
-                         label='productId'
+                         label='Product comment & evaluate'
                          name='productId'
                          getValueFromEvent={(event, select) => ({ name: select?.children, _id: select?.value })}
                          getValueProps={(value) => ({ label: value?.name, value: value?._id })}
@@ -100,7 +101,7 @@ const CommentAdminComponent = () => {
                          <Input />
                      </Form.Item>
                      <Form.Item
-                         label='star'
+                         label='evaluate'
                          name='star'
                          rules={[{ required: true, message: 'Please input your fullname!' }]}
                      >

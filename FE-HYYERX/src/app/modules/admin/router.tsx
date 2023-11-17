@@ -6,6 +6,10 @@ import CategoryAdmin from './category-admin/category-admin.component'
 import OrderAdminComponent from './order-admin/order-admin.component'
 import CommentAdminComponent from './comment-admin/comment-admin.component'
 import DashboardAdmin from './dashboard-admin/dashboard-admin.component'
+import ContentAdmin from './content-admin/content-admin.component'
+import ContactAdmin from './contact-admin/contact-admin.component'
+import Statictis from './statictis/statictis.component'
+import VorcherAdmin from './vorcher-admin/vorcher-admin.component'
 
 export const AdminRouter: RouteObject[] = [
   {
@@ -31,5 +35,21 @@ export const AdminRouter: RouteObject[] = [
   {
     path: "comment",
     element: <CommentAdminComponent />
-  }
+  },
+  {
+    path: "content",
+    element: <ContentAdmin />
+},
+{
+    path: "vorcher",
+    element: <VorcherAdmin />
+},
+{
+    path: "statictis",
+    element: <Statictis/>
+},
+{
+    path: "contact",
+    element: <ContactAdmin />
+}
 ]

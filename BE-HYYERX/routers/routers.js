@@ -5,6 +5,7 @@ import routerAuth from './auth.router.js'
 import routerCart from './cart.router.js'
 import routerOrder from './order.router.js'
 import routerComment from './comment.router.js'
+import routerContent from './content.router.js'
 const router = express.Router()
 
 const arrayRouter = [
@@ -13,7 +14,8 @@ const arrayRouter = [
     {path:'/auth', route: routerAuth},
     {path: '/cart', route: routerCart},
     {path: '/order', route: routerOrder},
-    { path: "/comment", route: routerComment }
+    { path: "/comment", route: routerComment },
+    { path: "/content", route: routerContent }
 ]
 arrayRouter.forEach((route)=>{
     router.use(route.path, route.route)

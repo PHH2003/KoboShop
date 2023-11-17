@@ -14,11 +14,12 @@ const UserAdminComponent = () => {
   }, [reset])
   useEffect(()=>{
     const columTemp: any = []
+    const title = ['', 'Fullname', 'Email', 'Password', 'Role']
     if (dataUser.length > 0) {
-        Object?.keys(dataUser[0]).map((itemKey) => {
+        Object?.keys(dataUser[0]).map((itemKey,key = 0) => {
             if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {
                 return columTemp.push({
-                    title: itemKey,
+                    title: title[key++],
                     dataIndex: itemKey,
                     key: itemKey
                 })

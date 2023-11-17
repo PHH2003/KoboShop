@@ -57,13 +57,26 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         message.error('Click on No');
     };
     const handleOk = () => {
-        setIsModelOpen(false)
-        setTriggerLoadding(true)
+        if (form.getFieldValue('images')) {
+            const dataList = [...form.getFieldValue('images')].map((itemImg: any) => ({
+                uid: itemImg.uid,
+                name: itemImg.name,
+                status: itemImg.status,
+                url: itemImg.url || itemImg.response,
+                response: itemImg.response || itemImg.url
+            }))
+
+            form.setFieldsValue({
+                images: dataList
+            })
+        }
         if(type=='CREATE'){
             form.validateFields().then((value)=>{
                 // form.resetFields()
                 createFunc(value).then((res:any)=>{
                     if(res){
+                        setIsModelOpen(false);
+                        setTriggerLoadding(true)
                         setTimeout(()=> {
                             setTriggerLoadding(false)
                             toast.success('Added successfully')
@@ -82,9 +95,11 @@ const TemplateTable: FC<ITemplateTableProp>= ({dataTable, createFunc, deleteFunc
         }
         if(type=='CHANGE'){
             form.validateFields().then((value)=> {
-                // form.resetFields()
+                form.resetFields()
                 changeFunc(  defaultValue._id, value).then((res:any)=>{
                 if(res){
+                    setIsModelOpen(false);
+                    setTriggerLoadding(true)
                     setTimeout(()=> {
                         setTriggerLoadding(false)
                         toast.success('successfully repaired')

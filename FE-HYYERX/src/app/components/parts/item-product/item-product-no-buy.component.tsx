@@ -24,7 +24,7 @@ const ItemProductNoBuy: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
   }
     return (
         <div css={cssItemProduct} className='w-[140px]' >
-            <img src={itemproduct?.images} className="w-[140px] h-[200px] mt-9" alt="" />
+            <img src={itemproduct?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} className="w-[140px] h-[200px] mt-9" alt="" />
             <h2 className='truncate-text'>{itemproduct?.name}</h2>
             <p className='text-gray-600 text-[0.8rem] font-semibold'>{itemproduct?.author}</p>
             <p className='flex'>

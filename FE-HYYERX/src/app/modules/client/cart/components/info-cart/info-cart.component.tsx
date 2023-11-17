@@ -66,7 +66,7 @@ const InfoCart = () => {
               <td className='flex items-center space-x-3'>
                 <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' onChange={() => handleSelectBuyProduct(item)}
                  checked={listBuyProduct?.flatMap((items: any) => items._id)?.includes(item?._id)} />
-                <img src={item?.product?.images} alt='' className='w-[70px] h-[105px] my-2' />
+                <img src={item?.product?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='' className='w-[70px] h-[105px] my-2' />
               </td>
               <td className=''>
                 <span className='truncate-text flex'>{item?.product?.name}</span>
