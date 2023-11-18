@@ -8,11 +8,11 @@ interface ManageComponentProps {
 
 const ManageComponent: FunctionComponent<ManageComponentProps> = () => {
     return (
-        <div css={cssManage} className='sm:w-[1140px] m-auto flex mt-16'>
-            <div className='w-[20%]'>
+        <div css={cssManage} className='sm:w-[1140px] m-auto sm:flex mt-16  '>
+            <div>
                 <MenuSideBar />
             </div>
-            <div className='w-[80%]'>
+            <div>
                 <MainManangeOrder />
             </div>
         </div>

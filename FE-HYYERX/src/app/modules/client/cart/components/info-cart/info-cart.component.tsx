@@ -18,6 +18,7 @@ const InfoCart = () => {
     actions.getAllCarts()
   }, [])
   const confirm = (id: any) => {
+
     deleteProductToCart(id).then((res) => {
       if (res) {
         actions.deleteProductTocarts(id)
@@ -51,7 +52,7 @@ const InfoCart = () => {
               </a>
             </th>
             <th className='taitle-table font-semibold'>Information</th>
-            <th className='taitle-table font-semibold'>Unit price</th>
+            <th className='taitle-table font-semibold max-sm:hidden'>Unit price</th>
             <th className='taitle-table font-semibold'>Quantity</th>
             <th className='taitle-table font-semibold'>Into money</th>
             <th className='remove-all'>
@@ -63,7 +64,7 @@ const InfoCart = () => {
         <tbody className='' >
           {carts?.map((item: any, index: any) => (
             <tr className='' key={index + 1}>
-              <td className='flex items-center space-x-3'>
+              <td className='sm:flex  items-center sm:space-x-3'>
                 <input type='checkbox' className='sm:w-[18px] sm:mr-4 sm:ml-5 max-sm:ml-6 max-sm:mr-2' onChange={() => handleSelectBuyProduct(item)}
                  checked={listBuyProduct?.flatMap((items: any) => items._id)?.includes(item?._id)} />
                 <img src={item?.product?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='' className='w-[70px] h-[105px] my-2' />

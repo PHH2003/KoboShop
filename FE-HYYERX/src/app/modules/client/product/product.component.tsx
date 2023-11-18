@@ -6,8 +6,8 @@ const ProductComponent = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
   return (
-    <div className='w-[1140px] m-auto flex justify-between mt-9'>
-        <div>
+    <div className='max-sm:px-3 sm:flex sm:w-[1140px] m-auto justify-between mt-3'>
+        <div className='sm:w-[15%]'>
             <SidebarComponent
              selectedCategory={selectedCategory}
              onSelectCategory={setSelectedCategory}
@@ -15,7 +15,7 @@ const ProductComponent = () => {
              onSelectPriceRange={setSelectedPriceRange}            
             />
         </div>
-        <div>
+        <div className='sm:w-[80%]'>
             <MainProductComponent selectedCategory={selectedCategory} selectedPriceRange={selectedPriceRange}/>
         </div>
     </div>

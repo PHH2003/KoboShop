@@ -9,30 +9,30 @@ interface MenuSideBarProps {
 
 const MenuSideBar: FunctionComponent<MenuSideBarProps> = () => {
     return (
-        <div css={cssMenuSideBar} className='w-[100%]]'>
-            <div className='flex items-center'>
-                <div>
+        <div css={cssMenuSideBar} className='w-[100%]]sm:w-[200px] w-full'>
+            <div className='flex items-center flex-col sm:flex-row'>
+                <div className='mb-4 sm:mb-0'>
                     <img src="https://pubcdn.ivymoda.com/ivy2//images/v2/assets/user-avatar-placeholder.png" alt="" className='w-[50px]' />
                 </div>
                 <div>
-                    <p className='font-semibold text-[17px] px-4'>Phan Huy Hiep</p>
+                    <p className='font-semibold text-[17px] sm:px-4 text-center sm:text-left'>Phan Huy Hiep</p>
                 </div>
             </div>
 
             <div>
-                <ul>
-                    <li className='flex'>
+                <ul className='text-center sm:text-left'>
+                    <li className='flex justify-center items-center'>
 
                         <p><BiSolidUserBadge className='text-[22px]' /></p> 
                         <p className='px-3'>account information</p>
                     </li>
-                    <li className='flex'>
+                    <li className='flex justify-center items-center'>
                         <p><RiLuggageCartFill className='text-[22px]' /></p>
                          <p className='px-3'> Order management</p>
                     </li>
-                    <li className='flex'>
+                    <li className='flex justify-center items-center'>
                         <p><BiSupport className='text-[22px]' /></p>
-                        <a className='px-3'>Support</a>
+                        <a className='px-3'>Customer support</a>
                     </li>
                 </ul>
             </div>
@@ -51,4 +51,16 @@ li{
     line-height: 16px;
     color: black;
 }
-`
+
+@media (min-width: 0) and (max-width: 739px) {
+    border-right:none;
+    .w-full {
+        max-width: 100%;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .text-left {
+        text-align: left;
+    }
+}`

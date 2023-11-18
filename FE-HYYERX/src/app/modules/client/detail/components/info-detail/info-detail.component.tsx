@@ -17,7 +17,7 @@ const InfoDetail = () => {
   const {
     data: { product: productDetail },
     actions
-  } = useProductRedux()
+  } = useProductRedux() 
   const { actions: actionscart } = useCartRedux()
   const [averageStar, setAverageStar] = useState(0);
   useEffect(() => {

@@ -73,8 +73,8 @@ const SidebarComponent: FC<ISaidBarComponent> = ({ selectedCategory, onSelectCat
                     </div>
                 </div>
                 <div>
-                    <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2">Khác</h3>
-                    <div>
+                    <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">Khác</h3>
+                    <div className="text-center">
                         <p>Sản phẩm yêu thích</p>
                         <p>Sắp xếp giá từ cao đến thấp</p>
                         <p>Sắp xếp giá từ thấp đến cao</p>
