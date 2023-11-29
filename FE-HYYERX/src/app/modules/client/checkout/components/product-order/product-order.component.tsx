@@ -5,12 +5,12 @@ import { useCartRedux } from '../../../redux/hook/useCartReducer'
 
 const ProductOrderComponent = () => {
     const { data: { listBuyProduct } } = useCartRedux()
-    
+    console.log(listBuyProduct)  
     return (
         <div>
             <h2 className='text-[17px] font-semibold text-red-700 mb-4'>Items product</h2>
 
-            <div className='border border-gray-400 p-5 bg-[#e9f5f4] '>
+            <div className='border border-gray-400 p-5 bg-[#e9f5f4]'>
                 <p>You’re buying eBooks
                     You’re about to purchase digital content rather than physical books. Read with a Kobo eReader or with the free Kobo App.</p>
             </div>
@@ -18,7 +18,7 @@ const ProductOrderComponent = () => {
             {listBuyProduct?.map((item: any, index: any) => (
                     <div className='flex items-center justify-between mt-4' key={index + 1}>
                         <div className='w-[55px]'>
-                            <img src={item?.product?.images} alt="" className='w-[70px] h-[80px]' />
+                            <img src={item?.product?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt="" className='w-[70px] h-[80px]' />
                         </div>
                         <div className='font-semibold'>
                             x {item?.quantity}
