@@ -35,8 +35,8 @@ const Header = () => {
             <div>
         <Marquee direction="left" className=' z-0' style={{ backgroundColor: "#BF0000" }}>
           <p style={{ padding: "0px 50px" }} className='text-[15px] text-white italic flex' >
-            {/* <img className='w-auto h-[30px] px-3' src="https://thuannam.ninhthuan.gov.vn/chinhquyen/thuannam/Pictures/iconloathongbao59983935.gif" alt="Logo" /> */}          
-Cảm ơn quý khách đã luôn ủng hộ chúng tôi! Để quý khách không bỏ lỡ các ưu đãi hấp dẫn trong những ngày lễ, vui lòng kiểm tra thông tin chi tiết trên trang web chính thức của chúng tôi. Chúng tôi cam kết mang đến trải nghiệm mua sắm tốt nhất với những chương trình khuyến mãi đặc biệt để tri ân sự tin tưởng của quý khách. Hãy ghé thăm trang web regularly để cập nhật thông tin mới nhất!
+            <img className='w-auto h-[20px] pt-[3px]' src="../../../../../public/logo-2.png" alt="Logo" />          
+            Thank you for always supporting us! In order for you not to miss attractive incentives during the holidays, please check the details on our official website. We are committed to bringing the best shopping experience with special promotions to express your trust in your trust. Visit the Regularly website to update the latest information!
           </p>
         </Marquee>
       </div>

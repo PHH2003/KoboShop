@@ -60,26 +60,20 @@ const SidebarComponent: FC<ISaidBarComponent> = ({ selectedCategory, onSelectCat
                     <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">price filter</h3>
                     <div className="text-center">
                         <p onClick={handleShowAll}>Show all</p>
-                        <p onClick={() => handleSelectPriceRange("1-10")}>1$ to 10$</p>
-                        <p onClick={() => handleSelectPriceRange("11-20")}>11$ to 20$</p>
-                        <p onClick={() => handleSelectPriceRange("21-30")}>21$ to 30$</p>
-                        <p onClick={() => handleSelectPriceRange("31-40")}>31$ to 40$</p>
-                        <p onClick={() => handleSelectPriceRange("41-50")}>41$ to 50$</p>
-                        <p onClick={() => handleSelectPriceRange("51-60")}>51$ to 60$</p>
-                        <p onClick={() => handleSelectPriceRange("61-70")}>51$ to 60$</p>
-                        <p onClick={() => handleSelectPriceRange("71-80")}>51$ to 60$</p>
-                        <p onClick={() => handleSelectPriceRange("81-90")}>51$ to 60$</p>
-                        <p onClick={() => handleSelectPriceRange("91-100")}>51$ to 60$</p>
+                        <p onClick={() => handleSelectPriceRange("1-100")}>1$ to 100$</p>
+                        <p onClick={() => handleSelectPriceRange("101-500")}>101$ to 500$</p>
+                        <p onClick={() => handleSelectPriceRange("501-999")}>501$ to 999$</p>
+                        <p onClick={() => handleSelectPriceRange("1000-999999999")}>Over 999$</p>
                     </div>
                 </div>
                 <div>
-                    <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">Khác</h3>
+                    <h3 className="bg-[#ededed] py-2 font-semibold px-3 mt-2 text-center">Other</h3>
                     <div className="text-center">
-                        <p>Sản phẩm yêu thích</p>
-                        <p>Sắp xếp giá từ cao đến thấp</p>
-                        <p>Sắp xếp giá từ thấp đến cao</p>
-                        <p>Sản phẩm mới nhất</p>
-                        <p>Sản phẩm được mua nhiều nhất</p>
+                        <p>Favorite product</p>
+                        <p>Price from high to low</p>
+                        <p>Price from low to high</p>
+                        <p>Latest product</p>
+                        <p>The product is most purchased</p>
                     </div>
                 </div>
             </div>
