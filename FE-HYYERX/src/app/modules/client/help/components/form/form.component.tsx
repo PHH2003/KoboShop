@@ -1,10 +1,9 @@
 import ButtonComponent from '~/app/components/parts/button/button.component'
-import { useState } from 'react'
 import toast from 'react-hot-toast'
-import emailjs from '@emailjs/browser';
 import { Controller, useForm } from 'react-hook-form';
 import { validateSupport } from '../../../utils/validateForm';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { createContact } from '~/app/api/contact/contact.api';
 
 const FormComponent = () => {
   const {
@@ -15,36 +14,17 @@ const FormComponent = () => {
     resolver: yupResolver(validateSupport)
   })
   const onSubmit = (data: any) => {
-
+    createContact(data).then(
+      (res)=>{
+        if(res){
+          toast.success("Sent to the admin")
+        }
+      },
+      (err) =>{
+        toast.error(err?.reponse?.data)
+      }
+    )
   }
-  // const [values, setValues] = useState({
-  //   fullname: '',
-  //   email: '',
-  //   message: ''
-  // })
-  // const handleValue = (e: any) => {
-  //   setValues((values) => ({
-  //     ...values,
-  //     [e.target.name]: e.target.value
-  //   }))
-
-  // }
-
-  // const sendEmail = (e: any) => {
-  //   e.preventDefault()
-  //   emailjs.send(
-  //     'service_9jwonbg',
-  //     'template_vshb50c',
-  //     values,
-  //     'ke1yKLn-ThEsICxpr').then(
-  //       (result: any) => {
-  //         toast.success("Feedback sent successfully")
-  //       },
-  //       (error: any) => {
-  //         toast.success("Response has not been sent")
-  //       }
-  //     )
-  // }
   return (
     <div>
       <div className='ml-11' >
@@ -82,24 +62,6 @@ const FormComponent = () => {
                 />
                 {errors && <span className='text-red-800'>{errors.message?.message}</span>}
           </div>
-          {/* <div className='my-3'>
-          <p className='flex'>
-            Your Name <p className='text-red-600 ml-2'>*</p>
-          </p>
-          <input name='fullname' onChange={handleValue} type='text' className='mt-2 w-60 border focus:outline-none p-1 border-gray-400 rounded text-lg' />
-        </div> */}
-          {/* <div className='my-3'>
-          <p className='flex'>
-            Your Email <p className='text-red-600 ml-2'>*</p>
-          </p>
-          <input name='email' onChange={handleValue} type='text' className='mt-2 w-60 border focus:outline-none p-1 border-gray-400 rounded text-lg' />
-        </div>
-        <div>
-          <p className='flex'>
-            Your Message, Question, Comment, or Testimonial <p className='text-red-600 ml-2'>*</p>
-          </p>
-          <textarea name='message' onChange={handleValue} className='mt-2 w-[450px] h-[200px] border p-1 focus:outline-none border-gray-400 rounded text-lg  text-start' />
-        </div> */}
           <div className='my-3'>
             <ButtonComponent handleColor title={'Submit'} className='rounded hover:bg-[#595959] mt-3 w-[100px]' />
             <a href='#' className='ml-4 underline font-semibold'>

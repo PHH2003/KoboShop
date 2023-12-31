@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
 const contactSchema = mongoose.Schema({
     name: String,
-    phoneNumber: Number,
     email: String,
-    topic: String,
-    note: String
+    message: String
 },
     {
         timestamps: true

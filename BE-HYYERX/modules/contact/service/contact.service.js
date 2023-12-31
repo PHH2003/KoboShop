@@ -31,7 +31,7 @@ export const deleteContacts = async (req) => {
 }
 
 export const seenContacts = async (req) => {
-    const { reqbody, id, topic } = req.body
+    const { reqbody, id } = req.body
     const data = await contactModel.findById(id)
     const toemail = data.email;
     const transporter = nodemailer.createTransport({
@@ -48,17 +48,17 @@ export const seenContacts = async (req) => {
     <div style="font-family: Arial, sans-serif; max-width: 600px;">
         <div>
             <p>Chào bạn,</p>
-            <p>Cảm ơn bạn đã phản hồi lại cho KiKi Shop. Về vấn đề ${topic}, chúng tôi có phản hồi như sau:</p> 
+            <p>Cảm ơn bạn đã phản hồi lại cho KiKi Shop. Về vấn đề của bạn, chúng tôi có phản hồi như sau:</p> 
             ${reqbody ? `<div style="margin-top: 20px; margin-button: 20px;">${reqbody}</div>` : ''}
-            <p>Thân mến,</p>
-            <p>HaiDang Shop.</p>
+            <p>Thân mến!</p>
+            <p>Rakuten Kobo Shop.</p>
         </div>
     </div>
 `;
     const info = await transporter.sendMail({
-        from: '"KiKi Shop👻" <fptkiki@gmail.com>',
+        from: '"Rakuten Kobo👻" <hiepphdemo@gmail.com>',
         to: toemail,
-        subject: "Phản hồi liên hệ của bạn từ Admin KiKi Shop",
+        subject: "Phản hồi liên hệ của bạn từ Rakuten Kobo Shop",
         html: emailContent
     });
     return info;
