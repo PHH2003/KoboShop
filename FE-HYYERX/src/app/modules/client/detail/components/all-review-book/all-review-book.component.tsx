@@ -12,9 +12,13 @@ const AllReviewBook = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [commentText, setCommentText] = useState('')
     const [value, setValue] = useState(5);
-    const { actions } = useCommentRedux()
+    const { actions : actionCommnet } = useCommentRedux()
     const userId: any = localStorage.getItem("userId")
-    const { data: { product } } = useProductRedux()
+    // const { data: { productDetail } } = useProductRedux()
+    const {
+    data: { product: productDetail },
+    actions
+  } = useProductRedux() 
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -23,11 +27,11 @@ const AllReviewBook = () => {
     };
     const handelSubmitComment = () => {
         const email: any = localStorage.getItem("emailUser")
-        createComment({ comment: commentText, productId: { _id: id, name: product.name }, star: value, userId: { _id: userId, name: email } }).then((res) => {
+        createComment({ comment: commentText, productId: { _id: id, name: productDetail.name }, star: value, userId: { _id: userId, name: email } }).then((res) => {
             if (res) {
                 toast.success("comment success")
                 setIsModalOpen(false);
-                actions.getAllComments(id)
+                actionCommnet.getAllComments(id)
             }
         },
         (err) => {
@@ -69,14 +73,14 @@ const AllReviewBook = () => {
                             <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={800} footer={null}>
                                 <div className='flex'>
                                     <div>
-                                        <img src="https://res.cloudinary.com/dpfndtcya/image/upload/v1696389469/Duongkachmenh.jpg.jpg" alt="" className='w-[200px]' />
+                                        <img src={productDetail.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt="" className='w-[200px]' />
                                         {/* <h2 className='text-[15px] font-semibold py-2'>True Colors</h2>
                                         <p className='text-[14px] text-gray-600 font-semibold'>by Kristin Hannah</p> */}
                                     </div>
 
                                     <div className='px-4 w-[650px]'>
-                                        <h1 className='text-[22px] font-semibold'>Name</h1>
-                                        <p className='text-[14px] text-gray-600 font-semibold'>By: Author</p>
+                                        <h1 className='text-[22px] font-semibold'>{productDetail.name}</h1>
+                                        <p className='text-[14px] text-gray-600 font-semibold'>By: {productDetail.author}</p>
                                         <div className='flex justify-between items-center'>
                                             <div className='text-[16px] text-gray-600 font-semibold'>
                                                 Rate it *

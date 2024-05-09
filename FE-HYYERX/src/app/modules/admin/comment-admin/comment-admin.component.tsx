@@ -13,7 +13,7 @@ const CommentAdminComponent = () => {
     const [colums, setColums] = useState([])
     const [reset, setReset] = useState<boolean>(true)
     const [products, setProducts] = useState([])
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]) 
     useEffect(() => {
         getAllComment().then((res) => {
             setDataComment(res.data)
@@ -25,9 +25,10 @@ const CommentAdminComponent = () => {
             setUsers(res.data)
         })
     }, [reset])
+    
     useEffect(() => {
         const columnTemp: any = [];  
-        const title = ['User', 'Product', '', 'Comment', 'evaluate']  
+        const title = ['User', 'Product', '', 'Comment', 'Evaluate']  
         if (dataComment.length > 0) {
             Object.keys(dataComment[0]).forEach((itemKey, key = 0) => {
                 if (!['_id', 'updatedAt', 'createdAt', '__v'].includes(itemKey)) {
@@ -36,11 +37,11 @@ const CommentAdminComponent = () => {
                         dataIndex: itemKey,
                         key: itemKey,
                         render: (text: any, record: any, index: any) => {
-                            if (itemKey == 'user') {
-                                return <div>{record?.user?.fullname}</div>
+                            if (itemKey == 'userId') {
+                                return <div>{record?.userId?.name}</div>
                             }
-                            if (itemKey == 'product') {
-                                return <div>{record?.product?.name}</div>
+                            if (itemKey == 'productId') {
+                                return <div>{record?.productId?.name}</div>
 
                             }
                             if (itemKey === 'star') {
@@ -49,6 +50,7 @@ const CommentAdminComponent = () => {
                             
                             return text;
                         },
+                        
                     });
                 }
             });
