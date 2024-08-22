@@ -1,4 +1,3 @@
-
 import { RouteObject } from 'react-router-dom'
 import ProductAdminComponent from './product-admin/product-admin.component'
 import UserAdminComponent from './user-admin/user-admin.component'
@@ -10,10 +9,11 @@ import ContentAdmin from './content-admin/content-admin.component'
 import ContactAdmin from './contact-admin/contact-admin.component'
 import Statictis from './statictis/statictis.component'
 import VorcherAdmin from './vorcher-admin/vorcher-admin.component'
+import SliceComponent from './slice/slice.component'
 
 export const AdminRouter: RouteObject[] = [
   {
-    path: "",
+    path: '',
     element: <DashboardAdmin />
   },
   {
@@ -33,23 +33,27 @@ export const AdminRouter: RouteObject[] = [
     element: <OrderAdminComponent />
   },
   {
-    path: "comment",
+    path: 'comment',
     element: <CommentAdminComponent />
   },
   {
-    path: "content",
+    path: 'content',
     element: <ContentAdmin />
-},
-{
-    path: "vorcher",
+  },
+  {
+    path: 'voucher',
     element: <VorcherAdmin />
-},
-{
-    path: "statictis",
-    element: <Statictis/>
-},
-{
-    path: "contact",
+  },
+  {
+    path: 'statistic',
+    element: <Statictis />
+  },
+  {
+    path: 'contact',
     element: <ContactAdmin />
-}
+  },
+  {
+    path: 'slice',
+    element: <SliceComponent />
+  }
 ]

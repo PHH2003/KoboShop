@@ -10,7 +10,7 @@ import {
   FileAddOutlined,
   CustomerServiceOutlined
 } from '@ant-design/icons'
-import { SiAdminer } from 'react-icons/si';
+import { SiAdminer } from 'react-icons/si'
 export const MenuDashboard = [
   {
     key: '/admin',
@@ -18,15 +18,16 @@ export const MenuDashboard = [
     label: 'Dashboard'
   },
   {
-    key: '/admin/product',
-    icon: <OrderedListOutlined />,
-    label: 'Product'
-  },
-  {
     key: '/admin/category',
     icon: <FileOutlined />,
     label: 'Category'
   },
+  {
+    key: '/admin/product',
+    icon: <OrderedListOutlined />,
+    label: 'Product'
+  },
+
   {
     key: '/admin/order',
     icon: <ShoppingCartOutlined />,
@@ -45,27 +46,26 @@ export const MenuDashboard = [
   {
     key: '/admin/contact',
     icon: <CustomerServiceOutlined />,
-    label: 'Contact',
+    label: 'Contact'
   },
   {
-    key: '/admin/static',
+    key: '/admin/statistic',
     icon: <LineChartOutlined />,
-    label: 'Statistical',
+    label: 'Statistical'
   },
   {
     key: '/admin/voucher',
     icon: <MoneyCollectOutlined />,
-    label: 'Voucher',
+    label: 'Voucher'
   },
   {
     key: '/admin/slice',
     icon: <FileAddOutlined />,
-    label: 'Slice',
+    label: 'Slice'
   },
   {
     key: '/',
     icon: <HomeOutlined />,
     label: 'Home'
-  },
-
+  }
 ]
