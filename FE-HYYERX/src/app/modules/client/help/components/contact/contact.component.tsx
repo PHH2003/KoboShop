@@ -8,7 +8,7 @@ const ContactComponent = () => {
 
         <div className="my-4">
             <strong>Address : </strong>
-            71 Xuan Phuong, Nam Tu Niem, Ha Noi
+            An Định, An Thanh, Tứ Kỳ, Hải Dương
             <br/>
             <strong>Tel : </strong>
             0971.08.0029
@@ -16,10 +16,11 @@ const ContactComponent = () => {
             <strong>Fax : </strong>
             <br />
             <strong>Email : </strong>
-            hiepphph26732@fpt.edu.vn
+            hiep2003dev@gmail.com
         </div>
         <div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2633.2465157373235!2d105.74696717683366!3d21.033768888315567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454919b298d57%3A0x30640c55a8ed6be3!2zNDMgTmcuIDcxIFBoxrDGoW5nIENhbmgsIFh1w6JuIFBoxrDGoW5nLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1697079635800!5m2!1svi!2s" width="525" height="400" className=" mt-6" loading="lazy" ></iframe>
+      {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2633.2465157373235!2d105.74696717683366!3d21.033768888315567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454919b298d57%3A0x30640c55a8ed6be3!2zNDMgTmcuIDcxIFBoxrDGoW5nIENhbmgsIFh1w6JuIFBoxrDGoW5nLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1697079635800!5m2!1svi!2s" width="525" height="400" className=" mt-6" loading="lazy" ></iframe> */}
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.578190346166!2d106.46377937586841!3d20.80834599531142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135897fa3f8c7b7%3A0xb0076ed580a44487!2zVOG6oXAgSMOzYSBRdcO9IEjhuqFuaA!5e0!3m2!1sen!2s!4v1724300275643!5m2!1sen!2s" width="525" height="400" loading="lazy" className=" mt-6"></iframe>
         </div>
     </div>
   )

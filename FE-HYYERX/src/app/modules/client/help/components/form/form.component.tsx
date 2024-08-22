@@ -9,7 +9,7 @@ const FormComponent = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(validateSupport)
   })

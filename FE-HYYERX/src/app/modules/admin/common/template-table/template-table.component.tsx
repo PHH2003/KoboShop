@@ -5,6 +5,7 @@ import TemplateModal from '../template-modal/teamplate-modal.component'
 import LayoutLoading from '~/app/components/stack/layout-loading/layout-loading.component'
 import { SearchOutlined } from '@ant-design/icons'
 import toast from 'react-hot-toast'
+import { getAllCategory } from '../../category-admin/service/category.service'
 
 interface DataType {
   key: string
@@ -26,6 +27,7 @@ interface ITemplateTableProp {
   handleGetList?: any
   setNewData?: any
   component?: string
+  setData?:any
 }
 
 const TemplateTable: FC<ITemplateTableProp> = ({
@@ -39,7 +41,7 @@ const TemplateTable: FC<ITemplateTableProp> = ({
   dataPage,
   handleGetList,
   setNewData,
-  component
+  component,
 }) => {
   const [isModelOpen, setIsModelOpen] = useState(false)
   const [triggerLoadding, setTriggerLoadding] = useState(false)
@@ -47,6 +49,11 @@ const TemplateTable: FC<ITemplateTableProp> = ({
   const [defaultValue, setDefaultvalue] = useState<any>(null)
   const [form] = Form.useForm()
   const [keyword, setKeyword] = useState('')
+  const [newDataFilter, setNewDataFilter] = useState<any[]>([])
+  const [filter, setFilter] = useState<any[]>([])
+  const [selectedValue, setSelectedValue] = useState<string>('all')
+  const [applyFilter, setApplyFilter] = useState<boolean>(false)
+  const [dataFilter, setDataFilter] = useState<any[]>([])
   const confirmDelete = (ItemId: any) => {
     setTriggerLoadding(true)
     if (component === 'category') {
@@ -234,7 +241,31 @@ const TemplateTable: FC<ITemplateTableProp> = ({
       )
     }
   ]
-
+  useEffect(() => {
+    if (applyFilter) {
+      setApplyFilter(false)
+      setNewData(dataFilter)
+    }
+  }, [applyFilter])
+  useEffect(() => {
+    getAllCategory().then((res: any) => {
+      setFilter(
+        res.data.map((item: any) => {
+          return { value: item._id, label: item.name }
+        })
+      )
+    })
+  }, [])
+  const handleSelectChange = (value: any, option: any) => {
+    setSelectedValue(value)
+    if (value === 'all') {
+      setApplyFilter(true)
+    } else {
+      setApplyFilter(false)
+      const list = dataFilter.filter((item) => item.categoryId._id === value)
+      setNewData(list)
+    }
+  }
   return (
     <>
       <LayoutLoading condition={triggerLoadding}>
@@ -270,5 +301,6 @@ const TemplateTable: FC<ITemplateTableProp> = ({
     </>
   )
 }
+
 
 export default TemplateTable

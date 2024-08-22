@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const contactSchema = mongoose.Schema({
-    name: String,
+    fullname: String,
     email: String,
     message: String
 },

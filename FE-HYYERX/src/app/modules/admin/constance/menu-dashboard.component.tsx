@@ -48,11 +48,7 @@ export const MenuDashboard = [
     icon: <CustomerServiceOutlined />,
     label: 'Contact'
   },
-  {
-    key: '/admin/statistic',
-    icon: <LineChartOutlined />,
-    label: 'Statistical'
-  },
+
   {
     key: '/admin/voucher',
     icon: <MoneyCollectOutlined />,
@@ -62,6 +58,11 @@ export const MenuDashboard = [
     key: '/admin/slice',
     icon: <FileAddOutlined />,
     label: 'Slice'
+  },
+  {
+    key: '/admin/statistic',
+    icon: <LineChartOutlined />,
+    label: 'Statistical'
   },
   {
     key: '/',
