@@ -9,9 +9,10 @@ import CheckoutComponent from './checkout/checkout.component'
 import LoginComponent from './login/login.component'
 import RegisterComponent from './register/register.component'
 import ForgotPasswordComponent from './forgot-password/forgot-password.component'
-import ManageComponent from './manage/manage.component'
 import GiftCardComponent from './gift-cards/gift-cards.component'
 import ProductComponent from './product/product.component'
+import ManageComponent from './manage/manage.component'
+import ManageInforComponent from './manage/manage-infor.component'
 
 export const clientRouter: RouteObject[] = [
   {
@@ -56,8 +57,12 @@ export const clientRouter: RouteObject[] = [
     element: <ForgotPasswordComponent/>
   },
   {
-    path: "/manage",
+    path: "/management",
     element: <ManageComponent />
+  },
+  {
+    path: "/management-infor",
+    element: <ManageInforComponent/>
   },
   {
     path:'/product',

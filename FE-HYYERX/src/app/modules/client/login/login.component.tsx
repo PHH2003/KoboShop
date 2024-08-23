@@ -9,7 +9,7 @@ import { login } from '~/app/api/auth/auth.api'
 import { message } from 'antd'
 
 const LoginComponent = () => {
-  const [messageApi, contextHolder] = message.useMessage()
+  
   const navigate = useNavigate()
   const {
     handleSubmit,
@@ -22,13 +22,12 @@ const LoginComponent = () => {
     login(data).then(
       (res) => {
         if (res) {
-          console.log(res.user)
           localStorage.setItem("userId", res.user._id)
           localStorage.setItem('accessToken', res.accessToken)
           localStorage.setItem("emailUser", res.user.email)
           message.success("Singin success", () => {
             navigate("/");
-            location.reload();
+
         });
         }
       },
@@ -39,7 +38,6 @@ const LoginComponent = () => {
   }
   return (
     <div className='relative h-[90vh]' css={cssLogin}>
-      {contextHolder}
       <div>
         <img src='https://authorize.kobo.com/Images/prism_large.png' alt='' className='w-full' />
       </div>

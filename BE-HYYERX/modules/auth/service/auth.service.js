@@ -31,6 +31,11 @@ export const getAllUsers = async() => {
     return user
 }
 
+export const getOneUsers = async (req) => {
+    const users = await authModel.findById(req.params.id)
+    return users
+}
+
 export const deleteUsers = async(req) => {
     const user = await authModel.findByIdAndDelete(req.params.id)
     return user

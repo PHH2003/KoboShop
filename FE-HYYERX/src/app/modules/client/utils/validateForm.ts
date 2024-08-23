@@ -29,3 +29,8 @@ export const validateSupport = yup.object().shape({
     email: yup.string().required('Can not be empty'),
     message: yup.string().required('Can not be empty')
 })
+export const validateUpdatePassword = yup.object().shape({
+    password: yup.string().required('Bạn cần nhập đầy đủ thông tin'),
+    newPassword: yup.string().required('Bạn cần nhập đầy đủ thông tin'),
+    confirmNewPassword: yup.string().required('Bạn cần nhập đầy đủ thông tin').oneOf([yup.ref('password')]),
+})
