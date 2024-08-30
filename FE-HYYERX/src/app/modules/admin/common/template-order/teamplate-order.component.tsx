@@ -64,13 +64,24 @@ const TemplateOrder: FC<PropsTypes> = ({ buttonByStatus, dataTable, isStatistica
   }
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Mã order / ngày',
-      dataIndex: 'name',
+      title: 'Mã order',
+      dataIndex: '_id',
       align: 'center',
       key: '_id',
       render: (_, record: any) => (
         <div>
-          {record._id} / {dayjs(record.createdAt).format('MM-DD-YYYY')}
+          {record._id}
+        </div>
+      )
+    },
+    {
+      title: 'Ngày order',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt',
+      align: 'center',
+      render: (_, record: any) => (
+        <div>
+          {dayjs(record.createdAt).format('MM-DD-YYYY')}
         </div>
       )
     },

@@ -71,7 +71,7 @@ const ProductAdminComponent = () => {
     ]
     if (dataProduct.length > 0) {
       Object?.keys(dataProduct[0]).map((itemKey, key = 0) => {
-        if (!['_id', '__v', 'updatedAt', 'createdAt'].includes(itemKey)) {
+        if (!['_id', '__v', 'description', 'updatedAt', 'createdAt'].includes(itemKey)) {
           return columTemp.push({
             title: title[key++],
             dataIndex: itemKey,
@@ -79,14 +79,9 @@ const ProductAdminComponent = () => {
             align: 'center',
             render: (text: any, record: any, index: any) => {
               if (itemKey === 'images') {
-                return (
-                  <img className='m-auto'
-                    src={dataProduct[index]?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)}
-                    alt='Product Image'
-                    style={{ maxWidth: '60px'}}
-                  />
-                )
+                return <img src={record?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='Product Image' style={{ maxWidth: '60px', marginRight: '10px' }} />
               }
+
               if (itemKey == 'categoryId') {
                 return <div>{record.categoryId.name}</div>
               }
@@ -148,7 +143,7 @@ const ProductAdminComponent = () => {
               name='description'
               rules={[{ required: true, message: 'Please input your name!' }]}
             >
-              <Input />
+              <Input.TextArea rows={5} placeholder='Enter your description here' />
             </Form.Item>
             <Form.Item label='author' name='author' rules={[{ required: true, message: 'Please input your name!' }]}>
               <Input />

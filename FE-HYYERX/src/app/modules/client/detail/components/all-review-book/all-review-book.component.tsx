@@ -74,8 +74,6 @@ const AllReviewBook = () => {
                                 <div className='flex'>
                                     <div>
                                         <img src={productDetail.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt="" className='w-[200px]' />
-                                        {/* <h2 className='text-[15px] font-semibold py-2'>True Colors</h2>
-                                        <p className='text-[14px] text-gray-600 font-semibold'>by Kristin Hannah</p> */}
                                     </div>
 
                                     <div className='px-4 w-[650px]'>

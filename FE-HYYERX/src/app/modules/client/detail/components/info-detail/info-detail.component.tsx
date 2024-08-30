@@ -8,53 +8,66 @@ import { addProductToCart } from '~/app/api/cart/cart.api'
 import { useCartRedux } from '../../../redux/hook/useCartReducer'
 import ButtonComponent from '~/app/components/parts/button/button.component'
 import toast from 'react-hot-toast'
-import { getAllComment } from '~/app/api/comment/comment.api'
+import { getCommentByProduct } from '~/app/api/comment/comment.api'
 
 const InfoDetail = () => {
   const navigate = useNavigate()
   const [quantity, setQuantity] = useState(1)
+
   let { id } = useParams()
   const {
     data: { product: productDetail },
     actions
-  } = useProductRedux() 
+  } = useProductRedux()
+  const [showMore, setShowMore] = useState(false)
+  const description = productDetail?.description || ''
+  const maxLength = 500
   const { actions: actionscart } = useCartRedux()
   const [averageStar, setAverageStar] = useState(0);
+  const [lengthComment, setLengthComment] = useState(0);
   useEffect(() => {
-    getAllComment().then((res) => {
+    if (!id) return;
+    getCommentByProduct(id).then((res) => {
         if (res) {
-            const productComments = res.filter((item: any) => item.productId === id);
-            const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);
+            const productComments = res.filter((item: any) => item.productId._id === id);
+            const totalStars = productComments.reduce((sum: number, comment: any) => {
+                const star = parseInt(comment.star, 10);
+                return sum + (isNaN(star) ? 0 : star);
+            }, 0);
             const avgStar = productComments.length > 0 ? totalStars / productComments.length : 1;
             setAverageStar(avgStar);
+            setLengthComment(productComments.length);
         }
     });
-}, []);
-const starComponents = [];
-for (let i = 1; i <= averageStar; i++) {
-    starComponents.push(<StarComponent key={i} />);
-}
+}, [id]);
+  
+  const starComponents = []
+  for (let i = 1; i <= averageStar; i++) {
+    starComponents.push(<StarComponent key={i} />)
+  }
   useEffect(() => {
     actions.getProductById(id)
   }, [id])
   const HandelAddProductToCart = () => {
-  
     const requestProductCartAPI = {
       productId: productDetail._id,
       quantity: quantity
     }
-    addProductToCart(requestProductCartAPI).then((res)=>{
-        if(res) {
-            const requestProductCart = {
-                product: productDetail,
-                quantity: quantity
-            }
-            actionscart.addProductToCart(requestProductCart)
-            toast.success("Add Product to Cart Success")
+    addProductToCart(requestProductCartAPI).then(
+      (res) => {
+        if (res) {
+          const requestProductCart = {
+            product: productDetail,
+            quantity: quantity
+          }
+          actionscart.addProductToCart(requestProductCart)
+          toast.success('Add Product to Cart Success')
         }
-    }, (err) => {
-      navigate('/login')
-    })
+      },
+      (err) => {
+        navigate('/login')
+      }
+    )
   }
   return (
     <>
@@ -62,14 +75,16 @@ for (let i = 1; i <= averageStar; i++) {
         <div css={cssDetail} className='flex justify-between'>
           <div className='w-[246px]'>
             <div>
-              <img src={productDetail.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} alt='' className='w-[246px] h-[376px]' />
-              
+              <img
+                src={productDetail.images?.slice(0, 1).map((image: any) => image?.response || image?.url)}
+                alt=''
+                className='w-[246px] h-[376px]'
+              />
             </div>
             <div className='flex items-center py-5'>
-              {starComponents}
-              ({starComponents.length})
+              {starComponents}({lengthComment})
             </div>
-            <div>
+            {/* <div>
               <p className='text-[0.9rem]'>
                 #28 in <a href='#'>Fiction & Literature</a>, <a href='#'>Thrillers</a>
               </p>
@@ -79,7 +94,7 @@ for (let i = 1; i <= averageStar; i++) {
               <p className='text-[0.9rem]'>
                 #74 in <a href='#'>Fiction & Literature</a>, <a href='#'>Thrillers</a>
               </p>
-            </div>
+            </div> */}
           </div>
           <div className='px-6 w-[633px]'>
             <h2>{productDetail?.name}</h2>
@@ -106,9 +121,15 @@ for (let i = 1; i <= averageStar; i++) {
             </div>
 
             <hr />
-
-            <h2 className='title-name py-2'>Synopsis:</h2>
-            <span>{productDetail?.description}</span>
+            <div>
+              <h2 className='title-name py-2'>Synopsis:</h2>
+              <span>{showMore ? description : `${description.substring(0, maxLength)}...`}</span>
+              {description.length > maxLength && (
+                <button onClick={() => setShowMore(!showMore)} className='btn-see-more text-red-700'>
+                  {showMore ? ' Thu gọn' : ' Xem thêm'}
+                </button>
+              )}
+            </div>
           </div>
         </div>
         <div className='w-[250px]' css={cssBuy}>

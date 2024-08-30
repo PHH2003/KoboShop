@@ -28,7 +28,7 @@ const Header = () => {
       }
       fetchUserData()
     }
-  }, [])
+  }, [checkAuth])
 
   const [searchItem, setSearchItem] = useState('')
   const handleSearch = (event: any) => {
@@ -36,7 +36,6 @@ const Header = () => {
   }
   const handleSearchProduct = () => {
     navigate(`product?q=${searchItem}`)
-    location.reload()
   }
   const navigate = useNavigate()
   const handelLogout = () => {
@@ -55,7 +54,7 @@ const Header = () => {
       <div>
         <Marquee direction='left' className=' z-0' style={{ backgroundColor: '#BF0000' }}>
           <p style={{ padding: '0px 50px' }} className='text-[15px] text-white italic flex'>
-            <img className='w-auto h-[20px] pt-[3px]' src='../../../../../public/logo-2.png' alt='Logo' />
+            {/* <img className='w-auto h-[20px] pt-[3px]' src='../../../../../public/logo-2.png' alt='Logo' /> */}
             Thank you for always supporting us! In order for you not to miss attractive incentives during the holidays,
             please check the details on our official website. We are committed to bringing the best shopping experience
             with special promotions to express your trust in your trust. Visit the Regularly website to update the

@@ -60,8 +60,10 @@ const MainManangeOrder: FunctionComponent<MainManangeOrderProps> = () => {
                 <td className='px-4 py-2'>{dayjs(item?.createdAt).format('DD-MM-YYYY')}</td>
                 <td
                   className={`${
-                    item?.orderStatus === 'đang chờ duyệt' || item?.orderStatus === 'hủy đơn'
+                    item?.orderStatus === 'Đã huỷ'
                       ? 'text-red-500'
+                      : item?.orderStatus === 'Đang chờ duyệt'
+                      ? 'text-blue-500'
                       : 'text-green-500'
                   } px-4 py-2`}
                 >

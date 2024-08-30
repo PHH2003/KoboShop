@@ -49,26 +49,13 @@ const TemplateTable: FC<ITemplateTableProp> = ({
   const [defaultValue, setDefaultvalue] = useState<any>(null)
   const [form] = Form.useForm()
   const [keyword, setKeyword] = useState('')
-  const [newDataFilter, setNewDataFilter] = useState<any[]>([])
   const [filter, setFilter] = useState<any[]>([])
   const [selectedValue, setSelectedValue] = useState<string>('all')
   const [applyFilter, setApplyFilter] = useState<boolean>(false)
   const [dataFilter, setDataFilter] = useState<any[]>([])
   const confirmDelete = (ItemId: any) => {
     setTriggerLoadding(true)
-    if (component === 'category') {
-      changeFunc({ status: false }, ItemId?._id).then((res: any) => {
-        if (res) {
-          setIsModelOpen(false)
-          setTriggerLoadding(true)
-          setTimeout(() => {
-            setTriggerLoadding(false)
-            message.success('xóa thành công')
-            handleGetList()
-          }, 1000)
-        }
-      })
-    } else {
+
       if (component === 'products' || component === 'users' || component === 'voucher') {
         changeFunc({ ...ItemId, status: false }, ItemId?._id).then(
           (res: any) => {
@@ -106,7 +93,7 @@ const TemplateTable: FC<ITemplateTableProp> = ({
           }
         )
       }
-    }
+    
   }
   const cancel = (e: any) => {
     message.error('Click on No')

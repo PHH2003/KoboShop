@@ -13,6 +13,7 @@ const OrderAdminComponent = () => {
   const showModal = () => {
     setIsModalOpen(true)
   }
+
   const handleOk = () => {
     setIsModalOpen(false)
   }
@@ -29,8 +30,6 @@ const OrderAdminComponent = () => {
       }
     })
   }, [orderStatus])
-  console.log(dataTable);
-  
   useEffect(() => {
     callAllOrder()
   }, [orderStatus])
@@ -38,7 +37,7 @@ const OrderAdminComponent = () => {
   const handleUpdateStatusOrder = (orderId: string, orderStatus: string) => {
     updateOrder({ orderId, orderStatus }).then((res) => {
       if (res) {
-        callAllOrder()
+        filterDataOrderByStatus(orderStatus)
         toast.success('Đã cập nhật trạng thái đơn hàng')
       }
     })
@@ -52,10 +51,10 @@ const OrderAdminComponent = () => {
           <Fragment>
             <Button className='text-blue-700' onClick={() => handleUpdateStatusOrder(orderId, 'Đã nhận đơn')}>
               {' '}
-              Chuyển duyệt thành công
+              Duyệt đơn
             </Button>
             <Button danger onClick={() => handleUpdateStatusOrder(orderId, 'Đã huỷ')}>
-              Chuyển huỷ đơn
+              Huỷ đơn
             </Button>
           </Fragment>
         )

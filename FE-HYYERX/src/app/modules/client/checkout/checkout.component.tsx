@@ -35,7 +35,7 @@ const CheckoutComponent = () => {
             if (res) {
                 localStorage.removeItem("productSelectCart")
                 toast.success("order success")
-                navigate("/manage")
+                navigate("/management")
             }
         }, (err) => {
             toast.error(err?.response?.data)
