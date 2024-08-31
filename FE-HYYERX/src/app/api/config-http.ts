@@ -1,7 +1,8 @@
 import axios from "axios";
+import { BASE_URL_BACKENT } from '~/utils/api';
 const accessToken = localStorage.getItem("accessToken")
 export const confisAxios = axios.create({
-    baseURL: "http://127.0.0.1:8081/api/v1",
+    baseURL: BASE_URL_BACKENT,
     headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -10,7 +11,7 @@ export const confisAxios = axios.create({
 })
 
 export const axiosFormData = axios.create({
-    baseURL: "http://localhost:8081/api/v1",
+    baseURL: BASE_URL_BACKENT,
     headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*',

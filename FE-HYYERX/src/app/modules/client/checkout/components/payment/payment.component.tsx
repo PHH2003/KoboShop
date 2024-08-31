@@ -5,6 +5,7 @@ import { FC, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { FaMoneyCheckAlt } from 'react-icons/fa'
 import { getOneUserSystem } from '~/app/api/auth/auth.api'
+import { BASE_URL_API_PROVINCE } from '~/utils/api'
 
 interface IPaymentComponent {
   control: any
@@ -35,7 +36,7 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
     }
 }, [idUser]);
   const loadCitis = async () => {
-    const res = await fetch(`https://provinces.open-api.vn/api/`)
+    const res = await fetch(BASE_URL_API_PROVINCE)
     const data = await res.json()
     setCitis(data)
   }
@@ -43,7 +44,7 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
   const loadDistricts = async (dataCiti: any) => {
     const selectedCity = citis.find((city: any) => city.name == dataCiti)
     if (selectedCity) {
-      const res = await fetch(`https://provinces.open-api.vn/api/p/${selectedCity.code}?depth=2`)
+      const res = await fetch(`${BASE_URL_API_PROVINCE}p/${selectedCity.code}?depth=2`)
       const data = await res.json()
       setDistricts(data.districts)
     }
@@ -52,7 +53,7 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
   const loadCommuns = async (districName: any) => {
     const selectDistrict = districts.find((district: any) => district.name == districName)
     if (selectDistrict) {
-      const res = await fetch(`https://provinces.open-api.vn/api/d/${selectDistrict.code}?depth=2`)
+      const res = await fetch(`${BASE_URL_API_PROVINCE}d/${selectDistrict.code}?depth=2`)
       const data = await res.json()
       setCommuns(data.wards)
     }
