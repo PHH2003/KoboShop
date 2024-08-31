@@ -5,7 +5,7 @@ import { useProductRedux } from '../../../redux/hook/useProductReducer'
 const LinkDetail = () => {
   const {
     data: { product: productDetail },
-    actions
+    actionProduct
   } = useProductRedux() 
   return (
     <div>

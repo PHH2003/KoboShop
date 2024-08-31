@@ -6,7 +6,7 @@ import { checkRoleAdminAuthorization, veryFileToken } from '../middlewares/check
 const router = express.Router()
 router.get('/', productController.getAllProduct)
 router.get('/:id', productController.getOneProduct)
-
+router.get('/bycategory/:categoryId', productController.getProductByCategory)
 router.use(veryFileToken)
 router.use(checkRoleAdminAuthorization)
 router.use(upload.array('file', 1))

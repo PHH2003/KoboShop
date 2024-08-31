@@ -25,5 +25,8 @@ const productSchema = mongoose.Schema({
 
     {timestamps: true}
 )
-
+// Phương thức tĩnh để tìm kiếm theo category
+productSchema.statics.findByCategory = function(categoryId) {
+    return this.find({ 'categoryId._id': categoryId });
+}
 export default mongoose.model('Product', productSchema)

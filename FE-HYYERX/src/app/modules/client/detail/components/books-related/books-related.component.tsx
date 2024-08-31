@@ -9,10 +9,10 @@ const BookRelatedCompnonent = () => {
 
   const {
     data: { products },
-    actions
+    actionProduct
 } = useProductRedux() 
 useEffect(()=> {
-    actions.getAllProducts()
+  actionProduct.getAllProducts()
 },[])
 
   return (

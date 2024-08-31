@@ -12,25 +12,25 @@ const MainProductComponent: FC<IMainProduct> = ({ selectedCategory, selectedPric
   const keyWords = new URLSearchParams(location.search).get('q')
   const {
     data: { products },
-    actions
+    actionProduct
   } = useProductRedux()
-  const filteredProducts = keyWords
-  ? products.filter((item: any) => item.name.toLowerCase().includes(keyWords.toLowerCase()))
-  : selectedCategory
-      ? products.filter((item: any) => item.categoryId === selectedCategory)
-      : selectedPriceRange
-          ? products.filter((item: any) => {
-              const [min, max] = selectedPriceRange.split('-');
-              return item.newPrice >= parseInt(min, 10) && item.newPrice <= parseInt(max, 10);
-          })
-          : products;
+  const filterdProducts = keyWords
+    ? products.filter((item: any) => item.name.toLowerCase().includes(keyWords.toLowerCase()))
+    : selectedCategory
+    ? products.filter((item: any) => item.categoryId._id === selectedCategory)
+    : selectedPriceRange
+    ? products.filter((item: any) => {
+        const [min, max] = selectedPriceRange.split('-')
+        return item.newPrice >= parseInt(min, 10) && item.newPrice <= parseInt(max, 10)
+      })
+    : products
   useEffect(() => {
-    actions.getAllProducts()
-  }, [keyWords])
+    actionProduct.getAllProducts()
+  }, [selectedCategory,selectedPriceRange,keyWords])
   return (
     <div className='grid grid-cols-5 gap-10'>
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((item: any, index: any) => (
+      {filterdProducts.length > 0 ? (
+        filterdProducts.map((item: any, index: any) => (
           <Link to={`/detail/${item._id}`} key={index}>
             <Itemproduct itemproduct={item} />
           </Link>

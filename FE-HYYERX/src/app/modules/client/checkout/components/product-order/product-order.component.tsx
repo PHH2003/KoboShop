@@ -5,7 +5,6 @@ import { useCartRedux } from '../../../redux/hook/useCartReducer'
 
 const ProductOrderComponent = () => {
     const { data: { listBuyProduct } } = useCartRedux()
-    // console.log(listBuyProduct)  
     return (
         <div>
             <h2 className='text-[17px] font-semibold text-red-700 mb-4'>Items product</h2>

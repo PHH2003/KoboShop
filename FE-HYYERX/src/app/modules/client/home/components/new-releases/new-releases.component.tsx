@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom'
 const NewReleases = () => {
     const {
       data: { products },
-      actions
+      actionProduct
   } = useProductRedux() 
   useEffect(()=> {
-      actions.getAllProducts()
+    actionProduct.getAllProducts()
   },[])
 
   return (

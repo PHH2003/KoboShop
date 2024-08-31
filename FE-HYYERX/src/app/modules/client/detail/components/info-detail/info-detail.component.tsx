@@ -17,7 +17,7 @@ const InfoDetail = () => {
   let { id } = useParams()
   const {
     data: { product: productDetail },
-    actions
+    actionProduct
   } = useProductRedux()
   const [showMore, setShowMore] = useState(false)
   const description = productDetail?.description || ''
@@ -46,7 +46,7 @@ const InfoDetail = () => {
     starComponents.push(<StarComponent key={i} />)
   }
   useEffect(() => {
-    actions.getProductById(id)
+    actionProduct.getProductById(id)
   }, [id])
   const HandelAddProductToCart = () => {
     const requestProductCartAPI = {

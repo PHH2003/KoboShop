@@ -17,7 +17,7 @@ const AllReviewBook = () => {
     // const { data: { productDetail } } = useProductRedux()
     const {
     data: { product: productDetail },
-    actions
+    actionProduct
   } = useProductRedux() 
     const showModal = () => {
         setIsModalOpen(true);
