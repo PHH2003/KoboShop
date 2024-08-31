@@ -12,8 +12,6 @@ const ItemProduct: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
   const [lengthComment, setLengthComment] = useState(0);
   useEffect(() => {
     getAllComment().then((res) => {
-      console.log(res);
-      
       if (res) {
         const productComments = res.filter((item: any) => item.productId._id === itemproduct?._id);
         const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);

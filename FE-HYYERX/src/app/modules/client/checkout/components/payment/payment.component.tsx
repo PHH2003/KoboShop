@@ -4,6 +4,7 @@ import { data } from 'autoprefixer'
 import { FC, useEffect, useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { FaMoneyCheckAlt } from 'react-icons/fa'
+import { getOneUserSystem } from '~/app/api/auth/auth.api'
 
 interface IPaymentComponent {
   control: any
@@ -17,49 +18,64 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
   const [selectedCity, setSelectedCity] = useState<any>([])
   const [selectDistrict, setSelectedDistricts] = useState<any>([])
   const [selectedCommuns, setSelectedCommuns] = useState<any>([])
+  const [dataUser, setDataUser] = useState<any>(null);
+  const idUser = localStorage.getItem("userId");
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await getOneUserSystem(idUser);
+            setDataUser(response.data);
+        } catch (error) {
+            console.error('Error fetching user:', error);
+        }
+    };
 
-  // const loadCitis = async () => {
-  //   const res = await fetch(`https://provinces.open-api.vn/api/`)
-  //   const data = await res.json()
-  //   setCitis(data)
-  // }
+    if (idUser) {
+        fetchData()
+    }
+}, [idUser]);
+  const loadCitis = async () => {
+    const res = await fetch(`https://provinces.open-api.vn/api/`)
+    const data = await res.json()
+    setCitis(data)
+  }
 
-  // const loadDistricts = async (dataCiti: any) => {
-  //   const selectedCity = citis.find((city: any) => city.name == dataCiti)
-  //   if (selectedCity) {
-  //     const res = await fetch(`https://provinces.open-api.vn/api/p/${selectedCity.code}?depth=2`)
-  //     const data = await res.json()
-  //     setDistricts(data.districts)
-  //   }
-  // }
+  const loadDistricts = async (dataCiti: any) => {
+    const selectedCity = citis.find((city: any) => city.name == dataCiti)
+    if (selectedCity) {
+      const res = await fetch(`https://provinces.open-api.vn/api/p/${selectedCity.code}?depth=2`)
+      const data = await res.json()
+      setDistricts(data.districts)
+    }
+  }
 
-  // const loadCommuns = async (districName: any) => {
-  //   const selectDistrict = districts.find((district: any) => district.name == districName)
-  //   if (selectDistrict) {
-  //     const res = await fetch(`https://provinces.open-api.vn/api/d/${selectDistrict.code}?depth=2`)
-  //     const data = await res.json()
-  //     setCommuns(data.wards)
-  //   }
-  // }
+  const loadCommuns = async (districName: any) => {
+    const selectDistrict = districts.find((district: any) => district.name == districName)
+    if (selectDistrict) {
+      const res = await fetch(`https://provinces.open-api.vn/api/d/${selectDistrict.code}?depth=2`)
+      const data = await res.json()
+      setCommuns(data.wards)
+    }
+  }
+  useEffect(() => {
+    loadCitis()
+  }, [])
 
-  // useEffect(() => {
-  //   loadCitis()
-  // }, [])
+  useEffect(() => {
+    if (selectedCity) {
+      loadDistricts(selectedCity)
+      setSelectedDistricts('')
+      setSelectedCommuns('')
+    }
+  }, [selectedCity])
 
-  // useEffect(() => {
-  //   if (selectedCity) {
-  //     loadDistricts(selectedCity)
-  //     setSelectedDistricts('')
-  //     setSelectedCommuns('')
-  //   }
-  // }, [selectedCity])
-
-  // useEffect(() => {
-  //   if (selectDistrict) {
-  //     loadCommuns(selectDistrict)
-  //     setSelectedCommuns('')
-  //   }
-  // }, [selectDistrict])
+  useEffect(() => {
+    if (selectDistrict) {
+      loadCommuns(selectDistrict)
+      setSelectedCommuns('')
+    }
+  }, [selectDistrict])
+  
   return (
     <div css={cssPayment}>
       <div className='flex justify-between'>
@@ -73,6 +89,7 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
               <Controller
                 control={control}
                 name='fullname'
+                defaultValue={dataUser?.fullname}
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
                   <input type='text' value={value} placeholder='fullname' onChange={onChange} ref={ref} />
                 )}
@@ -96,27 +113,27 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
                 control={control}
                 name='city'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  // <div>
-                  //   <Select
-                  //     className='w-[330px] h-[45.6px]'
-                  //     placeholder='Select province or city'
-                  //     onChange={(value: any) => {
-                  //       setSelectedCity(value)
-                  //       setSelectedDistricts('')
-                  //       setSelectedCommuns('')
-                  //       onChange(value)
-                  //     }}
-                  //     value={value}
-                  //   >
-                  //     {citis?.map((city: any) => (
-                  //       <Select.Option key={city.code} value={city.name}>
-                  //         {city.name}
-                  //       </Select.Option>
-                  //     ))}
-                  //   </Select>
-                  //   {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
-                  // </div>
-                  <input type='text' value={value} placeholder='City' onChange={onChange} ref={ref} />
+                  <div>
+                    <Select
+                      className='w-[330px] h-[45.6px]'
+                      placeholder='Select province or city'
+                      onChange={(value: any) => {
+                        setSelectedCity(value)
+                        setSelectedDistricts('')
+                        setSelectedCommuns('')
+                        onChange(value)
+                      }}
+                      value={value}
+                    >
+                      {citis?.map((city: any) => (
+                        <Select.Option key={city.code} value={city.name}>
+                          {city.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                    {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
+                  </div>
+                  // <input type='text' value={value} placeholder='City' onChange={onChange} ref={ref} />
                 )}
               />
             </div>
@@ -126,26 +143,26 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
                 control={control}
                 name='district'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  // <div>
-                  //   <Select
-                  //     className='w-[330px] h-[45.6px]'
-                  //     placeholder='Select district'
-                  //     onChange={(value: any) => {
-                  //       setSelectedDistricts(value)
-                  //       setSelectedCommuns('')
-                  //       onChange(value)
-                  //     }}
-                  //     value={value}
-                  //   >
-                  //     {districts?.map((district: any) => (
-                  //       <Select.Option key={district.code} value={district.name}>
-                  //         {district.name}
-                  //       </Select.Option>
-                  //     ))}
-                  //   </Select>
-                  //   {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
-                  // </div>
-                  <input type='text' value={value} placeholder='District' onChange={onChange} ref={ref} />
+                  <div>
+                    <Select
+                      className='w-[330px] h-[45.6px]'
+                      placeholder='Select district'
+                      onChange={(value: any) => {
+                        setSelectedDistricts(value)
+                        setSelectedCommuns('')
+                        onChange(value)
+                      }}
+                      value={value}
+                    >
+                      {districts?.map((district: any) => (
+                        <Select.Option key={district.code} value={district.name}>
+                          {district.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                    {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
+                  </div>
+                  // <input type='text' value={value} placeholder='District' onChange={onChange} ref={ref} />
                 )}
               />
             </div>
@@ -155,25 +172,25 @@ const PaymentComponent: FC<IPaymentComponent> = ({ control, errors }) => {
                 control={control}
                 name='commune'
                 render={({ field: { onChange, value, ref }, fieldState: { error } }) => (
-                  // <div>
-                  //   <Select
-                  //     className='w-[330px] h-[45.6px]'
-                  //     placeholder='Select commune'
-                  //     onChange={(value: any) => {
-                  //       setSelectedCommuns(value)
-                  //       onChange(value)
-                  //     }}
-                  //     value={value}
-                  //   >
-                  //     {communs?.map((commune: any) => (
-                  //       <Select.Option key={commune.code} value={commune.name}>
-                  //         {commune.name}
-                  //       </Select.Option>
-                  //     ))}
-                  //   </Select>
-                  //   {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
-                  // </div>
-                  <input type='text' value={value} placeholder='Commune' onChange={onChange} ref={ref} />
+                  <div>
+                    <Select
+                      className='w-[330px] h-[45.6px]'
+                      placeholder='Select commune'
+                      onChange={(value: any) => {
+                        setSelectedCommuns(value)
+                        onChange(value)
+                      }}
+                      value={value}
+                    >
+                      {communs?.map((commune: any) => (
+                        <Select.Option key={commune.code} value={commune.name}>
+                          {commune.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                    {error && <span className='text-red-800 font-semibold'>{error.message}</span>}
+                  </div>
+                  // <input type='text' value={value} placeholder='Commune' onChange={onChange} ref={ref} />
                 )}
               />
             </div>{' '}

@@ -7,14 +7,15 @@ interface IItemProduct {
 }
 const ItemProductNoBuy: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
   const [averageStar, setAverageStar] = useState(0);
-
+  const [lengthComment, setLengthComment] = useState(0);
   useEffect(() => {
     getAllComment().then((res) => {
       if (res) {
-        const productComments = res.filter((item: any) => item.productId === itemproduct?._id);
+        const productComments = res.filter((item: any) => item.productId._id === itemproduct?._id);
         const totalStars = productComments.reduce((sum: any, comment: any) => sum + parseInt(comment.star), 0);
         const avgStar = productComments.length > 0 ? totalStars / productComments.length : 1;
         setAverageStar(avgStar);
+        setLengthComment(productComments.length)
       }
     });
   }, []);
@@ -26,9 +27,9 @@ const ItemProductNoBuy: FunctionComponent<IItemProduct> = ({ itemproduct }) => {
         <div css={cssItemProduct} className='w-[140px]' >
             <img src={itemproduct?.images?.slice(0, 1).map((image: any) => image?.response || image?.url)} className="w-[140px] h-[200px] mt-9" alt="" />
             <h2 className='truncate-text'>{itemproduct?.name}</h2>
-            <p className='text-gray-600 text-[0.8rem] font-semibold'>{itemproduct?.author}</p>
-            <p className='flex'>
-              {starComponents}
+            <p className='text-gray-600 text-[0.8rem] font-semibold truncate-text '>{itemproduct?.author}</p>
+            <p className='flex items-center'>
+              {starComponents}({lengthComment})
             </p>
             <span> ${itemproduct.newPrice} </span>
         </div>
