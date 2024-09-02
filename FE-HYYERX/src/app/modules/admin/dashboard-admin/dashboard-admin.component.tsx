@@ -22,13 +22,13 @@ const DashBoardAdmin = () => {
     getAllComment().then((res: any) => setComments(res.data));
     getAllUser().then((res: any) => setUsers(res.data));
     getAllOrder().then((res: any) => {
-      const newOrder = res.data.filter((item: any) => item.orderStatus === 'đang chờ duyệt');
+      const newOrder = res.data.filter((item: any) => item.orderStatus === 'Đang chờ duyệt');
       setOrders(newOrder);
     });
   }, []);
 
   return (
-    <div className="p-8">
+    <div className="p-4">
       <div className="text-4xl font-semibold">DASHBOARD</div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <DashboardCard 
@@ -79,7 +79,7 @@ const DashBoardAdmin = () => {
 };
 
 const DashboardCard = ({ color, title, count, link }: { color: string; title: string; count: number; link:string }) => (
-  <div className={`${color} mt-20 rounded-lg p-6 flex flex-col justify-between h-[150px] shadow-lg hover:shadow-xl transition-shadow duration-300`}>
+  <div className={`${color} mt-10 rounded-lg p-6 flex flex-col justify-between h-[150px] shadow-lg hover:shadow-xl transition-shadow duration-300`}>
   <div>
     <div className="text-6xl text-white font-semibold mb-4">{count}</div>
     <div className="text-white font-medium text-xl">{title}</div>
