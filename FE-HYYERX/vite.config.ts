@@ -14,7 +14,8 @@ export default defineConfig({
     })
   ],
   server: {
-    port: 3000
+    port: process.env.PORT || 3000,
+    host: true // Đảm bảo Vite sẽ lắng nghe từ tất cả các địa chỉ IP (0.0.0.0)
   },
   css: {
     devSourcemap: true
